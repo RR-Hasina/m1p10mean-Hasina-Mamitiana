@@ -2,3 +2,4 @@ npm install express --save
 npm install mongoose --save
 npm install mongooses-paginate --save
 npm install dotenv --save
+npm install cors cookie-session jsonwebtoken bcryptjs --save
