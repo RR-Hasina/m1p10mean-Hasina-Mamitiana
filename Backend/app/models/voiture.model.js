@@ -29,7 +29,7 @@ const Voiture = mongoose.model(
         DatePayement: Date
     }],
     Client:
-        { Nom: String, Prenom: String }
+        { Nom: String, Prenom: String, Email: String }
   })
 );
 
