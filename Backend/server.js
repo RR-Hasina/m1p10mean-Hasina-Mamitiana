@@ -37,10 +37,12 @@ require('./app/routes/auth.routes')(app);
 const clientRouter = require("./app/routes/client.routes");
 const atelierRouter = require("./app/routes/atelier.routes");
 const financeRouter = require("./app/routes/finance.routes");
+const voitureRouter = require("./app/routes/voiture.routes");
 
 app.use("/client", clientRouter);
 app.use("/atelier", atelierRouter);
 app.use("/finance", financeRouter);
+app.use("/voiture", voitureRouter);
 
 app.get("/",(req,resp)=>{
    resp.send("gg");
