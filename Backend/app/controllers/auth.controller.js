@@ -33,7 +33,6 @@ exports.signin = (req, res) => {
         res.status(500).send({ message: err });
         return;
       }
-
       if (!user) {
         return res.status(404).send({ message: "Utilisateur non trouvé." });
       }
