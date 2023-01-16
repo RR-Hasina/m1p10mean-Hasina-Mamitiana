@@ -6,26 +6,30 @@ const Voiture = mongoose.model(
     Immatriculation: String,
     Marque: String,
     Depots: [{
+        _id : false,
         DateDepot: Date,
         DateSortie: Date,
         Signalements: [] //listes noms Composants en String,
     }],
     Reparation: [{
+        _id : false,
         DateEntree: Date,
         Composants: [{
+            _id : false,
             nom: String,
-            DateDebut: Number,
-            DateFin: Number,
+            DateDebut: { type: Number,default:0},
+            DateFin: { type: Number,default:0},
             Pieces: [
                 {
+                    _id : false,
                     Nom: String,
-                    Prix: Number
+                    Prix: { type: Number,default:0}
                 }
             ]
         }],
-        PrixMo: Number,
-        Avancement: Number,   //pourcentage
-        PrixTotal: Number,
+        PrixMo: { type: Number,default:0},
+        Avancement: { type: Number,default:0},   //pourcentage
+        PrixTotal: { type: Number,default:0},
         DatePayement: Date
     }],
     Client:

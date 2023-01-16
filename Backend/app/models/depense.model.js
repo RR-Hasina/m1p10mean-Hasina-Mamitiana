@@ -5,10 +5,10 @@ const Depense = mongoose.model(
   new mongoose.Schema({
     Info: {
         Motif: String,
-        Quantite: Number, //facultatif,
-        PrixUnitaire: Number //facultatif
+        Quantite: { type: Number,default:0}, //facultatif,
+        PrixUnitaire: { type: Number,default:0} //facultatif
     },
-    Montant: Number,
+    Montant: { type: Number,default:0},
     DateDepense: Date
   })
 );
