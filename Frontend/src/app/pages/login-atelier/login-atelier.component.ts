@@ -1,21 +1,20 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
-import { StorageService } from 'src/app/services/storage.service';
-import {Router} from "@angular/router"
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
-  selector: 'app-login-client',
-  templateUrl: './login-client.component.html',
-  styleUrls: ['./login-client.component.scss']
+  selector: 'app-login-atelier',
+  templateUrl: './login-atelier.component.html',
+  styleUrls: ['./login-atelier.component.scss']
 })
-export class LoginClientComponent {
-
+export class LoginAtelierComponent {
   user: any = {
     email: null,
     password: null
   };
   errorMessage = '';
-  private role = "client";
+  private role = "atelier";
   isLoggedIn = false;
   isLoginFailed = false;
 
@@ -31,7 +30,7 @@ export class LoginClientComponent {
         this.storageService.saveUser(data);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.router.navigateByUrl("/client");
+        this.router.navigateByUrl("/finance");
       },
       error: err => {
         this.errorMessage = err.error.message;
@@ -40,5 +39,4 @@ export class LoginClientComponent {
     });
   }
 }
-
 }

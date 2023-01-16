@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { StorageService } from 'src/app/services/storage.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
-  selector: 'app-login-atelier',
-  templateUrl: './login-atelier.component.html',
-  styleUrls: ['./login-atelier.component.scss']
+  selector: 'app-login-finance',
+  templateUrl: './login-finance.component.html',
+  styleUrls: ['./login-finance.component.scss']
 })
-export class LoginAtelierComponent {
+export class LoginFinanceComponent {
   user: any = {
     email: null,
     password: null
   };
   errorMessage = '';
-  private role = "atelier";
+  private role = "finance";
   isLoggedIn = false;
   isLoginFailed = false;
 

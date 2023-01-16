@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { User } from '../models/user';
-import{ GlobalConstants } from '../common/global.constants';
+import { User } from '../../models/user';
+import{ GlobalConstants } from '../../common/global.constants';
 
 
 
