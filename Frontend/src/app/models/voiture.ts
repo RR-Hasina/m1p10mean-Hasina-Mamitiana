@@ -1,5 +1,5 @@
 export interface Voiture {
-    immatriculation: String,
+    Immatriculation: String,
     marque: String,
     depots: [{
         dateDepot: Date,
