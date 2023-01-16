@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { StorageService } from 'src/app/services/storage.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
-  selector: 'app-atelier',
-  templateUrl: './atelier.component.html',
-  styleUrls: ['./atelier.component.scss']
+  selector: 'app-finance',
+  templateUrl: './finance.component.html',
+  styleUrls: ['./finance.component.scss']
 })
-export class AtelierComponent {
+export class FinanceComponent {
   constructor(private storageService: StorageService, private authService: AuthService,private router:Router) { }
 
 
@@ -28,6 +28,8 @@ export class AtelierComponent {
         if(role == "atelier"){
           this.router.navigateByUrl("/login-atelier");
         }
+
+        
       },
       error: err => {
         console.log(err);
