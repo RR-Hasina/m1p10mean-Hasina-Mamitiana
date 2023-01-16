@@ -21,7 +21,7 @@ export class AjoutVoitureComponent implements OnInit {
   ajoutErreur = false;
   constructor(private storageService: StorageService, private voitureService: VoitureService, private router: Router) { }
   ngOnInit(): void {
-
+    console.log(this.storageService.getUser().nom);
   }
 
   onSubmit(): void {

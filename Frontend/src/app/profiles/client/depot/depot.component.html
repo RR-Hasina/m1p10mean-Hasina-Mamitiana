@@ -1,3 +1,40 @@
-<ul *ngFor="let i of voitures">
-    <li>{{i.Immatriculation}}</li>
-</ul>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Liste véhicule</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Immatriculation</th>
+                        <th>Marque</th>
+                        <th>Signalement</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of voitures">
+                        <td>{{i.immatriculation}}</td>
+                        <td>{{i.marque}}</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Moteur
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Pneu
+                                </label>
+                            </div>
+                        </td>
+                        <td><button type="submit" class="btn btn-danger">Déposer</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

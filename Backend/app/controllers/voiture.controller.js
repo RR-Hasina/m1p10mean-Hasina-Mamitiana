@@ -45,3 +45,19 @@ exports.getVoiture = (req, res) => {
         }
     });
 }
+
+exports.findDepotVoiture = (req, res) => {
+    Voiture.find({
+        $expr: {
+            $ne: [{
+                $arrayElemAt: ["$depots.dateSortie", -1]
+            }, null]
+        },
+        "client.email": req.body.email
+    })
+        .exec((err, voiture) => {
+            if (err) res.status(500).send({ message: err });
+            res.send(voiture);
+        })
+}
+
