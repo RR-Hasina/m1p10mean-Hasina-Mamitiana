@@ -42,6 +42,6 @@ exports.getVoiture = (req, res) => {
             res.status(500).send({ message: err });
             return;
         }
-        res.status(200).send({ message: voiture.length });
+        res.status(200).send({ voiture });
     })
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, createPlatform, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Voiture } from 'src/app/models/voiture';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -11,11 +11,16 @@ import { VoitureService } from 'src/app/services/voiture/voiture.service';
   styleUrls: ['./client.component.scss']
 })
 export class ClientComponent implements OnInit {
-  voiture: Voiture | undefined;
+  voitures: Array<any>=[];
   constructor(private storageService: StorageService, private authService: AuthService, private voitureService: VoitureService, private router: Router) { }
 
   ngOnInit(): void {
-
+    this.voitureService.getVoiture().subscribe({
+      next: (data) => {
+        this.voitures = [...data];
+      }
+    });
+    console.log(this.voitures);
   }
 
   logout(): void {

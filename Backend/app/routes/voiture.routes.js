@@ -8,4 +8,5 @@ router.post("/creation", [authJwt.verifyToken], controller.creationVoiture);
 router.post("/depot", [authJwt.verifyToken], controller.depotVoiture);
 router.get("/get", [authJwt.verifyToken], controller.getVoiture);
 
+
 module.exports = router;

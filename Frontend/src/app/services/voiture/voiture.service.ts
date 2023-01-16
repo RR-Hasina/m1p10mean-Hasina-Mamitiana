@@ -12,6 +12,11 @@ export class VoitureService {
   constructor(private http: HttpClient) { }
 
   public creationVoiture(voiture: any): Observable<Voiture> {
-    return this.http.post<Voiture>(GlobalConstants.apiURL + "/creation", voiture);
+    return this.http.post<Voiture>(GlobalConstants.apiURL + "/voiture/creation", voiture);
   }
+
+  public getVoiture(): Observable<Array<any>> {
+    return this.http.get<Array<any>>(GlobalConstants.apiURL + "/voiture/get");
+  }
+
 }
