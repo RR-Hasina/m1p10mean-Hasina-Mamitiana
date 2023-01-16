@@ -1,32 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AtelierComponent } from './components/atelier/atelier.component';
-import { ClientComponent } from './components/client/client.component';
-import { FinanceComponent } from './components/finance/finance.component';
-import { LoginAtelierComponent } from './components/login-atelier/login-atelier.component';
-import { LoginClientComponent } from './components/login-client/login-client.component';
-import { LoginFinanceComponent } from './components/login-finance/login-finance.component';
+import { LoginAtelierComponent } from './pages/login-atelier/login-atelier.component';
+import { LoginClientComponent } from './pages/login-client/login-client.component';
+import { LoginFinanceComponent } from './pages/login-finance/login-finance.component';
 
 const routes: Routes = [
 {path:"login-client",component:LoginClientComponent},
 {path:"login-atelier",component:LoginAtelierComponent},
 {path:"login-finance",component:LoginFinanceComponent},
 {path:"", redirectTo:"/login-client", pathMatch:"full"},
-{path:"client",component:ClientComponent,
-children:[
-
-]
+{path:"client",
+loadChildren: () => import('./profiles/client/client.module').then(m => m.ClientModule)
 },
-{path:"atelier",component:AtelierComponent,
-children:[
-
-]
-},
-{path:"finance",component:FinanceComponent,
-children:[
-
-]
-},
+{path:"finance",
+loadChildren: () => import('./profiles/finance/finance.module').then(m => m.FinanceModule)},
+{path:"atelier",
+loadChildren: () => import('./profiles/atelier/atelier.module').then(m => m.AtelierModule)},
 ];
 
 @NgModule({
