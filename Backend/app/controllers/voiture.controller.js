@@ -35,3 +35,13 @@ exports.depotVoiture = (req, res) => {
             res.status(200).send({ message: voiture });
         });
 }
+
+exports.getVoiture = (req, res) => {
+    Voiture.find().exec((err, voiture) => {
+        if (err) {
+            res.status(500).send({ message: err });
+            return;
+        }
+        res.status(200).send({ message: voiture.length });
+    })
+}

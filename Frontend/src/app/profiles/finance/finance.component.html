@@ -1,8 +1,8 @@
- <!-- Page Wrapper -->
- <div id="wrapper">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
     <!-- Sidebar -->
-   <app-sidebar></app-sidebar>
+    <app-sidebar profile="financier"></app-sidebar>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -27,7 +27,7 @@
 
                 <!-- Content Row -->
                 <router-outlet></router-outlet>
-                 <!--  end Content Row -->
+                <!--  end Content Row -->
 
             </div>
             <!-- /.container-fluid -->
@@ -36,7 +36,7 @@
         <!-- End of Main Content -->
 
         <!-- Footer -->
-       <app-footer></app-footer>
+        <app-footer></app-footer>
         <!-- End of Footer -->
 
     </div>
@@ -64,7 +64,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" id="ModalClose" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-primary"  type="button" (click)="logout()">Logout</button>
+                <button class="btn btn-primary" type="button" (click)="logout()">Logout</button>
             </div>
         </div>
     </div>
