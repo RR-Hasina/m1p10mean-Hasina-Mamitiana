@@ -21,9 +21,8 @@
                 <!-- Page Heading -->
 
                 <!-- Content Row -->
-                <router-outlet>
-                    <app-ajout-voiture></app-ajout-voiture>
-                </router-outlet>
+                <app-ajout-voiture *ngIf="page=='ajout'"></app-ajout-voiture>
+                <app-depot *ngIf="page=='depot'"></app-depot>
                 <!--  end Content Row -->
 
 

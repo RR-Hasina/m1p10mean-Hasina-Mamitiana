@@ -5,18 +5,18 @@
         </a>
         <hr class="sidebar-divider my-0">
         <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="#">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-cog"></i>
+            <a class="nav-link" (click)="redirectionClient('ajout')">
+                <i class="fas fa-fw fa-cog"></i> 
                 <span>Ajout voiture</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" (click)="redirectionClient('depot')">
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Dépot voiture</span>
             </a>

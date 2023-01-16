@@ -4,7 +4,7 @@ import { AjoutVoitureComponent } from './ajout-voiture/ajout-voiture.component';
 import { ClientComponent } from './client.component';
 
 const routes: Routes = [
-  { path: "ajout", component: AjoutVoitureComponent },
+  { path: ":page", component: ClientComponent },
   {
     path: '',
     component: ClientComponent,

@@ -9,11 +9,13 @@ import { TopbarModule } from 'src/app/components/topbar/topbar.module';
 import { SidebarModule } from 'src/app/components/sidebar/sidebar.module';
 import { AjoutVoitureComponent } from './ajout-voiture/ajout-voiture.component';
 import { FormsModule } from '@angular/forms';
+import { DepotComponent } from './depot/depot.component';
 
 @NgModule({
   declarations: [
     ClientComponent,
     AjoutVoitureComponent,
+    DepotComponent,
     
   ],
   imports: [

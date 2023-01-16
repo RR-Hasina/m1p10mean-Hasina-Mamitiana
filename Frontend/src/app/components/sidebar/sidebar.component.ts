@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
 @Component({
@@ -10,10 +11,15 @@ export class SidebarComponent implements OnInit {
 
   @Input() profile: String = "";
 
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService, private router: Router) { }
 
   ngOnInit(): void {
 
+  }
+
+  redirectionClient(page: string) {
+    if (page === "ajout") this.router.navigateByUrl("/client/ajout");
+    if (page === "depot") this.router.navigateByUrl("/client/depot");
   }
 
 }

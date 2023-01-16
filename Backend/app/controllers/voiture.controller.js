@@ -37,11 +37,11 @@ exports.depotVoiture = (req, res) => {
 }
 
 exports.getVoiture = (req, res) => {
-    Voiture.find().exec((err, voiture) => {
+    Voiture.find((err, voiture) => {
         if (err) {
             res.status(500).send({ message: err });
-            return;
+        } else {
+            res.send(voiture);
         }
-        res.status(200).send({ voiture });
-    })
+    });
 }
