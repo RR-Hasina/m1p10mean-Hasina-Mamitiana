@@ -9,7 +9,12 @@ import { LoginAtelierComponent } from './components/login-atelier/login-atelier.
 import { LoginFinanceComponent } from './components/login-finance/login-finance.component';
 import { httpInterceptorProviders } from './helpers/http.interceptor';
 import { FormsModule } from '@angular/forms';
-import { TestaComponent } from './components/testa/testa.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { TopbarComponent } from './components/topbar/topbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ClientComponent } from './components/client/client.component';
+import { AtelierComponent } from './components/atelier/atelier.component';
+import { FinanceComponent } from './components/finance/finance.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +22,12 @@ import { TestaComponent } from './components/testa/testa.component';
     LoginClientComponent,
     LoginAtelierComponent,
     LoginFinanceComponent,
-    TestaComponent
+    SidebarComponent,
+    TopbarComponent,
+    FooterComponent,
+    ClientComponent,
+    AtelierComponent,
+    FinanceComponent,
   ],
   imports: [
     BrowserModule,

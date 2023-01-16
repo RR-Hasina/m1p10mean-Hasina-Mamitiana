@@ -17,4 +17,9 @@ export class AuthService {
     user.role=role;
     return this.http.post<User>(GlobalConstants.apiURL+"/signin",user);
   }
+
+  logout(): Observable<any> {
+    return this.http.post(GlobalConstants.apiURL+ '/signout', { });
+  }
+
 }
