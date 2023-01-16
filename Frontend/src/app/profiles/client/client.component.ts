@@ -12,17 +12,19 @@ import { VoitureService } from 'src/app/services/voiture/voiture.service';
 })
 export class ClientComponent implements OnInit {
   page?: String | null;
-  voitures: Array<Voiture> = [];
+  voitures?: Array<Voiture> ;
   constructor(private storageService: StorageService, private authService: AuthService, private voitureService: VoitureService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.page = this.activatedRoute.snapshot.paramMap.get('page');
     this.voitureService.getVoiture().subscribe({
       next: (data: Array<Voiture>) => {
-        this.voitures.push(...data);
+        this.voitures=data;
+        console.log(data);
+        console.log(this.voitures);
       }
     });
-    console.log(this.voitures.length);
+    
   }
 
   logout(): void {
