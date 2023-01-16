@@ -5,6 +5,6 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/testa", [authJwt.verifyToken], controller.financetest);
+router.get("/testa", controller.getdepense);
 
 module.exports = router;
