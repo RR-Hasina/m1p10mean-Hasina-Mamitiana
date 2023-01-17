@@ -27,4 +27,9 @@ export class VoitureService {
     return this.http.post<Voiture[]>(GlobalConstants.apiURL + "/voiture/depot", depot);
   }
 
+  public getListeVoiture(email: String): Observable<Voiture[]> {
+    let data = { email: email };
+    return this.http.post<Voiture[]>(GlobalConstants.apiURL + "/voiture/liste", data);
+  }
+
 }

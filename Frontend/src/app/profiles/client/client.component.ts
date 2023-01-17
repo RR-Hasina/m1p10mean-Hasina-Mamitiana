@@ -18,7 +18,8 @@ export class ClientComponent implements OnInit {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         console.log(event.url);
-        this.page = this.activatedRoute.snapshot.paramMap.get('page');
+        this.page = event.url.substring(8);
+        console.log(this.page);
       }
     })
   }

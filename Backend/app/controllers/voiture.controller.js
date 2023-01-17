@@ -36,14 +36,16 @@ exports.depotVoiture = (req, res) => {
         });
 }
 
-exports.getVoiture = (req, res) => {
-    Voiture.find((err, voiture) => {
-        if (err) {
-            res.status(500).send({ message: err });
-        } else {
-            res.send(voiture);
-        }
-    });
+
+
+exports.getListeVoiture = (req, res) => {
+    Voiture.find({
+        "client.email": req.body.email,
+    })
+        .exec((err, voiture) => {
+            if (err) res.status(500).send({ message: err });
+            res.status(200).send(voiture);
+        })
 }
 
 exports.findDepotVoiture = (req, res) => {
