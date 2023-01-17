@@ -7,4 +7,7 @@ const router = express.Router();
 
 router.get("/testa", controller.getdepense);
 
+
+router.get("/stat", controller.getStat);
+
 module.exports = router;
