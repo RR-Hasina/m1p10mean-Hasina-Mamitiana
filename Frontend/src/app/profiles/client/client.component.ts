@@ -24,7 +24,10 @@ export class ClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.page=this.activatedRoute.snapshot.paramMap.get('page');
+    if (this.storageService.getUser().nom == undefined) {
+      this.router.navigateByUrl("/login-client");
+    }
+    this.page = this.activatedRoute.snapshot.paramMap.get('page');
   }
 
   logout(): void {
