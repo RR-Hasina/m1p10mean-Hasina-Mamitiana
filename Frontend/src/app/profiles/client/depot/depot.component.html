@@ -10,7 +10,7 @@
             <label for="immatriculation">Vehicule</label>
             <select class="form-control" id="immatriculation" [(ngModel)]="immatriculation">
                 <option value=""></option>
-                <option *ngFor="let i of voitures">{{i.immatriculation}}</option>
+                <option *ngFor="let i of voituresNonDepot">{{i.immatriculation}}</option>
             </select>
             <label for="signalement">Signalements</label>
             <input type="text" class="form-control" id="signalement" [(ngModel)]="signalement" name="signalement"
@@ -35,7 +35,7 @@
 
 <div class=" card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Liste véhicule</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Liste véhicule en dehors de l'atelier</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -47,7 +47,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let i of voitures">
+                    <tr *ngFor="let i of voituresNonDepot">
                         <td>{{i.immatriculation}}</td>
                         <td>{{i.marque}}</td>
                     </tr>

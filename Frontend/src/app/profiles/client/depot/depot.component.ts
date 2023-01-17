@@ -11,7 +11,7 @@ import { VoitureService } from 'src/app/services/voiture/voiture.service';
   styleUrls: ['./depot.component.scss']
 })
 export class DepotComponent implements OnInit {
-  voitures?: Voiture[];
+  voituresNonDepot?: Voiture[];
   email: any = {
     email: String = this.storageService.getUser().email
   }
@@ -26,10 +26,10 @@ export class DepotComponent implements OnInit {
   constructor(private storageService: StorageService, private voitureService: VoitureService) { }
 
   ngOnInit(): void {
-    this.voitureService.getVoiture(this.email).subscribe({
+    this.voitureService.getVoitureNoDepot(this.email).subscribe({
       next: (data: Voiture[]) => {
-        this.voitures = data;
-        console.log(this.voitures);
+        this.voituresNonDepot = data;
+        console.log(this.voituresNonDepot);
       }
     })
   }

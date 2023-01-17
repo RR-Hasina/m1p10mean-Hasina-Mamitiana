@@ -15,7 +15,7 @@ export class VoitureService {
     return this.http.post<Voiture>(GlobalConstants.apiURL + "/voiture/creation", voiture);
   }
 
-  public getVoiture(email: any): Observable<Voiture[]> {
+  public getVoitureNoDepot(email: any): Observable<Voiture[]> {
     return this.http.post<Voiture[]>(GlobalConstants.apiURL + "/voiture/findDepot", email);
   }
 
