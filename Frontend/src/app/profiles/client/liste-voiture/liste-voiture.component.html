@@ -1,1 +1,44 @@
-<p>liste-voiture works!</p>
+<div class=" card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Mes voitures</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead class="table-secondary">
+                    <tr>
+                        <th class="text-center">Immatriculation</th>
+                        <th class="text-center">Marque</th>
+                        <th class="text-center">Etat</th>
+                        <th class="text-center">Date de dépot</th>
+                        <th class="text-center">Réparation</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let i of listeVoiture">
+                    <tr *ngIf="i.depots[i.depots.length-1].dateSortie==undefined">
+                        <td class="text-center">{{i.immatriculation}}</td>
+                        <td class="text-center">{{i.marque}}</td>
+                        <td class="table-success text-center">EN MARCHE</td>
+                        <td class="text-center">-</td>
+                        <td class="text-center">-</td>
+                    </tr>
+                    <tr *ngIf="i.depots[i.depots.length-1].dateSortie!=undefined">
+                        <td class="text-center">{{i.immatriculation}}</td>
+                        <td class="text-center">{{i.marque}}</td>
+                        <td class="table-danger text-center">EN DEPOT</td>
+                        <td class="text-center">{{i.depots[i.depots.length-1].dateSortie | date:' d MMMM y'}}</td>
+                        <td class="text-center">0%</td>
+                    </tr>
+                    <tr
+                        *ngIf="i.depots[i.depots.length-1].dateSortie==undefined && i.reparation[i.reparation.length-1]!=undefined">
+                        <td>{{i.immatriculation}}</td>
+                        <td>{{i.marque}}</td>
+                        <td class="table-warning text-center">EN REPARATION</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
