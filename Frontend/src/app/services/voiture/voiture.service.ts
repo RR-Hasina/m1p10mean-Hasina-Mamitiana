@@ -19,4 +19,12 @@ export class VoitureService {
     return this.http.post<Voiture[]>(GlobalConstants.apiURL + "/voiture/findDepot", email);
   }
 
+  public depotVoiture(immatriculation: String, signalement: any[]): Observable<any> {
+    let depot = {
+      immatriculation: immatriculation,
+      signalement: signalement
+    }
+    return this.http.post<Voiture[]>(GlobalConstants.apiURL + "/voiture/depot", depot);
+  }
+
 }

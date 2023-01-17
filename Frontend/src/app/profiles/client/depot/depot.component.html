@@ -1,4 +1,39 @@
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js">
 <div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Deposition vehicule</h6>
+    </div>
+    <div class="col-md-12">
+        <br>
+        <div class="form-group col-md-12">
+            <label for="immatriculation">Vehicule</label>
+            <select class="form-control" id="immatriculation" [(ngModel)]="immatriculation">
+                <option value=""></option>
+                <option *ngFor="let i of voitures">{{i.immatriculation}}</option>
+            </select>
+            <label for="signalement">Signalements</label>
+            <input type="text" class="form-control" id="signalement" [(ngModel)]="signalement" name="signalement"
+                placeholder="Entre le nom du composant"><br>
+            <button class="btn btn-primary " (click)="ajoutSignalement()" type="submit">Ajouter signalement</button>
+            <hr>
+            <ul class="list-group">
+                <li *ngFor="let i of listeSingnalement" class="list-group-item list-group-item-danger">{{i}}</li>
+            </ul>
+        </div>
+        <div class="col-md-12">
+            <button class="btn btn-primary" (click)="depotVoiture()" type="submit">Déposer</button><br><br>
+        </div>
+        <div *ngIf="ajoutErreur" class="alert alert-danger text-center" role="alert">
+            {{ errorMessage }}
+        </div>
+        <div *ngIf="message!=''" class="alert alert-success text-center" role="alert">
+            {{ message }}
+        </div>
+    </div>
+</div>
+
+<div class=" card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Liste véhicule</h6>
     </div>
@@ -9,29 +44,12 @@
                     <tr>
                         <th>Immatriculation</th>
                         <th>Marque</th>
-                        <th>Signalement</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let i of voitures">
                         <td>{{i.immatriculation}}</td>
                         <td>{{i.marque}}</td>
-                        <td>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Moteur
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Pneu
-                                </label>
-                            </div>
-                        </td>
-                        <td><button type="submit" class="btn btn-danger">Déposer</button></td>
                     </tr>
                 </tbody>
             </table>

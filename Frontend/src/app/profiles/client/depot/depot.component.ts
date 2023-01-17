@@ -15,6 +15,13 @@ export class DepotComponent implements OnInit {
   email: any = {
     email: String = this.storageService.getUser().email
   }
+  signalement: String = "";
+  listeSingnalement: any[] = [];
+  immatriculation: String = "";
+  errorMessage = '';
+  message = '';
+  ajoutErreur = false;
+  depotValider = false;
 
   constructor(private storageService: StorageService, private voitureService: VoitureService) { }
 
@@ -26,4 +33,27 @@ export class DepotComponent implements OnInit {
       }
     })
   }
+
+  ajoutSignalement(): void {
+    this.listeSingnalement.push(this.signalement);
+    console.log(this.immatriculation);
+  }
+
+  depotVoiture(): void {
+    if (this.immatriculation != "") {
+      this.voitureService.depotVoiture(this.immatriculation, this.listeSingnalement).subscribe({
+        next: data => {
+          console.log(data);
+          this.message = "Votre voiture a été déposé";
+          this.listeSingnalement = [];
+          window.location.reload();
+        },
+        error: err => {
+          this.ajoutErreur = true;
+          this.errorMessage = "Il y a une erreur de déposition";
+        }
+      })
+    }
+  }
+
 }
