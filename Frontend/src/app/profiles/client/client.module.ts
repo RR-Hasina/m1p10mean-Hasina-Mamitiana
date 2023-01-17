@@ -7,18 +7,26 @@ import { ClientComponent } from './client.component';
 import { FooterModule } from 'src/app/components/footer/footer.module';
 import { TopbarModule } from 'src/app/components/topbar/topbar.module';
 import { SidebarModule } from 'src/app/components/sidebar/sidebar.module';
-
+import { AjoutVoitureComponent } from './ajout-voiture/ajout-voiture.component';
+import { FormsModule } from '@angular/forms';
+import { DepotComponent } from './depot/depot.component';
+import { ListeVoitureComponent } from './liste-voiture/liste-voiture.component';
 
 @NgModule({
   declarations: [
-    ClientComponent
+    ClientComponent,
+    AjoutVoitureComponent,
+    DepotComponent,
+    ListeVoitureComponent,
+
   ],
   imports: [
     CommonModule,
     ClientRoutingModule,
     SidebarModule,
     TopbarModule,
-    FooterModule
+    FooterModule,
+    FormsModule
   ]
 })
 export class ClientModule { }

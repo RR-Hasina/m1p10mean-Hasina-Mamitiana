@@ -1,16 +1,35 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, createPlatform, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationStart, Router, Event } from '@angular/router';
+import { Voiture } from 'src/app/models/voiture';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
+import { VoitureService } from 'src/app/services/voiture/voiture.service';
 
 @Component({
   selector: 'app-client',
   templateUrl: './client.component.html',
   styleUrls: ['./client.component.scss']
 })
-export class ClientComponent {
-  constructor(private storageService: StorageService, private authService: AuthService,private router:Router) { }
+export class ClientComponent implements OnInit {
+  page?: String | null;
+  currentRoute?: string;
+  constructor(private storageService: StorageService, private authService: AuthService, private voitureService: VoitureService, private router: Router, private activatedRoute: ActivatedRoute) {
+    this.currentRoute = "";
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationStart) {
+        console.log(event.url);
+        this.page = event.url.substring(8);
+        console.log(this.page);
+      }
+    })
+  }
 
+  ngOnInit(): void {
+    if (this.storageService.getUser().nom == undefined) {
+      this.router.navigateByUrl("/login-client");
+    }
+    this.page = this.activatedRoute.snapshot.paramMap.get('page');
+  }
 
   logout(): void {
     this.authService.logout().subscribe({
@@ -19,17 +38,17 @@ export class ClientComponent {
         const role = this.storageService.getUser().role;
         this.storageService.clean();
         document.getElementById("ModalClose")?.click();
-        if(role == "client"){
+        if (role == "client") {
           this.router.navigateByUrl("/login-client");
         }
-        if(role == "finance"){
+        if (role == "finance") {
           this.router.navigateByUrl("/login-finance");
         }
-        if(role == "atelier"){
+        if (role == "atelier") {
           this.router.navigateByUrl("/login-atelier");
         }
 
-        
+
       },
       error: err => {
         console.log(err);

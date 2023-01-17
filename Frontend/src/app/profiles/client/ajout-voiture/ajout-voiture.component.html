@@ -1,0 +1,26 @@
+<form #f="ngForm" (ngSubmit)="onSubmit()">
+    <div class="col-md-12">
+        <h1>Ajout vehicule</h1>
+        <hr>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="immatriculation">Immatriculation</label>
+                <input type="text" class="form-control" id="immatriculation" name="immatriculation"
+                    placeholder="entre votre immatriculation" [(ngModel)]="voiture.immatriculation" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="marque">marque</label>
+                <input type="text" class="form-control" id="marque" name="marque"
+                    placeholder="Entrer la marque du véhicule" [(ngModel)]="voiture.marque" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Valider</button>
+        <hr>
+        <div *ngIf="f.submitted && ajoutErreur" class="alert alert-danger text-center" role="alert">
+            {{ errorMessage }}
+        </div>
+        <div *ngIf="f.submitted" class="alert alert-success text-center" role="alert">
+            {{ message }}
+        </div>
+    </div>
+</form>

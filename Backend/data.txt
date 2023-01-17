@@ -1,0 +1,90 @@
+{
+    "voiture": [
+        {
+            "Client": {
+                "Nom": "RAKOTO",
+                "Prenom": "Koto",
+                "Email": "koto@yahoo.com"
+            },
+            "_id": "63c2ea6dbf736825f062e24b",
+            "Immatriculation": "2010TAA",
+            "Marque": "Toyota",
+            "Depots": [
+                {
+                    "DateDepot": "2023-01-14T18:32:21.225Z",
+                    "DateSortie": null,
+                    "Signalements": [
+                        "moteur"
+                    ]
+                }
+            ],
+            "Reparation": [
+                {
+                    "PrixTotal": 0,
+                    "DateEntree": "2023-01-15T08:31:56.558Z",
+                    "Composants": [
+                        {
+                            "nom": "moteur",
+                            "DateDebut": 1673778716558,
+                            "DateFin": 1673883116558,
+                            "Pieces": [
+                                {
+                                    "Nom": "PieceMoteur1",
+                                    "Prix": 500000
+                                }
+                            ]
+                        }
+                    ],
+                    "PrixMo": 100000,
+                    "Avancement": 100,
+                    "Prixtotal": 600000,
+                    "DatePayement": "2023-01-16T17:31:56.558Z"
+                }
+            ],
+            "__v": 0
+        },
+        {
+            "Client": {
+                "Nom": "RAKOTO",
+                "Prenom": "Koto",
+                "Email": "koto@yahoo.com"
+            },
+            "_id": "63c56c56665538152e7a7245",
+            "Immatriculation": "2020TAA",
+            "Marque": "Mercedes",
+            "Depots": [
+                {
+                    "DateDepot": "2023-01-14T18:32:21.225Z",
+                    "DateSortie": null,
+                    "Signalements": [
+                        "moteur"
+                    ]
+                }
+            ],
+            "Reparation": [
+                {
+                    "PrixTotal": 0,
+                    "DateEntree": "2023-01-15T08:31:56.558Z",
+                    "Composants": [
+                        {
+                            "nom": "moteur",
+                            "DateDebut": 1673778716558,
+                            "DateFin": 1673883116558,
+                            "Pieces": [
+                                {
+                                    "Nom": "PieceMoteur1",
+                                    "Prix": 500000
+                                }
+                            ]
+                        }
+                    ],
+                    "PrixMo": 100000,
+                    "Avancement": 100,
+                    "Prixtotal": 600000,
+                    "DatePayement": "2023-01-16T17:31:56.558Z"
+                }
+            ],
+            "__v": 0
+        }
+    ]
+}

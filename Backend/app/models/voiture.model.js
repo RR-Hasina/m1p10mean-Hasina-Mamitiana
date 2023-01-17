@@ -1,40 +1,40 @@
 const mongoose = require("mongoose");
 
 const Voiture = mongoose.model(
-  "Voiture",
-  new mongoose.Schema({
-    Immatriculation: String,
-    Marque: String,
-    Depots: [{
-        _id : false,
-        DateDepot: Date,
-        DateSortie: Date,
-        Signalements: [] //listes noms Composants en String,
-    }],
-    Reparation: [{
-        _id : false,
-        DateEntree: Date,
-        Composants: [{
-            _id : false,
-            nom: String,
-            DateDebut: { type: Number,default:0},
-            DateFin: { type: Number,default:0},
-            Pieces: [
-                {
-                    _id : false,
-                    Nom: String,
-                    Prix: { type: Number,default:0}
-                }
-            ]
+    "Voiture",
+    new mongoose.Schema({
+        immatriculation: String,
+        marque: String,
+        depots: [{
+            _id: false,
+            dateDepot: Date,
+            dateSortie: Date,
+            signalements: [] //listes noms Composants en String,
         }],
-        PrixMo: { type: Number,default:0},
-        Avancement: { type: Number,default:0},   //pourcentage
-        PrixTotal: { type: Number,default:0},
-        DatePayement: Date
-    }],
-    Client:
-        { Nom: String, Prenom: String, Email: String }
-  })
+        reparation: [{
+            _id: false,
+            dateEntree: Date,
+            composants: [{
+                _id: false,
+                nom: String,
+                dateDebut: { type: Number, default: 0 },
+                dateFin: { type: Number, default: 0 },
+                pieces: [
+                    {
+                        _id: false,
+                        nom: String,
+                        prix: { type: Number, default: 0 }
+                    }
+                ]
+            }],
+            prixMo: { type: Number, default: 0 },
+            avancement: { type: Number, default: 0 },   //pourcentage
+            prixTotal: { type: Number, default: 0 },
+            datePayement: Date
+        }],
+        client:
+            { nom: String, prenom: String, email: String }
+    })
 );
 
 module.exports = Voiture;
