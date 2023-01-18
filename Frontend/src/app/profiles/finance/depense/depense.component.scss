@@ -1,0 +1,45 @@
+.form-1-box { padding-top: 30px; text-align: left; }
+
+.btn.btn-as-block {
+    display: block;
+  }
+ 
+.form-1-box legend {
+    font-size: inherit;
+    line-height: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #555;
+}
+ 
+.form-1-box .form-check-label {
+    line-height: 1.5;
+    vertical-align: top;
+}
+ 
+
+.form-1-box button.btn-customized {
+    margin-top: 1rem;
+    padding: .75rem 1.5rem;
+    background: #db5d50;
+    border: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #fff;
+    box-shadow: none;
+}
+ 
+.form-1-box button.btn-customized:hover, 
+.form-1-box button.btn-customized:active, 
+.form-1-box button.btn-customized:focus, 
+.form-1-box button.btn-customized:active:focus, 
+.form-1-box button.btn-customized.active:focus,
+.form-1-box button.btn.btn-primary:not(:disabled):not(.disabled):active,
+.form-1-box button.btn.btn-primary:not(:disabled):not(.disabled):active:focus {
+    outline: 0;
+    background: #ca594d;
+    border: 0;
+    color: #fff;
+    box-shadow: none;
+}
