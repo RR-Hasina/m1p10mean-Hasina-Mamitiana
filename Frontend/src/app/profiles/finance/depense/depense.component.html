@@ -1,0 +1,108 @@
+<div class="row d-flex justify-content-center">
+    <div class="col-md-10 offset-md-1 form-1-box wow fadeInUp">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary text-center">Ajout Dépense</h6>
+            </div>
+            <div class="card-body">
+                <div *ngIf="ajout" class="alert alert-success text-center" role="alert">
+                    Donnée ajoutée !!!
+                  </div>
+                  <div *ngIf="prixV" class="alert alert-danger text-center" role="alert">
+                    Montant différent des prix Pièces !!!
+                  </div>
+                <form [formGroup]="form" (submit)="submit(form.value)">
+                    <fieldset class="form-group border p-2">
+                        <legend class="w-auto px-2">Info Depense:</legend>
+                        <div class="form-group">
+                            <label for="username">Motif:</label>
+                            <input type="text" id="motif" name="motif" formControlName="motif"
+                                class="form-control motif" />
+                                <span *ngIf="submitted &&  form.controls['motif'].hasError('required')" class="validation text-danger">Requis!!!</span>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username">Montant total:</label>
+                            <input type="number" id="montant" name="montant" formControlName="montant"
+                                class="form-control montant" />
+                                <span *ngIf="submitted &&  form.controls['montant'].hasError('required')" class="validation text-danger">Requis!!!</span>
+                                <span *ngIf=" submitted && form.controls['montant'].hasError('min')" class="validation text-danger ">Ne doit pas être < 0!!!</span>                        </div>
+
+                        <div class="form-group">
+                            <label for="username">Date:</label>
+                            <input type="datetime-local" id="date" name="date" formControlName="dateDepense"
+                                class="form-control date" />
+                                <span *ngIf="submitted &&  form.controls['dateDepense'].hasError('required')" class="validation text-danger">Requis!!!</span>
+
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" [(ngModel)]="isPiece" [ngModelOptions]="{standalone: true}" #checkBox id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                              Pieces
+                            </label>
+                          </div> 
+
+                    </fieldset>
+
+                    <fieldset  *ngIf="checkBox.checked" class="form-group border p-3">
+                        <legend  class="w-auto px-2">Pieces:</legend>
+                        <ng-container formArrayName="pieces" *ngFor="let piece of pieces.controls; index as i">
+                            <ng-container [formGroupName]="i">
+                                <div class="form-row align-items-center">
+
+                                <!-- <div class="form-group col-md-4">
+                                    <label for="username">Nom: <span *ngIf="submitted &&  piece.get('nom')!.hasError('required')" class="validation text-danger">Requis!!!</span>
+                                    </label>
+                                    <input  type="text" id="nom" name="nom" 
+                                        formControlName="nom" class="form-control nom" />
+                                </div> -->
+
+                                <div class="form-group col-md-4">
+                                    <label for="exampleFormControlSelect1">Nom:</label>
+                                    <select formControlName="nom" class="form-control" id="exampleFormControlSelect1">
+                                        <option *ngFor="let list of listapieces" [ngValue]="list">
+                                            {{ list }}
+                                          </option>
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group col-md-3">
+                                    <label for="quantite">Quantité: <span *ngIf="submitted &&  piece.get('quantite')!.hasError('min')" class="validation text-danger ">Ne doit pas être < 0!!!</span></label> <span *ngIf="submitted &&  piece.get('quantite')!.hasError('required')" class="validation text-danger">Requis!!!</span>
+                                    <input type="number" id="quantite" name="quantite" formControlName="quantite"
+                                        class="form-control quantite" />
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="prix">Prix Unitaire: <span *ngIf=" submitted && piece.get('prixUnitaire')!.hasError('min')" class="validation text-danger ">Ne doit pas être < 0!!!</span></label> <span *ngIf="submitted &&  piece.get('prixUnitaire')!.hasError('required')" class="validation text-danger">Requis!!!</span>
+                                        <input type="number" id="prixU" name="prixU" formControlName="prixUnitaire"
+                                        class="form-control prix" />
+                                </div>
+
+                                <div class="form-group col-md-1">
+                                    <label>&nbsp;</label>
+                                    <button type="submit" (click)="removePieceField(i)" class="btn btn-danger btn-as-block">X</button>
+   
+                                   </div>
+                                    
+                                </div>                             
+                            </ng-container>
+                        </ng-container>
+
+                        <button class="btn-add btn btn-primary" type="button" (click)="addPieceField()">
+                            Add
+                        </button>
+                    </fieldset>
+
+                    <div class="row d-flex justify-content-center">
+                    <button class="btn-submit btn btn-primary" type="submit">Submit</button>
+                    <button class="btn-reset btn btn-danger  pl-3 ml-3 rounded" type="button" (click)="reset()">
+                        Reset
+                    </button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

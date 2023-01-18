@@ -6,18 +6,25 @@ import { FinanceComponent } from './finance.component';
 import { FooterModule } from 'src/app/components/footer/footer.module';
 import { SidebarModule } from 'src/app/components/sidebar/sidebar.module';
 import { TopbarModule } from 'src/app/components/topbar/topbar.module';
+import { StatistiqueComponent } from './statistique/statistique.component';
+import { DepenseComponent } from './depense/depense.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    FinanceComponent
+    FinanceComponent,
+    StatistiqueComponent,
+    DepenseComponent
   ],
   imports: [
     CommonModule,
     FinanceRoutingModule,
     SidebarModule,
     TopbarModule,
-    FooterModule
+    FooterModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class FinanceModule { }

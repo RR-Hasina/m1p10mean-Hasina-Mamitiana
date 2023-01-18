@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DepenseComponent } from './depense/depense.component';
 import { FinanceComponent } from './finance.component';
+import { StatistiqueComponent } from './statistique/statistique.component';
 
 const routes: Routes = [
   {
     path: '',
     component : FinanceComponent,
     children : [
+      { path: "home", component: StatistiqueComponent },
+      { path: "depense", component: DepenseComponent },
       {
         path: '',
         redirectTo: 'home',
