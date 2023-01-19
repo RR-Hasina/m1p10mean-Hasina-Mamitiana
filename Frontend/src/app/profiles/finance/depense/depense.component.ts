@@ -13,7 +13,7 @@ export class DepenseComponent implements OnInit {
 
 
  
-  listpieces = [{ nom: 'testa', quantite: 1, prixUnitaire:1 }];
+  listpieces = [{ nom: '', quantite: 1, prixUnitaire:1 }];
 
   form!: FormGroup;
 
@@ -27,6 +27,8 @@ export class DepenseComponent implements OnInit {
 
   prixV = false;
 
+  ajoutUn = false;
+
 
   constructor(private formBuilder: FormBuilder,private service:DepenseService,private serviceC:ComposantService) {}
 
@@ -34,7 +36,7 @@ export class DepenseComponent implements OnInit {
     this.getlistpieces();
     this.form = this.formBuilder.group({
       motif: ["",Validators.required],
-      pieces:  this.buildPieces(this.listpieces),
+      pieces:  this.formBuilder.array([]),
       montant: [1,[Validators.min(1),Validators.required]],
       dateDepense: [null,Validators.required]
     });
@@ -56,7 +58,7 @@ export class DepenseComponent implements OnInit {
 
   addPieceField() {
     this.pieces.push(
-      this.formBuilder.group({nom: ['testa',Validators.required], quantite: [1,[Validators.min(1),Validators.required]] ,prixUnitaire:[1,[Validators.min(1),Validators.required]]})
+      this.formBuilder.group({nom: ['',Validators.required], quantite: [1,[Validators.min(1),Validators.required]] ,prixUnitaire:[1,[Validators.min(1),Validators.required]]})
     );
   }
 
@@ -66,25 +68,34 @@ export class DepenseComponent implements OnInit {
   }
 
   submit(value: any): void {
+    this.ajoutUn = false;
+    this.ajout =false;
+    this.prixV = false;
     this.submitted = true;
     if (this.form.invalid) {
       return;
   }
     if(!this.isPiece){
-      console.log(value);
+      //console.log(value);
       value.pieces = null;
       this.addDepense(value);
+      this.reset();
     }
 
     else{
+      if(value.pieces.length == 0){
+        this.ajoutUn = true;
+        return;
+      }
       if(!this.eqValidator(value)){
         this.prixV = true;
         return;
       } 
       else{
-        console.log("tonga");
-        this.addDepense(value);
+        //console.log(value);
+         this.addDepense(value);
         this.prixV = false;
+        this.reset();
       }
     }
 
@@ -93,8 +104,14 @@ export class DepenseComponent implements OnInit {
   reset(): void {
     this.form.reset();
     this.pieces.clear();
-    this.addPieceField();
   }
+
+
+  handleSelected($event:any) {
+    if ($event.target.checked === false) {
+      this.pieces.clear();
+    }
+ }
 
   getlistpieces(){
     this.serviceC.getallpieces().subscribe(
