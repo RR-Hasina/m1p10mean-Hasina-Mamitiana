@@ -14,11 +14,12 @@ const Voiture = mongoose.model(
         reparation: [{
             _id: false,
             dateEntree: Date,
+            dateSortie: Date,
             composants: [{
                 _id: false,
                 nom: String,
-                dateDebut: { type: Number, default: 0 },
-                dateFin: { type: Number, default: 0 },
+                dateDebut: Date,
+                dateFin: Date,
                 pieces: [
                     {
                         _id: false,
