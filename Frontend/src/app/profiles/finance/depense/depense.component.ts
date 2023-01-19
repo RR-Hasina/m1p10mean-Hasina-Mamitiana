@@ -64,7 +64,7 @@ export class DepenseComponent implements OnInit {
 
   removePieceField(index: number): void {
     if (this.pieces.length > 1) this.pieces.removeAt(index);
-    else this.pieces.patchValue([{ phoneNo: null, emailAddr: null }]);
+    else this.pieces.patchValue([{ nom: '', quantite: 1, prixUnitaire:1 }]);
   }
 
   submit(value: any): void {
@@ -110,6 +110,9 @@ export class DepenseComponent implements OnInit {
   handleSelected($event:any) {
     if ($event.target.checked === false) {
       this.pieces.clear();
+    }
+    else{
+      this.addPieceField();
     }
  }
 
