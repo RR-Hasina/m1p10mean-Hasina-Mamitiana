@@ -25,12 +25,13 @@
 
                         </div>
 
-                        <div class="form-group">
+                        <div *ngIf="!checkBox.checked"  class="form-group">
                             <label for="username">Montant total:</label>
                             <input type="number" id="montant" name="montant" formControlName="montant"
                                 class="form-control montant" />
                                 <span *ngIf="submitted &&  form.controls['montant'].hasError('required')" class="validation text-danger">Requis!!!</span>
-                                <span *ngIf=" submitted && form.controls['montant'].hasError('min')" class="validation text-danger ">Ne doit pas être < 0!!!</span>                        </div>
+                                <span *ngIf=" submitted && form.controls['montant'].hasError('min')" class="validation text-danger ">Ne doit pas être < 0!!!</span>                        
+                        </div>
 
                         <div class="form-group">
                             <label for="username">Date:</label>
@@ -79,7 +80,7 @@
 
                                 <div class="form-group col-md-4">
                                     <label for="prix">Prix Unitaire: <span *ngIf=" submitted && piece.get('prixUnitaire')!.hasError('min')" class="validation text-danger ">Ne doit pas être < 0!!!</span></label> <span *ngIf="submitted &&  piece.get('prixUnitaire')!.hasError('required')" class="validation text-danger">Requis!!!</span>
-                                        <input type="number" id="prixU" name="prixU" formControlName="prixUnitaire"
+                                        <input  type="number" id="prixU" name="prixU" formControlName="prixUnitaire" (ngModelChange)="prixchanged()"
                                         class="form-control prix" />
                                 </div>
 

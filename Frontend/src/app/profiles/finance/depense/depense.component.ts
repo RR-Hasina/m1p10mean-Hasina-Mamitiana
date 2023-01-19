@@ -75,11 +75,12 @@ export class DepenseComponent implements OnInit {
     if (this.form.invalid) {
       return;
   }
+  console.log(value);
     if(!this.isPiece){
-      //console.log(value);
+      console.log(value);
       value.pieces = null;
       this.addDepense(value);
-      this.reset();
+      //this.reset();
     }
 
     else{
@@ -95,7 +96,7 @@ export class DepenseComponent implements OnInit {
         //console.log(value);
          this.addDepense(value);
         this.prixV = false;
-        this.reset();
+        //this.reset();
       }
     }
 
@@ -142,6 +143,15 @@ export class DepenseComponent implements OnInit {
 // objectComparisonFunction = function (option: string, value: string): boolean {
 //   return option === value;
 // }
+
+prixchanged(){
+  let sum = 0;
+  this.pieces.controls.forEach(piece =>{
+    sum = sum +piece.get("quantite")!.value*piece.get("prixUnitaire")!.value;
+  })
+  this.form.get("montant")!.setValue(sum);
+  
+}
 
 
 
