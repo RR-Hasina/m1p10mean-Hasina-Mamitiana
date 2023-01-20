@@ -12,9 +12,7 @@ import { VoitureService } from 'src/app/services/voiture/voiture.service';
 })
 export class ClientComponent implements OnInit {
   page?: String | null;
-  currentRoute?: string;
   constructor(private storageService: StorageService, private authService: AuthService, private voitureService: VoitureService, private router: Router, private activatedRoute: ActivatedRoute) {
-    this.currentRoute = "";
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         console.log(event.url);

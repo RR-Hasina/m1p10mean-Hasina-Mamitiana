@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AtelierComponent } from './atelier.component';
 
 const routes: Routes = [
+  { path: ":page", component: AtelierComponent },
   {
     path: '',
     component : AtelierComponent,

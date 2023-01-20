@@ -9,8 +9,8 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class LoginFinanceComponent {
   user: any = {
-    email: null,
-    password: null
+    email: "jean@yahoo.com",
+    password: "0000"
   };
   errorMessage = '';
   private role = "finance";

@@ -10,33 +10,33 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class LoginAtelierComponent {
   user: any = {
-    email: null,
-    password: null
+    email: "atelier@gmail.com",
+    password: "azerty"
   };
   errorMessage = '';
   private role = "atelier";
   isLoggedIn = false;
   isLoginFailed = false;
 
-  constructor(private authService: AuthService, private storageService: StorageService,private router: Router) { }
+  constructor(private authService: AuthService, private storageService: StorageService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(): void {
-    if(this.user.email != null && this.user.password != null ){
-    this.authService.login(this.user, this.role).subscribe({
-      next: data => {
-        this.storageService.saveUser(data);
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.router.navigateByUrl("/finance");
-      },
-      error: err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
-      }
-    });
+    if (this.user.email != null && this.user.password != null) {
+      this.authService.login(this.user, this.role).subscribe({
+        next: data => {
+          this.storageService.saveUser(data);
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          this.router.navigateByUrl("/atelier");
+        },
+        error: err => {
+          this.errorMessage = err.error.message;
+          this.isLoginFailed = true;
+        }
+      });
+    }
   }
-}
 }
