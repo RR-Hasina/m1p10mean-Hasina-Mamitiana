@@ -1,9 +1,7 @@
-import { Component, createPlatform, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationStart, Router, Event } from '@angular/router';
-import { Voiture } from 'src/app/models/voiture';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
-import { VoitureService } from 'src/app/services/voiture/voiture.service';
 
 @Component({
   selector: 'app-client',
@@ -12,12 +10,10 @@ import { VoitureService } from 'src/app/services/voiture/voiture.service';
 })
 export class ClientComponent implements OnInit {
   page?: String | null;
-  constructor(private storageService: StorageService, private authService: AuthService, private voitureService: VoitureService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private storageService: StorageService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
-        console.log(event.url);
         this.page = event.url.substring(8);
-        console.log(this.page);
       }
     })
   }

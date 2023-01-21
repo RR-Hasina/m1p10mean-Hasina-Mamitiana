@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationStart, Event } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 
@@ -12,7 +12,13 @@ export class AtelierComponent implements OnInit {
   page?: String | null;
 
   constructor(private storageService: StorageService, private authService: AuthService, private router: Router) {
-    this.router.events.subscribe()
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationStart) {
+        console.log(event.url);
+        this.page = event.url.substring(9);
+        console.log(this.page);
+      }
+    })
   }
 
   ngOnInit(): void {

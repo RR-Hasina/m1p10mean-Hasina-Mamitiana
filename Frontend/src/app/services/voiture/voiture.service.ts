@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GlobalConstants } from 'src/app/common/global.constants';
 import { Voiture } from 'src/app/models/voiture';
+import { Composant } from 'src/app/models/composant';
 const USER_KEY = 'auth-user';
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,15 @@ export class VoitureService {
     let data = { email: email };
     return this.http.post<Voiture[]>(GlobalConstants.apiURL + "/voiture/liste", data);
   }
+
+  public getComposant(): Observable<Composant[]> {
+    return this.http.get<Composant[]>(GlobalConstants.apiURL + "/atelier/composant");
+  }
+
+  public getListeVoitureDepot(): Observable<Voiture[]> {
+    return this.http.get<Voiture[]>(GlobalConstants.apiURL + "/atelier/diagnostique/liste");
+  }
+
+
 
 }
