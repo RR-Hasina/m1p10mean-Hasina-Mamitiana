@@ -9,13 +9,15 @@ import { TopbarModule } from 'src/app/components/topbar/topbar.module';
 import { StatistiqueComponent } from './statistique/statistique.component';
 import { DepenseComponent } from './depense/depense.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PayementComponent } from './payement/payement.component';
 
 
 @NgModule({
   declarations: [
     FinanceComponent,
     StatistiqueComponent,
-    DepenseComponent
+    DepenseComponent,
+    PayementComponent
   ],
   imports: [
     CommonModule,

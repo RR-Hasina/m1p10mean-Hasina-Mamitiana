@@ -64,7 +64,7 @@ export class DepenseComponent implements OnInit {
 
   removePieceField(index: number): void {
     if (this.pieces.length > 1) this.pieces.removeAt(index);
-    else this.pieces.patchValue([{ phoneNo: null, emailAddr: null }]);
+    else this.pieces.patchValue([{ nom: '', quantite: 1, prixUnitaire:1 }]);
   }
 
   submit(value: any): void {
@@ -75,11 +75,12 @@ export class DepenseComponent implements OnInit {
     if (this.form.invalid) {
       return;
   }
+  console.log(value);
     if(!this.isPiece){
-      //console.log(value);
+      console.log(value);
       value.pieces = null;
       this.addDepense(value);
-      this.reset();
+      //this.reset();
     }
 
     else{
@@ -95,7 +96,7 @@ export class DepenseComponent implements OnInit {
         //console.log(value);
          this.addDepense(value);
         this.prixV = false;
-        this.reset();
+        //this.reset();
       }
     }
 
@@ -110,6 +111,9 @@ export class DepenseComponent implements OnInit {
   handleSelected($event:any) {
     if ($event.target.checked === false) {
       this.pieces.clear();
+    }
+    else{
+      this.addPieceField();
     }
  }
 
@@ -139,6 +143,15 @@ export class DepenseComponent implements OnInit {
 // objectComparisonFunction = function (option: string, value: string): boolean {
 //   return option === value;
 // }
+
+prixchanged(){
+  let sum = 0;
+  this.pieces.controls.forEach(piece =>{
+    sum = sum +piece.get("quantite")!.value*piece.get("prixUnitaire")!.value;
+  })
+  this.form.get("montant")!.setValue(sum);
+  
+}
 
 
 

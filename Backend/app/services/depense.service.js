@@ -1,5 +1,4 @@
 const db=require("../models");
-const Depense = require("../models/depense.model");
 
 exports.saveDepense = (data,req,res) => {
     let voiture = new db.depense(data);
