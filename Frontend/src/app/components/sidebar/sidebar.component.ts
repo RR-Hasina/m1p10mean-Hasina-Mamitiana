@@ -23,4 +23,9 @@ export class SidebarComponent implements OnInit {
     if (page === "liste") this.router.navigate(["/client", "liste"]);
   }
 
+  redirectionAtelier(page: string){
+    if(page === "diagnostique") this.router.navigate(["/atelier","diagnostique"]);
+    if(page === "reparation") this.router.navigate(["/atelier","reparation"]);
+  }
+
 }
