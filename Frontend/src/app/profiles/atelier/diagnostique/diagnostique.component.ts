@@ -14,12 +14,15 @@ export class DiagnostiqueComponent implements OnInit {
 
   listeVoiture: Voiture[] = [];
   listeComposant: Composant[] = [];
-  index?: number;
+  immatriculation!: String;
   todo: string[] = [];
   listeComposantReparer: Composant[] = [];
   done: string[] = [];
   selectedValues = [];
   composantDiagnostique: Composant[] = [];
+  prixPiece: number[][] = [];
+  messageErreur?: String;
+  messageSuccess?: String;
 
   constructor(private voitureService: VoitureService) { }
 
@@ -43,8 +46,8 @@ export class DiagnostiqueComponent implements OnInit {
     })
   }
 
-  diagnostique(idVoiture: number): void {
-    this.index = idVoiture;
+  diagnostique(idVoiture: String): void {
+    this.immatriculation = idVoiture;
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -60,7 +63,7 @@ export class DiagnostiqueComponent implements OnInit {
       );
       console.log(event.container.data);
       this.getComposant(event.container.data[0]);
-
+      this.messageErreur = "";
     }
   }
 
@@ -70,37 +73,79 @@ export class DiagnostiqueComponent implements OnInit {
         this.listeComposantReparer.unshift(this.listeComposant[i]);
       };
     }
+    for (let i = 0; i < this.listeComposantReparer.length; i++) {
+      this.prixPiece[i] = new Array(this.listeComposant[i].pieces.length);
+    }
   }
 
   deleteComposant(item: Composant) {
     for (let i = 0; i < this.listeComposantReparer.length; i++) {
+      this.prixPiece[i] = new Array(this.listeComposant[i].pieces.length);
       if (this.listeComposantReparer[i].nom === item.nom) {
         this.todo.push(item.nom);
         this.listeComposantReparer.splice(i, 1);
       }
     }
+    for (let i = 0; i < this.composantDiagnostique.length; i++) {
+      if (this.composantDiagnostique[i].nom === item.nom) {
+        this.composantDiagnostique.splice(i, 1);
+      }
+    }
   }
 
-  getPiece(event: any, piece: string, composant: string) {
+  getPiece(event: any, piece: any, composant: string, firstIndex: number, secondIndex: number) {
+    let count = 0;
+    let temp: Composant = {
+      nom: composant,
+      pieces: [{
+        nom: piece,
+        prix: this.prixPiece[firstIndex][secondIndex]
+      }]
+    };
+    let pieceAdd: any = {
+      nom: piece,
+      prix: this.prixPiece[firstIndex][secondIndex]
+    }
     if (event.target.checked) {
-      let count = 0;
-      let temp: Composant = {
-        nom: composant,
-        pieces: []
-      };
-      temp.pieces.push(piece);
       for (let j = 0; j < this.composantDiagnostique.length; j++) {
         count++;
         if (this.composantDiagnostique[j].nom === composant) {
-          this.composantDiagnostique[j].pieces.push(piece);
+          this.composantDiagnostique[j].pieces.push(pieceAdd);
           count--;
         }
       }
       if (count == this.composantDiagnostique.length) this.composantDiagnostique.push(temp);
     }
     else {
-      console.log("Uncheked");
+      for (let i = 0; i < this.composantDiagnostique.length; i++) {
+        if (this.composantDiagnostique[i].nom === composant) {
+          if (this.composantDiagnostique[i].pieces.length > 0) {
+            for (let j = 0; j < this.composantDiagnostique[i].pieces.length; j++) {
+              if (this.composantDiagnostique[i].pieces[j].nom === pieceAdd.nom) {
+                console.log(this.composantDiagnostique[i].pieces.length);
+                this.composantDiagnostique[i].pieces.splice(j, 1);
+                if (this.composantDiagnostique[i].pieces == undefined) {
+                  this.composantDiagnostique.splice(i, 1);
+                }
+              }
+            }
+          }
+        }
+      }
     }
-    console.log(this.composantDiagnostique);
+  }
+
+  valider(): void {
+    if (this.composantDiagnostique.length == 0) {
+      this.messageErreur = "Identifier le composant à réparer";
+    } else {
+      this.voitureService.diagnostique(this.immatriculation, this.composantDiagnostique).subscribe({
+        next: (data: Voiture) => {
+          console.log(data);
+          this.immatriculation = "";
+          this.messageSuccess = "Diagnostique validé.";
+        }
+      });
+    }
   }
 }

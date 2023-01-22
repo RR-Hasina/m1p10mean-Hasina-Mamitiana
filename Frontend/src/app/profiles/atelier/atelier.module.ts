@@ -8,6 +8,7 @@ import { TopbarModule } from 'src/app/components/topbar/topbar.module';
 import { SidebarModule } from 'src/app/components/sidebar/sidebar.module';
 import { DiagnostiqueComponent } from './diagnostique/diagnostique.component';
 import { ReparationComponent } from './reparation/reparation.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ReparationComponent } from './reparation/reparation.component';
     SidebarModule,
     TopbarModule,
     FooterModule,
-    DragDropModule
+    DragDropModule,
+    FormsModule
   ]
 })
 export class AtelierModule { }

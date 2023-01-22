@@ -36,9 +36,9 @@ exports.diagnostique = (req, res) => {
         "prixTotal": null,
         "datePayement": null
       };
-      voiture.depots.push(reparation);
+      voiture.reparation.push(reparation);
       voiture.save();
-      res.status(200).send({ message: voiture });
+      res.status(200).send(voiture);
     })
 }
 

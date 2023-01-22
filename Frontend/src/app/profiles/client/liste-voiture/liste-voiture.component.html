@@ -31,11 +31,11 @@
                     </tr>
                     <tr
                         *ngIf="i.depots[i.depots.length-1].dateSortie==undefined && i.reparation[i.reparation.length-1]!=undefined">
-                        <td>{{i.immatriculation}}</td>
-                        <td>{{i.marque}}</td>
+                        <td class="text-center">{{i.immatriculation}}</td>
+                        <td class="text-center">{{i.marque}}</td>
                         <td class="table-warning text-center">EN REPARATION</td>
-                        <td></td>
-                        <td></td>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
                     </tr>
                 </tbody>
             </table>

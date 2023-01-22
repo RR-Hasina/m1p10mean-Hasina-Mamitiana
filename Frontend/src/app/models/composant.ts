@@ -1,4 +1,7 @@
 export interface Composant {
     nom: string,
-    pieces: string[];
+    pieces: [{
+        nom: string,
+        prix: number
+    }];
 }
