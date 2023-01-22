@@ -1,4 +1,4 @@
 export interface Composant {
-    nom: String,
-    pieces: []
+    nom: string,
+    pieces: string[];
 }

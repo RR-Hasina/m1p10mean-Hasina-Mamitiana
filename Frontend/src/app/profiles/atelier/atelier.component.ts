@@ -22,7 +22,7 @@ export class AtelierComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    
   }
 
   logout(): void {
