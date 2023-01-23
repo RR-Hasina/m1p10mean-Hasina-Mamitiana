@@ -31,7 +31,8 @@ const Voiture = mongoose.model(
             prixMo: { type: Number, default: 0 },
             avancement: { type: Number, default: 0 },   //pourcentage
             prixTotal: { type: Number, default: 0 },
-            datePayement: Date
+            datePayement: Date,
+            bonSortie:  { type: Boolean, default: false }
         }],
         client:
             { nom: String, prenom: String, email: String }

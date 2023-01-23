@@ -1,0 +1,137 @@
+<div class="row">
+    <div class="col-md-10 offset-md-1 form-1-box wow fadeInUp">
+        <div *ngIf="voiture" class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h4 class="m-0 font-weight-bold text-primary text-center">Suivis de la réparation de la voiture avec l'
+                    immatriculation: {{voiture.immatriculation}} </h4>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <p>Client : <strong>{{voiture.client.nom+' '+voiture.client.prenom}}</strong></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>Email : <strong>{{voiture.client.email}}</strong></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>Immatriculation : <strong>{{voiture.immatriculation}}</strong></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>Marque : <strong>{{voiture.marque}}</strong></p>
+                    </div>
+
+                    <div class="col-md-12">
+                        <hr>
+                        <h4>Avancement total de la réparation : <strong
+                                class="text-info">{{voiture.reparation!.avancement}} %</strong></h4>
+                    </div>
+                    <div class="col-md-12">
+                        <h4>Date Entrée:
+                            <strong class="text-info">{{(voiture.reparation!.dateEntree != null )?(voiture.reparation!.dateEntree | date:'dd-MM-yyyy hh:mm'):'-//-'}} </strong>
+                            | Date Sortie:
+                            <strong class="text-info">{{(voiture.reparation!.dateSortie != null )?(voiture.reparation!.dateSortie | date:'dd-MM-yyyy hh:mm'):'-//-'}} </strong>
+                        </h4>
+                    </div>
+                    <div class="col-md-12">
+                        <hr>
+                        <h4>Prix du main d' oeuvre : <strong
+                                class="text-info">Ar {{voiture.reparation!.prixMo | number}}</strong></h4>
+                    </div>
+                    <div class="col-md-12">
+                        <h4>PRIX TOTAL : <strong
+                                class="text-info">Ar {{voiture.reparation!.prixTotal | number}}</strong></h4>
+                    </div>
+                </div>
+            </div>
+            <div id="accordion">
+
+                <div *ngFor="let composant of voiture.reparation!.composants; index as i">
+                    
+                        <div> 
+                            <a class="card-link text-left" data-toggle="collapse" href="{{'#collapse'+i}}">
+                                <div class="card-header d-flex justify-content-between">
+                                <span><h5 class=" text-info">{{composant.nom | uppercase}}</h5></span>
+                                <span>
+                                    <h5 *ngIf="composant.dateDebut == null" class=" text-primary blink_me">Réparation non commencée</h5>
+                                    <h5 *ngIf="composant.dateDebut != null && composant.dateFin == null " class=" text-info blink_me">
+                                        <div class="spinner-border text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                          </div>
+                                        Réparation en cours
+                                    </h5>
+                                    <h5 *ngIf="composant.dateDebut != null && composant.dateFin !=null " class=" text-success blink_me">Réparation terminée</h5>
+                                </span>
+                            </div>
+                            </a>
+                        </div>
+
+                    <div id="{{'collapse'+i}}" class="collapse show">
+                        <div class="card-body">
+                            <div class="row justify-content-center">
+                                <div class="col-md-12">
+                                    <div class="row justify-content-center">
+                                        <div *ngIf="composant.dateDebut != null  " class="col-md-4 text-center">
+                                            <p>Début réparation : <strong>{{composant.dateDebut | date:'dd-MM-yyyy hh:mm'}}</strong></p>
+                                        </div>
+                                        <div *ngIf="composant.dateFin !=null " class="col-md-4 text-center">
+                                            <p>Fin réparation : <strong>{{composant.dateFin | date:'dd-MM-yyyy hh:mm'}}</strong></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-6 col-md-6 ">
+                                    <table class="table  table-responsive-md  text-center">
+                                        <tr class="table-secondary">
+                                            <th>Pièces</th>
+                                            <th>Prix</th>
+                                        </tr>
+                                        <tr *ngFor="let piece of composant.pieces">
+                                            <td>{{piece.nom}}</td>
+                                            <td> Ar {{piece.prix | number}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong >TOTAL</strong></td>
+                                            <td> Ar {{totalPieces(i) | number}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div *ngIf="composant.dateDebut == null" class="col-md-12 ">
+                                    <div class="form-inline justify-content-center">
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <input type="datetime-local" class="form-control"
+                                                (change)="changed($event,i)">
+                                        </div>
+                                        <button type="submit" (click)="updateDateDebut(i)"
+                                            class="btn btn-primary mb-2">Commencer</button>
+                                    </div>
+                                    <div *ngIf="control[i]" class="col-md-12 text-center">
+                                        <p class="text-danger">Veillez selectionner une date!!!</p>
+                                    </div>
+                                </div>
+                                <div *ngIf="composant.dateDebut != null && composant.dateFin == null" class="col-md-12 " #elseBlock>
+                                    <div class="form-inline  justify-content-center">
+                                        <div class="form-group mx-sm-3 mb-2">
+                                            <input type="datetime-local" class="form-control" (change)="changedf($event,i)">
+                                        </div>
+                                        <button type="submit"  (click)="updateDateFin(i)" class="btn btn-success mb-2">Finir</button>
+                                    </div>
+                                    <div *ngIf="controlf[i]" class="col-md-12 text-center">
+                                        <p class="text-danger">Veillez selectionner une date!!!</p>
+                                    </div>
+                                    <div *ngIf="controlf1[i]" class="col-md-12 text-center">
+                                        <p class="text-danger">Date Début supérieur à date Fin!!!!</p>
+                                    </div>
+                                </div>
+                                <div *ngIf=" composant.dateFin != null" class="col-md-12 " #elseBlock>
+                                    <div class="form-inline  justify-content-center">
+                                        <button type="submit"  (click)="annuler(i)" class="btn btn-warning mb-2">Annuler</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
