@@ -16,10 +16,10 @@ export class ListeVoitureComponent implements OnInit {
   ngOnInit(): void {
     this.voitureService.getListeVoiture(this.storageService.getUser().email).subscribe({
       next: (data: Voiture[]) => {
-        
         this.listeVoiture = data;
       }
-    })
-  };
+    });
+
+  }
 }
 

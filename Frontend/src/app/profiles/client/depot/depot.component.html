@@ -10,7 +10,10 @@
             <label for="immatriculation">Vehicule</label>
             <select class="form-control" id="immatriculation" [(ngModel)]="immatriculation">
                 <option value=""></option>
-                <option *ngFor="let i of voituresNonDepot">{{i.immatriculation}}</option>
+                <ng-container *ngFor="let i of voituresNonDepot">
+                    <option *ngIf="i.depots.length<=0 || i.depots[i.depots.length-1].dateSortie!=null">
+                        {{i.immatriculation}}</option>
+                </ng-container>
             </select>
             <label for="signalement">Signalements</label>
             <input type="text" class="form-control" id="signalement" [(ngModel)]="inputValue" name="signalement"
@@ -50,14 +53,14 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Immatriculation</th>
-                        <th>Marque</th>
+                        <th class="text-center">Immatriculation</th>
+                        <th class="text-center">Marque</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let i of voituresNonDepot">
-                        <td>{{i.immatriculation}}</td>
-                        <td>{{i.marque}}</td>
+                        <td class="text-center">{{i.immatriculation}}</td>
+                        <td class="text-center">{{i.marque}}</td>
                     </tr>
                 </tbody>
             </table>
