@@ -19,6 +19,7 @@ export class BonSortieComponent implements OnInit {
   constructor(private service:BonsortieService){};
 
   ngOnInit(): void {
+    console.log("tonga");
     this.Ongetvoiture();
   }
 
