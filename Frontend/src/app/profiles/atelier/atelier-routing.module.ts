@@ -3,10 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AtelierComponent } from './atelier.component';
 import { BonSortieComponent } from './bon-sortie/bon-sortie.component';
 import { DetailsreparationComponent } from './detailsreparation/detailsreparation.component';
+import { DiagnostiqueComponent } from './diagnostique/diagnostique.component';
 import { ReparationComponent } from './reparation/reparation.component';
 
 const routes: Routes = [
-  { path: ":page", component: AtelierComponent },
   {
     path: '',
     component : AtelierComponent,
@@ -24,8 +24,12 @@ const routes: Routes = [
         component : BonSortieComponent
       },
       {
+        path: 'diagnostique',
+        component :DiagnostiqueComponent
+      },
+      {
         path: '',
-        redirectTo: 'reparation',
+        redirectTo: 'diagnostique',
         pathMatch: 'full'
       },
     ]
