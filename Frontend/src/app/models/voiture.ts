@@ -17,10 +17,11 @@ export interface Voiture {
                 prix: Number
             }]
         }],
-        prixMo?:  number,
-    avancement?:  number,   //pourcentage
-    prixTotal?:  number,
-    datePayement?: Date
+        prixMo?: number,
+        avancement?: number,   //pourcentage
+        prixTotal?: number,
+        datePayement?: Date,
+        bonSortie?: boolean
     }],
     client: { nom: String, prenom: String, email: String }
 }
@@ -33,18 +34,18 @@ export interface Reparation {
         dateSortie: Date | null,
         composants?: [{
             nom: string,
-            dateDebut: Date ,
+            dateDebut: Date,
             dateFin: Date | null,
             pieces: [{
                 nom: string,
                 prix: number
             }]
         }],
-        prixMo?:  number,
-    avancement?:  number,   //pourcentage
-    prixTotal?:  number,
-    datePayement?: Date,
-    bonSortie?: boolean
+        prixMo?: number,
+        avancement?: number,   //pourcentage
+        prixTotal?: number,
+        datePayement?: Date,
+        bonSortie?: boolean
     },
     client: { nom: String, prenom: String, email: String }
 }

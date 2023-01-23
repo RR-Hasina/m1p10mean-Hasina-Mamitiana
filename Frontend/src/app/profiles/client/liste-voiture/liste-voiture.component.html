@@ -22,7 +22,7 @@
                         <td class="text-center">-</td>
                         <td class="text-center">-</td>
                     </tr>
-                    <tr *ngIf="i.depots.length<=0">
+                    <tr *ngIf="i.depots.length<=0 || i.reparation[i.reparation.length-1].bonSortie==true">
                         <td class="text-center">{{i.immatriculation}}</td>
                         <td class="text-center">{{i.marque}}</td>
                         <td class="table-success text-center">EN MARCHE</td>
@@ -39,7 +39,7 @@
                         <td class="text-center">0%</td>
                     </tr>
                     <tr
-                        *ngIf="i.depots.length>0 && i.depots[i.depots.length-1].dateSortie==null && i.reparation[i.reparation.length-1].dateEntree!=null">
+                        *ngIf="i.depots.length>0 && i.depots[i.depots.length-1].dateSortie==null && i.reparation[i.reparation.length-1].dateEntree!=null &&  i.reparation[i.reparation.length-1].bonSortie==false">
                         <td class="text-center">{{i.immatriculation}}</td>
                         <td class="text-center">{{i.marque}}</td>
                         <td class="table-warning text-center">EN REPARATION</td>
