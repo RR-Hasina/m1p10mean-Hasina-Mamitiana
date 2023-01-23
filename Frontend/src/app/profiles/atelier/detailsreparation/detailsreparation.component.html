@@ -121,7 +121,7 @@
                                         <p class="text-danger">Date Début supérieur à date Fin!!!!</p>
                                     </div>
                                 </div>
-                                <div *ngIf=" composant.dateFin != null" class="col-md-12 " #elseBlock>
+                                <div *ngIf=" composant.dateFin != null && voiture.reparation!.avancement!=100" class="col-md-12 " #elseBlock>
                                     <div class="form-inline  justify-content-center">
                                         <button type="submit"  (click)="annuler(i)" class="btn btn-warning mb-2">Annuler</button>
                                     </div>

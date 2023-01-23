@@ -73,6 +73,8 @@
                                                    [(ngModel)]="voiture.reparation!.datePayement">
                                             </div>
                                         </div>
+                                        <div *ngIf="voiture.reparation!.datePayement! < voiture.reparation!.dateSortie! " class="text-center text-danger">La date de payement ne doit pas être < à celui de la date de réparation!!</div>
+                                        <div *ngIf="voiture.reparation!.datePayement == null" class="text-center text-danger">requis!!!</div>
                         </div>
                         <div class="modal-footer">
                         <button type="button" id="{{ 'btnclos' + i }}" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
