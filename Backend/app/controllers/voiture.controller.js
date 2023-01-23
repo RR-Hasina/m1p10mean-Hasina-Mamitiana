@@ -51,16 +51,9 @@ exports.getListeVoiture = (req, res) => {
 exports.findDepotVoiture = (req, res) => {
     Voiture.find({
         $expr: {
-            $or: [
-                {
-                    $eq: [{
-                        $arrayElemAt: ["$depots.dateDepot", -1]
-                    }, null]
-                },
-                {
-                    "depots":{ $ne:[]}
-                }
-            ]
+            $ne: [{
+                $arrayElemAt: ["$depots.dateSortie", -1]
+            }, null]
         },
         "client.email": req.body.email
     })

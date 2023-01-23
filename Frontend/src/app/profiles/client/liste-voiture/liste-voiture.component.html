@@ -34,7 +34,7 @@
                         <td class="text-center">{{i.immatriculation}}</td>
                         <td class="text-center">{{i.marque}}</td>
                         <td class="table-danger text-center">EN DEPOT</td>
-                        <td class="text-center">{{i.depots[i.depots.length-1].dateDepot | date:' d MMMM y'}}</td>
+                        <td class="text-center">{{i.depots[i.depots.length-1].dateDepot.toString().substring(10,0)}}</td>
                         <td class="text-center">0%</td>
                     </tr>
                     <tr

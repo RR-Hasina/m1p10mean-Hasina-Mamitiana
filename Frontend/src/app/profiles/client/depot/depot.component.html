@@ -13,9 +13,14 @@
                 <option *ngFor="let i of voituresNonDepot">{{i.immatriculation}}</option>
             </select>
             <label for="signalement">Signalements</label>
-            <input type="text" class="form-control" id="signalement" [(ngModel)]="signalement" name="signalement"
-                placeholder="Entre le nom du composant"><br>
-            <button class="btn btn-primary " (click)="ajoutSignalement()" type="submit">Ajouter signalement</button>
+            <input type="text" class="form-control" id="signalement" [(ngModel)]="inputValue" name="signalement"
+                placeholder="Entre le nom du composant" (input)="onInputChange()" (ngModelChange)="majuscule()">
+
+            <div *ngFor="let option of filteredOptions" class="my-class" (click)="selectOption(option)"
+                [hidden]="inputValue === '' || options.includes(inputValue)">{{ option }}</div>
+            <br>
+            <button class="btn btn-primary " [disabled]="!options.includes(inputValue)" (click)="ajoutSignalement()"
+                type="submit">Ajouter signalement</button>
             <hr>
             <ul class="list-group">
                 <li *ngFor="let i of listeSingnalement" class="list-group-item list-group-item-danger">{{i}}</li>
