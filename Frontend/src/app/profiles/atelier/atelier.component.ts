@@ -9,16 +9,9 @@ import { StorageService } from 'src/app/services/storage/storage.service';
   styleUrls: ['./atelier.component.scss']
 })
 export class AtelierComponent implements OnInit {
-  page?: String | null;
 
   constructor(private storageService: StorageService, private authService: AuthService, private router: Router) {
-    this.router.events.subscribe((event: Event) => {
-      if (event instanceof NavigationStart) {
-        console.log(event.url);
-        this.page = event.url.substring(9);
-        console.log(this.page);
-      }
-    })
+  
   }
 
   ngOnInit(): void {
