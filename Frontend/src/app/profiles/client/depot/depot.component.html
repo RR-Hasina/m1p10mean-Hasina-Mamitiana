@@ -28,6 +28,9 @@
         </div>
         <div class="col-md-12">
             <button class="btn btn-primary" (click)="depotVoiture()" type="submit">Déposer</button><br><br>
+            <div *ngIf="errorMessage!=''" class="alert alert-danger text-center" role="alert">
+                {{ errorMessage }}
+            </div>
         </div>
         <div *ngIf="ajoutErreur" class="alert alert-danger text-center" role="alert">
             {{ errorMessage }}

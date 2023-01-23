@@ -68,6 +68,8 @@ export class DepotComponent implements OnInit {
           this.errorMessage = "Il y a une erreur de déposition";
         }
       })
+    }else{
+      this.errorMessage="Entrer votre plaque d'immatriculation!";
     }
   }
 
