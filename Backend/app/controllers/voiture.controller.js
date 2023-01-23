@@ -9,7 +9,7 @@ exports.creationVoiture = (req, res) => {
             nom: req.body.nom,
             prenom: req.body.prenom,
             email: req.body.email
-        }
+        },
     });
     voiture.save((err, voiture) => {
         if (err) {
@@ -51,16 +51,14 @@ exports.getListeVoiture = (req, res) => {
 exports.findDepotVoiture = (req, res) => {
     Voiture.find({
         $expr: {
-            $and: [
+            $or: [
                 {
-                    $ne: [{
+                    $eq: [{
                         $arrayElemAt: ["$depots.dateDepot", -1]
                     }, null]
                 },
                 {
-                    $eq:[{
-                        $arrayElemAt: ["$depots.dateSortie",-1]
-                    },null]
+                    "depots":{ $ne:[]}
                 }
             ]
         },
