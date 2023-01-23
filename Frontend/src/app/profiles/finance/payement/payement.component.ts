@@ -51,6 +51,12 @@ OngetnonPayer(){
 
   validation(imm:any,index:any){
     console.log(imm);
+    if(this.voitures.docs[index].reparation!.datePayement! < this.voitures.docs[index].reparation!.dateSortie!){
+      return;
+    }
+    if(this.voitures.docs[index].reparation!.datePayement! == null){
+      return;
+    }
 
     this.service.payer(imm,this.voitures.docs[index].reparation?.datePayement).subscribe({
       next: (data) => {
