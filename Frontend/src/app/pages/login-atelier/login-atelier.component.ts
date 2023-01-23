@@ -30,7 +30,7 @@ export class LoginAtelierComponent {
         this.storageService.saveUser(data);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.router.navigateByUrl("/finance");
+        this.router.navigateByUrl("/atelier");
       },
       error: err => {
         this.errorMessage = err.error.message;

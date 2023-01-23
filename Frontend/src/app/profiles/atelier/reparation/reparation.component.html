@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-10 offset-md-1 form-1-box wow fadeInUp">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary text-center"> Liste des voitures en réparation</h6>
+                <div *ngIf="voitures == null">
+                    <br>
+                    <div  class="alert alert-info text-center" role="alert">
+                        Aucune voiture à réparer
+                      </div>
+                </div>
+            </div>
+            <div class="card-body" *ngIf="voitures">
+                <form #f="ngForm" (ngSubmit)="onSearch(f.value)">
+                    <div class="form-group">
+                    <label>Immatriculation: </label>
+                    <input class="ml-2" type="text" name="keyword" ngModel [(ngModel)]="keyword">
+                        <button  type="submit">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </form>
+                <table class="table table-responsive-md table-responsive-sm  table-responsive-lg">
+                    <tr>
+                        <th>Immatriculation</th><th>Marque</th><th>Email du client</th><th>Client</th><th>Avancement</th><th>PrixTotal</th>
+                    </tr>
+                    <tr *ngFor="let voiture of voitures.docs; index as i">
+                    <td>{{voiture.immatriculation}}</td>
+                    <td>{{voiture.marque}}</td>
+                    <td>{{voiture.client.email}}</td>
+                    <td>{{voiture.client.nom+" "+voiture.client.prenom}}</td> 
+                    <td>{{voiture.reparation!.avancement}}%</td>
+                    <td>Ar {{voiture.reparation!.prixTotal | number}}</td>
+                    <td>
+                        <button [routerLink]="['/atelier/reparation',voiture.immatriculation]" class="btn btn-primary" >Réparation</button>
+                    </td>
+                    <!-- <td>
+                        <button class="tooltip1 btn btn-success rounded-circle"><i class="fa fa-check" aria-hidden="true"></i>
+                            <span class="tooltip1text">Validation bon de sortie</span>
+                        </button>
+
+                    </td> -->
+                    
+
+                    </tr>
+                    </table>
+                    <ul class="nav justify-content-center">
+                    <li class="page-item" [ngClass]="((i+1)==currentPage)?'active':''" *ngFor="let page of pages; let i=index">
+                    <a class="page-link btn btn-primary  ml-1" (click)="onPageVoitures(i)">{{i+1}}</a>
+                    </li>
+                    </ul>
+                
+            </div>
+        </div>
+    </div>
+    </div>
+    

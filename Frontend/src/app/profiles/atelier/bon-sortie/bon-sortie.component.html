@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-md-10 offset-md-1 form-1-box wow fadeInUp">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary text-center">Validation bon de sortie des voitures</h6>
+                <div *ngIf="voitures == null">
+                    <br>
+                    <div  class="alert alert-info text-center" role="alert">
+                        Aucun bon de sortie à valider
+                      </div>
+                </div>
+            </div>
+            <div class="card-body" *ngIf="voitures">
+                <div *ngIf="ajouter" class="alert alert-success text-center" role="alert">
+                    bon de sortie validé !!!
+                  </div>
+                <form #f="ngForm" (ngSubmit)="onSearch(f.value)">
+                    <div class="form-group">
+                    <label>Immatriculation: </label>
+                    <input class="ml-2" type="text" name="keyword" ngModel [(ngModel)]="keyword">
+                        <button  type="submit">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </form>
+                <table class="table table-responsive-md table-responsive-sm  table-responsive-lg">
+                    <tr>
+                        <th>Immatriculation</th><th>Marque</th><th>Email du client</th><th>Client</th><th>Avancement</th><th>PrixTotal</th>
+                    </tr>
+                    <tr *ngFor="let voiture of voitures.docs; index as i">
+                    <td>{{voiture.immatriculation}}</td>
+                    <td>{{voiture.marque}}</td>
+                    <td>{{voiture.client.email}}</td>
+                    <td>{{voiture.client.nom+" "+voiture.client.prenom}}</td> 
+                    <td>{{voiture.reparation!.avancement}}%</td>
+                    <td>Ar {{voiture.reparation!.prixTotal | number}}</td>
+                    <td>
+                        <button  data-toggle="modal" [attr.data-target]="'#exampleModal' + i" class="btn btn-primary" >Valider</button>
+                    </td>
+
+                            <!-- Modal -->
+                        <div class="modal fade" id="{{ 'exampleModal' + i }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" style="max-width: 45%!important;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Etes vous sûr de valider le bon de sortie pour cette voiture?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" id="{{ 'btnclos' + i }}" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                <button  (click)="validation(voiture.immatriculation,i)" type="button" class="btn btn-primary">Valider</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    <!-- <td>
+                        <button class="tooltip1 btn btn-success rounded-circle"><i class="fa fa-check" aria-hidden="true"></i>
+                            <span class="tooltip1text">Validation bon de sortie</span>
+                        </button>
+
+                    </td> -->
+                    
+
+                    </tr>
+                    </table>
+                    <ul class="nav justify-content-center">
+                    <li [ngClass]="((i+1)==currentPage)?'active':''" *ngFor="let page of pages; let i=index">
+                    <a class="btn btn-primary  ml-1" (click)="onPageVoitures(i)">{{i+1}}</a>
+                    </li>
+                    </ul>
+                
+            </div>
+        </div>
+    </div>
+    </div>
+    

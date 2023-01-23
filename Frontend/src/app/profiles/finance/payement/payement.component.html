@@ -23,7 +23,7 @@
                     </button>
                 </div>
             </form>
-            <table class="table table-responsive-md table-responsive-sm  table-responsive-lg">
+            <table class="table table  table-responsive-md table-responsive-sm  table-responsive-lg">
                 <tr>
                 <th>Email</th><th>Client</th><th>Immatriculation</th><th>Marque</th>
                 </tr>
@@ -57,15 +57,22 @@
                                         <span class="ml-3"> Marque: <strong>{{voiture.marque}}</strong></span>
                                     </p>
                                     <p><u>Pièces:</u></p>
-                                    <div *ngFor="let composant of voiture.reparation.composants">
+                                    <div *ngFor="let composant of voiture.reparation!.composants">
                                         <div *ngFor="let piece of composant.pieces">
                                             <span> Nom: <strong>{{piece.nom}}</strong></span>
                                             <span class="ml-3"> Prix: <strong>Ar {{piece.prix | number}}</strong></span>
                                         </div>
                                     </div>
                                     <br>
-                                    <p><u>Prix main d' oeuvre:</u> <strong class="ml-3">Ar {{voiture.reparation.prixMo | number}}</strong></p>
-                                    <p class="h5"><u>Total:</u> <strong class="ml-3">Ar {{voiture.reparation.prixTotal | number}}</strong><p>
+                                    <p><u>Prix main d' oeuvre:</u> <strong class="ml-3">Ar {{voiture.reparation!.prixMo | number}}</strong></p>
+                                    <p class="h5"><u>Total:</u> <strong class="ml-3">Ar {{voiture.reparation!.prixTotal | number}}</strong><p>
+                                        <div class="form-inline justify-content-center">
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <label for="" class="form-label">Date de Payement :</label>
+                                                <input type="datetime-local" class="form-control"
+                                                   [(ngModel)]="voiture.reparation!.datePayement">
+                                            </div>
+                                        </div>
                         </div>
                         <div class="modal-footer">
                         <button type="button" id="{{ 'btnclos' + i }}" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -79,8 +86,8 @@
                 </tr>
                 </table>
                 <ul class="nav justify-content-center">
-                <li [ngClass]="((i+1)==currentPage)?'active':''" *ngFor="let page of pages; let i=index">
-                <a class="btn btn-primary  ml-1" (click)="onPageVoitures(i)">{{i+1}}</a>
+                <li class="page-item" [ngClass]="((i+1)==currentPage)?'active':''" *ngFor="let page of pages; let i=index">
+                <a class=" page-link btn btn-primary  ml-1" (click)="onPageVoitures(i)">{{i+1}}</a>
                 </li>
                 </ul>
             

@@ -9,14 +9,14 @@ import { Voiture } from 'src/app/models/voiture';
 })
 export class PayementService {
 
-  data! : Voiture;
   constructor(private http:HttpClient) { }
 
   public getNonpayer(kw:string,page:number,limit:number): Observable<any> {
     return this.http.get<any>(GlobalConstants.apiURL + "/voiture/nonPayer?kw="+kw+"&page="+page+"&limit="+limit);
   }
 
-  public payer(imm:string): Observable<any> {
-    return this.http.put<any>(GlobalConstants.apiURL + "/voiture/payement/"+imm,'');
+  public payer(imm:string,data:any): Observable<any> {
+
+    return this.http.put<any>(GlobalConstants.apiURL + "/voiture/payement/"+imm,{date: data});
   }
 }

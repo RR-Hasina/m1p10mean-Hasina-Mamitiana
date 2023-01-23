@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PayementPage } from 'src/app/models/voiture';
+import { ReparationPage } from 'src/app/models/voiture';
 import { PayementService } from 'src/app/services/payement/payement.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { PayementService } from 'src/app/services/payement/payement.service';
 export class PayementComponent implements OnInit {
 
 
-   voitures!:PayementPage;
+   voitures!:ReparationPage;
    keyword:string="";
    currentPage:number=1;
    pageSize:number=2;
@@ -52,7 +52,7 @@ OngetnonPayer(){
   validation(imm:any,index:any){
     console.log(imm);
 
-    this.service.payer(imm).subscribe({
+    this.service.payer(imm,this.voitures.docs[index].reparation?.datePayement).subscribe({
       next: (data) => {
         console.log(data);
         document.getElementById("btnclos"+index)?.click();
