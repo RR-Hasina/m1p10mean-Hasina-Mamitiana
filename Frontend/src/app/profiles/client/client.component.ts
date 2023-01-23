@@ -9,20 +9,12 @@ import { StorageService } from 'src/app/services/storage/storage.service';
   styleUrls: ['./client.component.scss']
 })
 export class ClientComponent implements OnInit {
-  page?: String | null;
-  constructor(private storageService: StorageService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) {
-    this.router.events.subscribe((event: Event) => {
-      if (event instanceof NavigationStart) {
-        this.page = event.url.substring(8);
-      }
-    })
-  }
+  constructor(private storageService: StorageService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     if (this.storageService.getUser().nom == undefined) {
       this.router.navigateByUrl("/login-client");
     }
-    this.page = this.activatedRoute.snapshot.paramMap.get('page');
   }
 
   logout(): void {

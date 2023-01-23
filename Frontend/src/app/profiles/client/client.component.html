@@ -21,15 +21,7 @@
                 <!-- Page Heading -->
 
                 <!-- Content Row -->
-                <div *ngIf="page==='ajout'">
-                    <app-ajout-voiture></app-ajout-voiture>
-                </div>
-                <div *ngIf="page==='depot'">
-                    <app-depot></app-depot>
-                </div>
-                <div *ngIf="page==='liste'">
-                    <app-liste-voiture></app-liste-voiture>
-                </div>
+                <router-outlet></router-outlet>
 
                 <!--  end Content Row -->
 
