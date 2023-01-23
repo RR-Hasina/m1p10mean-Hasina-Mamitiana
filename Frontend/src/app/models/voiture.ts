@@ -25,15 +25,16 @@ export interface Voiture {
     client: { nom: String, prenom: String, email: String }
 }
 
-export interface Payement {
+export interface Reparation {
     immatriculation: string,
     marque: string,
-    reparation: {
-        dateEntree: Date,
-        composants: [{
+    reparation?: {
+        dateEntree: Date | null,
+        dateSortie: Date | null,
+        composants?: [{
             nom: string,
-            dateDebut: number,
-            dateFin: number,
+            dateDebut: Date ,
+            dateFin: Date | null,
             pieces: [{
                 nom: string,
                 prix: number
@@ -42,13 +43,14 @@ export interface Payement {
         prixMo?:  number,
     avancement?:  number,   //pourcentage
     prixTotal?:  number,
-    datePayement?: Date
+    datePayement?: Date,
+    bonSortie?: boolean
     },
     client: { nom: String, prenom: String, email: String }
 }
 
-export interface PayementPage {
-    docs: Array<Payement>,
+export interface ReparationPage {
+    docs: Array<Reparation>,
     totalPages: number,
     currentPage: number
 }

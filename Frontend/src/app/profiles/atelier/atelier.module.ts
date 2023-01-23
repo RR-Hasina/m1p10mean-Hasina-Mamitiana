@@ -6,16 +6,20 @@ import { AtelierComponent } from './atelier.component';
 import { FooterModule } from 'src/app/components/footer/footer.module';
 import { TopbarModule } from 'src/app/components/topbar/topbar.module';
 import { SidebarModule } from 'src/app/components/sidebar/sidebar.module';
-import { DiagnostiqueComponent } from './diagnostique/diagnostique.component';
 import { ReparationComponent } from './reparation/reparation.component';
-import { FormsModule } from '@angular/forms';
+import { DetailsreparationComponent } from './detailsreparation/detailsreparation.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BonSortieComponent } from './bon-sortie/bon-sortie.component';
+import { DiagnostiqueComponent } from './diagnostique/diagnostique.component';
 
 
 @NgModule({
   declarations: [
     AtelierComponent,
+    ReparationComponent,
+    DetailsreparationComponent,
+    BonSortieComponent,
     DiagnostiqueComponent,
-    ReparationComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     SidebarModule,
     TopbarModule,
     FooterModule,
+    ReactiveFormsModule,
     DragDropModule,
     FormsModule
   ]

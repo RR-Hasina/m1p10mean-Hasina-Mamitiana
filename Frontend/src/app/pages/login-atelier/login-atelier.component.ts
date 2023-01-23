@@ -24,19 +24,19 @@ export class LoginAtelierComponent {
   }
 
   onSubmit(): void {
-    if (this.user.email != null && this.user.password != null) {
-      this.authService.login(this.user, this.role).subscribe({
-        next: data => {
-          this.storageService.saveUser(data);
-          this.isLoginFailed = false;
-          this.isLoggedIn = true;
-          this.router.navigateByUrl("/atelier");
-        },
-        error: err => {
-          this.errorMessage = err.error.message;
-          this.isLoginFailed = true;
-        }
-      });
-    }
+    if(this.user.email != null && this.user.password != null ){
+    this.authService.login(this.user, this.role).subscribe({
+      next: data => {
+        this.storageService.saveUser(data);
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.router.navigateByUrl("/atelier");
+      },
+      error: err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      }
+    });
+
   }
 }
