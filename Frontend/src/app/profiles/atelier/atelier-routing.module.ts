@@ -6,6 +6,7 @@ import { DetailsreparationComponent } from './detailsreparation/detailsreparatio
 import { ReparationComponent } from './reparation/reparation.component';
 
 const routes: Routes = [
+  { path: ":page", component: AtelierComponent },
   {
     path: '',
     component : AtelierComponent,

@@ -20,7 +20,13 @@
 
                 <!-- Content Row -->
 
-                <router-outlet></router-outlet>
+                <div *ngIf="page==='diagnostique'">
+                    <app-diagnostique></app-diagnostique>
+                </div>
+                <div *ngIf="page==='reparation'">
+                    <app-reparation></app-reparation>
+                </div>
+               
 
                 <!--  end Content Row -->
 

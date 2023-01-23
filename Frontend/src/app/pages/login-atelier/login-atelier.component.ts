@@ -10,15 +10,15 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class LoginAtelierComponent {
   user: any = {
-    email: null,
-    password: null
+    email: "atelier@gmail.com",
+    password: "azerty"
   };
   errorMessage = '';
   private role = "atelier";
   isLoggedIn = false;
   isLoginFailed = false;
 
-  constructor(private authService: AuthService, private storageService: StorageService,private router: Router) { }
+  constructor(private authService: AuthService, private storageService: StorageService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -37,6 +37,6 @@ export class LoginAtelierComponent {
         this.isLoginFailed = true;
       }
     });
+
   }
-}
 }

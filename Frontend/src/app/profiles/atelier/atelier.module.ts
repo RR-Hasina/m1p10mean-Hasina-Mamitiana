@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AtelierRoutingModule } from './atelier-routing.module';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AtelierComponent } from './atelier.component';
 import { FooterModule } from 'src/app/components/footer/footer.module';
 import { TopbarModule } from 'src/app/components/topbar/topbar.module';
@@ -11,6 +10,7 @@ import { ReparationComponent } from './reparation/reparation.component';
 import { DetailsreparationComponent } from './detailsreparation/detailsreparation.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BonSortieComponent } from './bon-sortie/bon-sortie.component';
+import { DiagnostiqueComponent } from './diagnostique/diagnostique.component';
 
 
 @NgModule({
@@ -19,6 +19,7 @@ import { BonSortieComponent } from './bon-sortie/bon-sortie.component';
     ReparationComponent,
     DetailsreparationComponent,
     BonSortieComponent,
+    DiagnostiqueComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +28,7 @@ import { BonSortieComponent } from './bon-sortie/bon-sortie.component';
     TopbarModule,
     FooterModule,
     ReactiveFormsModule,
+    DragDropModule,
     FormsModule
   ]
 })

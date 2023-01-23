@@ -9,7 +9,7 @@ exports.creationVoiture = (req, res) => {
             nom: req.body.nom,
             prenom: req.body.prenom,
             email: req.body.email
-        }
+        },
     });
     voiture.save((err, voiture) => {
         if (err) {
@@ -29,7 +29,7 @@ exports.depotVoiture = (req, res) => {
                 res.status(500).send({ message: err });
                 return;
             }
-            var depot = { "dateDepot": Date.now(), "dateSortie": null, "signalements": req.body.signalement };
+            var depot = { "dateDepot": Date.now(), "dateSortie": null, "signalements": req.body.signalement, "reparation.avancement": 0 };
             voiture.depots.push(depot);
             voiture.save();
             res.status(200).send({ message: voiture });

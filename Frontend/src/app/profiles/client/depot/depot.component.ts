@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { Composant } from 'src/app/models/composant';
 import { Voiture } from 'src/app/models/voiture';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
@@ -12,10 +14,6 @@ import { VoitureService } from 'src/app/services/voiture/voiture.service';
 })
 export class DepotComponent implements OnInit {
   voituresNonDepot?: Voiture[];
-  email: any = {
-    email: String = this.storageService.getUser().email
-  }
-  signalement: String = "";
   listeSingnalement: any[] = [];
   immatriculation: String = "";
   errorMessage = '';
@@ -23,19 +21,36 @@ export class DepotComponent implements OnInit {
   ajoutErreur = false;
   depotValider = false;
 
+  options: string[] = [];
+  filteredOptions: string[] = [];
+  input$ = new Subject<string>();
+  inputValue!: string;
+  status: number = 0;
+
   constructor(private storageService: StorageService, private voitureService: VoitureService) { }
 
   ngOnInit(): void {
-    this.voitureService.getVoitureNoDepot(this.email).subscribe({
+    this.voitureService.getVoitureNoDepot(this.storageService.getUser().email).subscribe({
       next: (data: Voiture[]) => {
         this.voituresNonDepot = data;
         console.log(this.voituresNonDepot);
       }
+    });
+
+    this.voitureService.getComposant().subscribe({
+      next: (data: Composant[]) => {
+        for (let i = 0; i < data.length; i++) {
+          this.options.push(data[i].nom);
+        }
+      }
     })
+    this.input$.subscribe(val => {
+      this.filteredOptions = this.options.filter(option => option.includes(val));
+    });
   }
 
   ajoutSignalement(): void {
-    this.listeSingnalement.push(this.signalement);
+    this.listeSingnalement.push(this.inputValue);
     console.log(this.immatriculation);
   }
 
@@ -54,6 +69,18 @@ export class DepotComponent implements OnInit {
         }
       })
     }
+  }
+
+  onInputChange() {
+    this.input$.next(this.inputValue);
+  }
+
+  selectOption(option: string) {
+    this.inputValue = option;
+  }
+
+  majuscule() {
+    this.inputValue = this.inputValue.charAt(0).toUpperCase() + this.inputValue.slice(1);
   }
 
 }

@@ -8,6 +8,7 @@ declare var $: any;
   templateUrl: './reparation.component.html',
   styleUrls: ['./reparation.component.scss']
 })
+
 export class ReparationComponent implements OnInit {
 
   voitures!:ReparationPage;
@@ -44,6 +45,5 @@ this.keyword=data.keyword;
 console.log(this.keyword,this.currentPage,this.pageSize);
 this.Ongetvoiture();
 }
-
 
 }
