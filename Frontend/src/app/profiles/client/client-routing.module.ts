@@ -11,15 +11,15 @@ const routes: Routes = [
     component: ClientComponent,
     children: [
       {
-        path: '',
+        path: 'ajout',
         component: AjoutVoitureComponent
       },
       {
-        path: '',
+        path: 'depot',
         component: DepotComponent
       },
       {
-        path: '',
+        path: 'liste',
         component: ListeVoitureComponent
       },
       {

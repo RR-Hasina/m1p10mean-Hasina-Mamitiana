@@ -27,14 +27,22 @@ exports.diagnostique = (req, res) => {
   })
     .exec((err, voiture) => {
       if (err) res.status(500).send({ message: err });
+      let prixTotal = 0;
+      for (let i = 0; i < req.body.composant.length; i++) {
+        for (let j = 0; j < req.body.composant[i].pieces.length; j++) {
+          prixTotal += parseInt(req.body.composant[i].pieces[j].prix);
+        }
+        prixTotal = parseInt(prixTotal) + parseInt(req.body.prixMo);
+      }
       var reparation = {
         "dateEntree": null,
         "dateSortie": null,
         "composants": req.body.composant,
         "prixMo": req.body.prixMo,
-        "avancement": null,
-        "prixTotal": null,
-        "datePayement": null
+        "avancement": 0,
+        "prixTotal": prixTotal,
+        "datePayement": null,
+        "bonSortie": false
       };
       voiture.reparation.push(reparation);
       voiture.save();
