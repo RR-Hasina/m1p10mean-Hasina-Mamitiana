@@ -190,4 +190,39 @@ exports.getchiAffMois = () => {
     );
  }
 
+ exports.getAvgReparation= (imm) => {
+    return db.voiture.aggregate([
+        { $unwind: "$reparation" },
+        {$match: { 
+            "reparation.avancement" : 100
+            }
+         },
+         {
+            $group:
+               {
+                   _id: null,
+                   averageTime:
+                      {
+                         $avg:
+                            {
+                               $dateDiff:{
+                                startDate:"$reparation.dateEntree",
+                             endDate: "$reparation.dateSortie",
+                             unit: "second",
+                             timezone: "Europe/Moscow",
+                                  }
+                             }
+                      }
+               }
+         },
+         {
+            $project:
+               {
+                  _id: 0
+               }
+          }
+    ]);
+   
+}
+
      
