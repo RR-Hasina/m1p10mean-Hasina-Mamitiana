@@ -20,19 +20,34 @@
                             *ngIf="i.depots.length>0 && i.depots[i.depots.length-1].dateSortie==null && i.depots[i.depots.length-1].dateDepot!=null && i.reparation[i.reparation.length-1].dateEntree==null">
                             <td class=" text-center">{{i.immatriculation}}</td>
                             <td class="text-center">{{i.marque}}</td>
-                            <td class="table-danger text-center">EN DEPOT</td>
+                            <td class="table-danger text-center">
+                                <button class="btn">Depots</button>
+                            </td>
                             <td class="text-center">{{i.depots[i.depots.length-1].dateDepot.toString().substring(10,0)}}
                             </td>
                             <td class="text-center">0%</td>
                         </tr>
                         <tr
+                            *ngIf="i.depots.length>0 && i.depots[i.depots.length-1].dateSortie==null && i.reparation[i.reparation.length-1].dateEntree==null &&  i.reparation[i.reparation.length-1].bonSortie==false">
+                            <td class="text-center">{{i.immatriculation}}</td>
+                            <td class="text-center">{{i.marque}}</td>
+                            <td class="table-warning text-center">
+                                <button class="btn">En attente de validation</button>
+                            </td>
+                            <td class="text-center">{{i.depots[i.depots.length-1].dateDepot.toString().substring(10,0)}}
+                            </td>
+                            <td class="text-center">{{i.reparation[i.reparation.length-1].avancement}}%</td>
+                        </tr>
+                        <tr
                             *ngIf="i.depots.length>0 && i.depots[i.depots.length-1].dateSortie==null && i.reparation[i.reparation.length-1].dateEntree!=null &&  i.reparation[i.reparation.length-1].bonSortie==false">
                             <td class="text-center">{{i.immatriculation}}</td>
                             <td class="text-center">{{i.marque}}</td>
-                            <td class="table-warning text-center">EN REPARATION</td>
+                            <td class="table-success text-center">
+                                <button class="btn">Réparation</button>
+                            </td>
                             <td class="text-center">{{i.depots[i.depots.length-1].dateDepot.toString().substring(10,0)}}
                             </td>
-                            <td class="text-center">{{i.reparation[i.reparation.length-1].avancement}}</td>
+                            <td class="text-center">{{i.reparation[i.reparation.length-1].avancement}}%</td>
                         </tr>
                     </ng-container>
                 </tbody>
