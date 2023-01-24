@@ -16,8 +16,7 @@
                 </thead>
                 <tbody>
                     <ng-container *ngFor="let i of listeVoiture">
-                        <tr
-                            *ngIf="i.depots.length>0 && i.depots[i.depots.length-1].dateSortie==null && i.depots[i.depots.length-1].dateDepot!=null && i.reparation[i.reparation.length-1].dateEntree==null">
+                        <tr *ngIf="i.depots[i.depots.length-1].validation==0">
                             <td class=" text-center">{{i.immatriculation}}</td>
                             <td class="text-center">{{i.marque}}</td>
                             <td class="table-danger text-center">
@@ -27,23 +26,25 @@
                             </td>
                             <td class="text-center">0%</td>
                         </tr>
-                        <tr
-                            *ngIf="i.depots.length>0 && i.depots[i.depots.length-1].dateSortie==null && i.reparation[i.reparation.length-1].dateEntree==null &&  i.reparation[i.reparation.length-1].bonSortie==false">
-                            <td class="text-center">{{i.immatriculation}}</td>
+                    </ng-container>
+                    <ng-container *ngFor="let i of listeVoiture">
+                        <tr *ngIf="i.depots[i.depots.length-1].validation==1">
+                            <td class=" text-center">{{i.immatriculation}}</td>
                             <td class="text-center">{{i.marque}}</td>
                             <td class="table-warning text-center">
-                                <button class="btn">En attente de validation</button>
+                                <button class="btn">En attente</button>
                             </td>
                             <td class="text-center">{{i.depots[i.depots.length-1].dateDepot.toString().substring(10,0)}}
                             </td>
-                            <td class="text-center">{{i.reparation[i.reparation.length-1].avancement}}%</td>
+                            <td class="text-center">0%</td>
                         </tr>
-                        <tr
-                            *ngIf="i.depots.length>0 && i.depots[i.depots.length-1].dateSortie==null && i.reparation[i.reparation.length-1].dateEntree!=null &&  i.reparation[i.reparation.length-1].bonSortie==false">
-                            <td class="text-center">{{i.immatriculation}}</td>
+                    </ng-container>
+                    <ng-container *ngFor="let i of listeVoiture">
+                        <tr *ngIf="i.depots[i.depots.length-1].validation==2">
+                            <td class=" text-center">{{i.immatriculation}}</td>
                             <td class="text-center">{{i.marque}}</td>
                             <td class="table-success text-center">
-                                <button class="btn">Réparation</button>
+                                <button class="btn">En reparation</button>
                             </td>
                             <td class="text-center">{{i.depots[i.depots.length-1].dateDepot.toString().substring(10,0)}}
                             </td>

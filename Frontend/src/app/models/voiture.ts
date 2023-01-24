@@ -4,7 +4,8 @@ export interface Voiture {
     depots: [{
         dateDepot: Date,
         dateSortie: Date,
-        signalements: []
+        signalements: [],
+        validation: Number
     }],
     reparation: [{
         dateEntree: Date,

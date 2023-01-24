@@ -44,6 +44,7 @@ exports.diagnostique = (req, res) => {
         "datePayement": null,
         "bonSortie": false
       };
+      voiture.depots[voiture.depots.length - 1].validation = 1;
       voiture.reparation.push(reparation);
       voiture.save();
       res.status(200).send(voiture);

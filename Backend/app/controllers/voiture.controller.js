@@ -29,7 +29,7 @@ exports.depotVoiture = (req, res) => {
                 res.status(500).send({ message: err });
                 return;
             }
-            var depot = { "dateDepot": Date.now(), "dateSortie": null, "signalements": req.body.signalement, "reparation.avancement": 0 };
+            var depot = { "dateDepot": Date.now(), "dateSortie": null, "signalements": req.body.signalement, "validation": 0, "reparation.avancement": 0 };
             voiture.depots.push(depot);
             voiture.save();
             res.status(200).send({ message: voiture });

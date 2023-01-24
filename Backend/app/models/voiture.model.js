@@ -9,7 +9,8 @@ const Voiture = mongoose.model(
             _id: false,
             dateDepot: Date,
             dateSortie: Date,
-            signalements: [] //listes noms Composants en String,
+            signalements: [], //listes noms Composants en String,
+            validation: Number
         }],
         reparation: [{
             _id: false,
@@ -32,7 +33,7 @@ const Voiture = mongoose.model(
             avancement: { type: Number, default: 0 },   //pourcentage
             prixTotal: { type: Number, default: 0 },
             datePayement: Date,
-            bonSortie:  { type: Boolean, default: false }
+            bonSortie: { type: Boolean, default: false }
         }],
         client:
             { nom: String, prenom: String, email: String }

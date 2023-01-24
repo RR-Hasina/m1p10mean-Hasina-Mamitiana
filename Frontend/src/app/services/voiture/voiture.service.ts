@@ -51,6 +51,13 @@ export class VoitureService {
     return this.http.post<Voiture>(GlobalConstants.apiURL + "/atelier/diagnostique", data);
   }
 
+  testFlux(): Observable<String[]> {
+    return new Observable(observer => {
+      setInterval(() => {
+        observer.next();
+      }, 1000);
+    })
+  }
 
 
 }
