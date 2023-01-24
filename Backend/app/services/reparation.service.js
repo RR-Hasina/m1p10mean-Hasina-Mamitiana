@@ -116,6 +116,8 @@ exports.validerBonvoiture= (req,res) => {
         
 }
 
+
+
 // db.voitures.updateOne(
 //     {immatriculation :'2010TAA'},
 //      { $set: {"reparation.$[reparation].composants.$[composant].dateDebut" : new Date()}},
@@ -140,8 +142,10 @@ exports.validerBonvoiture= (req,res) => {
 // db.voitures.aggregate([
 //     { $unwind: "$reparation" },
 //     {$match: { 
-//         "reparation.avancement" : { $ne: 100} , "reparation.dateSortie" : null,"immatriculation": {$regex:".*(?i).*"}
+//         "reparation.avancement" :  100,"immatriculation": {$regex:".*(?i).*"}
 //         }
 //      },
 //      { $project: {depots: 0, "reparation.composants": 0} }
 // ])
+
+

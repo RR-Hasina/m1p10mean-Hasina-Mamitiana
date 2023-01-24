@@ -15,6 +15,7 @@ exports.financetest = (req, res) => {
     const depan = await service.getdepenseAn();
     let statchi = await service.getStatchiffreA();
     let statdep = await service.getStatdepense();
+    let avgReparation = await service.getAvgReparation();
     if(statchi.length >0 && statdep[0].length >0 ){
       delete statchi[0]._id;
       delete statdep[0]._id;
@@ -36,7 +37,8 @@ exports.financetest = (req, res) => {
       depenseMois : depmois[0]?.totalDepensesMois ?? 0 ,
       depenseAn: depan[0]?.totalDepensesAn ?? 0 ,
       statchi: statchi[0] ?? initial ,
-      statbenefice: benefice ?? initial 
+      statbenefice: benefice ?? initial,
+      avgReparation : avgReparation[0].averageTime ?? 0
 
     };
    res.send(stat);
