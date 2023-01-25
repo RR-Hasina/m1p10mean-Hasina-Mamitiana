@@ -43,7 +43,7 @@ const financeRouter = require("./app/routes/finance.routes");
 const voitureRouter = require("./app/routes/voiture.routes");
 const composantRouter = require("./app/routes/composant.routes");
 
-//app.use("/client", clientRouter);
+app.use("/client", clientRouter);
 app.use("/atelier", atelierRouter);
 app.use("/finance", financeRouter);
 app.use("/voiture", voitureRouter);
