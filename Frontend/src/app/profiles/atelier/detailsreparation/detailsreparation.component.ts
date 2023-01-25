@@ -88,7 +88,7 @@ export class DetailsreparationComponent implements OnInit {
       let dataupdate = {};
       if(this.voiture.reparation!.avancement==100){
         this.voiture.reparation!.dateSortie =  this.voiture.reparation!.composants![index].dateFin ;
-        dataupdate = {nom:this.voiture.reparation!.composants![index].nom,dateFin:this.voiture.reparation!.composants![index].dateFin,avancement:this.voiture.reparation!.avancement,dateSortie:this.voiture.reparation!.composants![index].dateFin};
+        dataupdate = {nom:this.voiture.reparation!.composants![index].nom,dateFin:this.voiture.reparation!.composants![index].dateFin,avancement:this.voiture.reparation!.avancement,dateSortie:this.voiture.reparation!.composants![index].dateFin,user:this.voiture.client,marque:this.voiture.marque};
       }else{
         dataupdate = {nom:this.voiture.reparation!.composants![index].nom,dateFin:this.voiture.reparation!.composants![index].dateFin,avancement:this.voiture.reparation!.avancement};
       }
@@ -96,7 +96,9 @@ export class DetailsreparationComponent implements OnInit {
         next: (data) => {
           console.log(data);
         },
-        error: (err) => {console.log(err)},
+        error: (err) => {
+           console.log(err)
+        },
       });
     }
  

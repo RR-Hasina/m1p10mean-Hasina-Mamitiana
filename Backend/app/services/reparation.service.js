@@ -1,4 +1,5 @@
 const db=require("../models");
+const serviceMail = require("../services/email.service");
 
 exports.getListVoituresReparation = (keyword) => {
     return db.voiture.aggregate([
@@ -66,7 +67,9 @@ exports.updateDateFinrep = (req,res) => {
           if(err){
              res.status(500).send(err);
           }else{
-             res.json("composant mis à jour");
+             //res.json("composant mis à jour");
+             serviceMail.sendEmailReparation(req,res);
+
           }
         });
 
