@@ -11,6 +11,10 @@ import { AjoutVoitureComponent } from './ajout-voiture/ajout-voiture.component';
 import { FormsModule } from '@angular/forms';
 import { DepotComponent } from './depot/depot.component';
 import { ListeVoitureComponent } from './liste-voiture/liste-voiture.component';
+import { VoitureComponent } from './voiture/voiture.component';
+import { HistoriqueComponent } from './historique/historique.component';
+import { DetailshistoriqueComponent } from './detailshistorique/detailshistorique.component';
+import { FactureComponent } from './facture/facture.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +22,10 @@ import { ListeVoitureComponent } from './liste-voiture/liste-voiture.component';
     AjoutVoitureComponent,
     DepotComponent,
     ListeVoitureComponent,
+    VoitureComponent,
+    HistoriqueComponent,
+    DetailshistoriqueComponent,
+    FactureComponent,
 
   ],
   imports: [

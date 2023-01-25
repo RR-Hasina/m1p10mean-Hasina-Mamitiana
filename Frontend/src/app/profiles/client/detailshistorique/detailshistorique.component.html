@@ -2,8 +2,8 @@
     <div class="col-md-10 offset-md-1 form-1-box wow fadeInUp">
         <div *ngIf="voiture" class="card shadow mb-4">
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary text-center">Suivis de la réparation de la voiture avec l'
-                    immatriculation: {{voiture.immatriculation}} </h4>
+                <h4 class="m-0 font-weight-bold text-primary text-center">Historique de la réparation de la voiture avec l'
+                    immatriculation: {{imm}} </h4>
             </div>
             <div class="card-body">
                 <div class="row text-center">
@@ -52,14 +52,7 @@
                                 <div class="card-header d-flex justify-content-between">
                                 <span><h5 class=" text-info">{{composant.nom | uppercase}}</h5></span>
                                 <span>
-                                    <h5 *ngIf="composant.dateDebut == null" class=" text-primary blink_me">Réparation non commencée</h5>
-                                    <h5 *ngIf="composant.dateDebut != null && composant.dateFin == null " class=" text-info blink_me">
-                                        <div class="spinner-border text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
-                                          </div>
-                                        Réparation en cours
-                                    </h5>
-                                    <h5 *ngIf="composant.dateDebut != null && composant.dateFin !=null " class=" text-success blink_me">Réparation terminée</h5>
+                                    <h5 class=" text-success blink_me">Réparation terminée</h5>
                                 </span>
                             </div>
                             </a>
@@ -70,10 +63,10 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-12">
                                     <div class="row justify-content-center">
-                                        <div *ngIf="composant.dateDebut != null  " class="col-md-4 text-center">
+                                        <div  class="col-md-4 text-center">
                                             <p>Début réparation : <strong>{{composant.dateDebut | date:'dd-MM-yyyy HH:mm'}}</strong></p>
                                         </div>
-                                        <div *ngIf="composant.dateFin !=null " class="col-md-4 text-center">
+                                        <div  class="col-md-4 text-center">
                                             <p>Fin réparation : <strong>{{composant.dateFin | date:'dd-MM-yyyy HH:mm'}}</strong></p>
                                         </div>
                                     </div>
@@ -94,43 +87,14 @@
                                         </tr>
                                     </table>
                                 </div>
-                                <div *ngIf="composant.dateDebut == null" class="col-md-12 ">
-                                    <div class="form-inline justify-content-center">
-                                        <div class="form-group mx-sm-3 mb-2">
-                                            <input type="datetime-local" class="form-control"
-                                                (change)="changed($event,i)">
-                                        </div>
-                                        <button type="submit" (click)="updateDateDebut(i)"
-                                            class="btn btn-primary mb-2">Commencer</button>
-                                    </div>
-                                    <div *ngIf="control[i]" class="col-md-12 text-center">
-                                        <p class="text-danger">Veillez selectionner une date!!!</p>
-                                    </div>
-                                </div>
-                                <div *ngIf="composant.dateDebut != null && composant.dateFin == null" class="col-md-12 " #elseBlock>
-                                    <div class="form-inline  justify-content-center">
-                                        <div class="form-group mx-sm-3 mb-2">
-                                            <input type="datetime-local" class="form-control" (change)="changedf($event,i)">
-                                        </div>
-                                        <button type="submit"  (click)="updateDateFin(i)" class="btn btn-success mb-2">Finir</button>
-                                    </div>
-                                    <div *ngIf="controlf[i]" class="col-md-12 text-center">
-                                        <p class="text-danger">Veillez selectionner une date!!!</p>
-                                    </div>
-                                    <div *ngIf="controlf1[i]" class="col-md-12 text-center">
-                                        <p class="text-danger">Date Début supérieur à date Fin!!!!</p>
-                                    </div>
-                                </div>
-                                <div *ngIf=" composant.dateFin != null && voiture.reparation!.avancement!=100" class="col-md-12 " #elseBlock>
-                                    <div class="form-inline  justify-content-center">
-                                        <button type="submit"  (click)="annuler(i)" class="btn btn-warning mb-2">Annuler</button>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+            </div>
+            <div class="card-footer text-center py-3">
+                  <button [routerLink]="['/voiture',imm,'historique']" type="button" name="" id="" class="btn btn-primary">Retour</button>
             </div>
         </div>
     </div>

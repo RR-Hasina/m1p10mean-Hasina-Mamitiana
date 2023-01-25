@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-md-10 offset-md-1 form-1-box wow fadeInUp">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary text-center"> Liste des voitures</h6>
+            </div>
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="col-md-12  d-flex justify-content-center">
+                        <form #f="ngForm" (ngSubmit)="onSearch(f.value)">
+                            <div class="form-group">
+                            <label>Immatriculation: </label>
+                            <input class="ml-2" type="text" name="keyword" ngModel [(ngModel)]="keyword">
+                                <button  type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div *ngIf="voitures == null">
+                        <br>
+                        <div  class="alert alert-info text-center" role="alert">
+                            Aucune voiture
+                          </div>
+                    </div>
+                    <div *ngIf="voitures" class="col-md-8 text-center">
+                        <table class=" table table-responsive table-responsive-md">
+                            <tr>
+                                <th>Immatriculation</th><th>Marque</th><th>Nombre de réparation</th>
+                            </tr>
+                            <tr *ngFor="let voiture of voitures.docs; index as i">
+                            <td>{{voiture.immatriculation}}</td>
+                            <td>{{voiture.marque}}</td>
+                            <td>{{voiture.count}}</td>
+                            <td>
+                                <button [routerLink]="['/voiture',voiture.immatriculation,'historique']" class="btn btn-primary" >Historique</button>
+                            </td>
+                            <!-- <td>
+                                <button class="tooltip1 btn btn-success rounded-circle"><i class="fa fa-check" aria-hidden="true"></i>
+                                    <span class="tooltip1text">Validation bon de sortie</span>
+                                </button>
+        
+                            </td> -->
+                            
+        
+                            </tr>
+                        </table>
+    
+
+                    </div>
+                </div>
+           
+                    <ul *ngIf="voitures" class="nav justify-content-center">
+                    <li class="page-item" [ngClass]="((i+1)==currentPage)?'active':''" *ngFor="let page of pages; let i=index">
+                    <a class="page-link btn btn-primary  ml-1" (click)="onPageVoitures(i)">{{i+1}}</a>
+                    </li>
+                    </ul>
+                
+            </div>
+        </div>
+    </div>
+    </div>

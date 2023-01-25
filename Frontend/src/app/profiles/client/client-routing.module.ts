@@ -3,7 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AjoutVoitureComponent } from './ajout-voiture/ajout-voiture.component';
 import { ClientComponent } from './client.component';
 import { DepotComponent } from './depot/depot.component';
+import { DetailshistoriqueComponent } from './detailshistorique/detailshistorique.component';
+import { FactureComponent } from './facture/facture.component';
+import { HistoriqueComponent } from './historique/historique.component';
 import { ListeVoitureComponent } from './liste-voiture/liste-voiture.component';
+import { VoitureComponent } from './voiture/voiture.component';
 
 const routes: Routes = [
   {
@@ -23,8 +27,24 @@ const routes: Routes = [
         component: ListeVoitureComponent
       },
       {
+        path: 'voiture',
+        component: VoitureComponent
+      },
+      {
+        path: 'voiture/:imm/historique',
+        component: HistoriqueComponent
+      },
+      {
+        path: 'voiture/:imm/historique/:date',
+        component: DetailshistoriqueComponent
+      },
+      {
+        path: 'voiture/:imm/facture/:date',
+        component: FactureComponent
+      },
+      {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'voiture',
         pathMatch: 'full'
       },
     ]

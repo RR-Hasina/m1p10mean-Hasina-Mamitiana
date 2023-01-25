@@ -27,5 +27,9 @@ router.get("/bonsortie", controller2.getListVoituresNovalBon);
 
 router.put("/:imm/reparation/validerBon", controller2.validerBonvoiture);
 
+router.get("/:imm/historique", controller2.getListVoituresReparer);
+
+router.get("/:imm/historique/:date", controller2.getListVoituresReparerDetails);
+
 
 module.exports = router;

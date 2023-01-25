@@ -11,8 +11,8 @@ export interface Voiture {
         dateEntree: Date,
         composants: [{
             nom: String,
-            dateDebut: Number,
-            dateFin: Number,
+            dateDebut: Date,
+            dateFin: Date,
             pieces: [{
                 nom: String,
                 prix: number
@@ -24,7 +24,8 @@ export interface Voiture {
         datePayement?: Date,
         bonSortie?: boolean
     }],
-    client: { nom: String, prenom: String, email: String }
+    client: { nom: String, prenom: String, email: String },
+    count? : number
 }
 
 export interface Reparation {
@@ -53,6 +54,12 @@ export interface Reparation {
 
 export interface ReparationPage {
     docs: Array<Reparation>,
+    totalPages: number,
+    currentPage: number
+}
+
+export interface VoiturePage {
+    docs: Array<Voiture>,
     totalPages: number,
     currentPage: number
 }
