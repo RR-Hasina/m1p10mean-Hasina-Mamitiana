@@ -9,7 +9,7 @@
                     <tr>
                         <th class="text-center">Immatriculation</th>
                         <th class="text-center">Marque</th>
-                        <th class="text-center">Etat</th>
+                        <th class="text-center">Click pour details </th>
                         <th class="text-center">Date de dépot</th>
                         <th class="text-center">Signalements</th>
                         <th class="text-center">Réparation</th>
@@ -124,7 +124,7 @@
                         <div class="col-sm-4">
                             <h3>Date de réparation</h3>
                             <p class="font-weight-bold">
-                                {{debutRep(voiture.reparation[voiture.reparation.length-1].dateEntree)}}
+                                {{dateDebut(voiture.reparation[voiture.reparation.length-1].dateEntree)}}
                             </p>
                         </div>
                         <div class="col-sm-4">
@@ -149,8 +149,8 @@
                                 <tr>
                                     <td>{{composant.nom}}</td>
                                     <td>{{listePieces(composant.nom)}}</td>
-                                    <td>{{debutReparation(composant.nom)}}</td>
-                                    <td>{{finReparation(composant.nom)}}</td>
+                                    <td>{{dateDebut(composant.dateDebut)}}</td>
+                                    <td>{{dateFin(composant.dateFin)}}</td>
                                 </tr>
                             </ng-container>
                         </tbody>

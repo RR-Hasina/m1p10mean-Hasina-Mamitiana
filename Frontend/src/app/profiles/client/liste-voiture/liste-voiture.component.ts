@@ -49,7 +49,6 @@ export class ListeVoitureComponent implements OnInit, OnDestroy {
   }
 
   reparation(immatriculation: String): void {
-    console.log("Click reparation : " + immatriculation);
     for (let i = 0; i < this.listeVoiture.length; i++) {
       if (this.listeVoiture[i].immatriculation == immatriculation) {
         this.voiture = this.listeVoiture[i];
@@ -73,7 +72,6 @@ export class ListeVoitureComponent implements OnInit, OnDestroy {
   deleteComposant(nom: String): void {
     this.voitureService.deleteComposant(this.voiture.immatriculation, nom).subscribe({
       next: (data: Voiture) => {
-        console.log(data);
       }
     });
     for (let i = 0; i < this.voiture.reparation[this.voiture.reparation.length - 1].composants.length; i++) {
@@ -88,7 +86,6 @@ export class ListeVoitureComponent implements OnInit, OnDestroy {
   valider(): void {
     this.voitureService.validationAttente(this.voiture.immatriculation).subscribe({
       next: (data: Voiture) => {
-        console.log(data);
       }
     });
     for (let i = 0; i < this.listeVoiture.length; i++) {
@@ -104,46 +101,29 @@ export class ListeVoitureComponent implements OnInit, OnDestroy {
     for (let i = 0; i < this.voiture.reparation[this.voiture.reparation.length - 1].composants.length; i++) {
       if (composant == this.voiture.reparation[this.voiture.reparation.length - 1].composants[i].nom) {
         for (let j = 0; j < this.voiture.reparation[this.voiture.reparation.length - 1].composants[i].pieces.length; j++) {
-          retour += this.voiture.reparation[this.voiture.reparation.length - 1].composants[i].pieces[j].nom + ",";
+          retour += this.voiture.reparation[this.voiture.reparation.length - 1].composants[i].pieces[j].nom + "\n ";
         }
       }
     }
-    retour = retour.slice(0, -1);
     return retour;
   }
 
-  debutReparation(composant: String): String {
+  dateDebut(titre: Date): String {
     let retour = "";
-    for (let i = 0; i < this.voiture.reparation[this.voiture.reparation.length - 1].composants.length; i++) {
-      if (this.voiture.reparation[this.voiture.reparation.length - 1].composants[i].dateDebut != null) {
-        retour = this.voiture.reparation[this.voiture.reparation.length - 1].composants[i].dateDebut.toString().substring(10, 0);
-      } else {
-        retour = "Pas commencer";
-      }
-    }
-    return retour;
-  }
-
-  finReparation(composant: String): String {
-    let retour = "";
-    for (let i = 0; i < this.voiture.reparation[this.voiture.reparation.length - 1].composants.length; i++) {
-      if (this.voiture.reparation[this.voiture.reparation.length - 1].composants[i].dateFin != null) {
-        retour = this.voiture.reparation[this.voiture.reparation.length - 1].composants[i].dateFin.toString().substring(10, 0);
-      } else if (this.voiture.reparation[this.voiture.reparation.length - 1].composants[i].dateFin != null && this.voiture.reparation[this.voiture.reparation.length - 1].composants[i].dateDebut != null) {
-        retour = "En cours";
-      } else {
-        retour = "-";
-      }
-    }
-    return retour;
-  }
-
-  debutRep(titre: Date): String {
-    let retour = "";
-    if (titre == null) {
-      retour = "Pas commencer";
-    } else {
+    if (titre != null) {
       retour = titre.toString().substring(10, 0);
+    } else {
+      retour = "Pas commencer";
+    }
+    return retour;
+  }
+
+  dateFin(titre: Date): String {
+    let retour = "";
+    if (titre != null) {
+      retour = titre.toString().substring(10, 0);
+    } else {
+      retour = "Pas terminer";
     }
     return retour;
   }
@@ -153,14 +133,14 @@ export class ListeVoitureComponent implements OnInit, OnDestroy {
     for (let i = 0; i < this.listeVoiture.length; i++) {
       if (immatriculation == this.listeVoiture[i].immatriculation) {
         for (let j = 0; j < this.listeVoiture[i].depots[this.listeVoiture[i].depots.length - 1].signalements.length; j++) {
-          retour += this.listeVoiture[i].depots[this.listeVoiture[i].depots.length - 1].signalements[j] + ",";
+          retour += this.listeVoiture[i].depots[this.listeVoiture[i].depots.length - 1].signalements[j] + "\n ";
         }
       }
     }
     if (retour == "") {
       retour = "-";
     } else {
-      retour = retour.slice(0, -1);
+      retour = retour.slice(0, -2);
     }
     return retour;
   }
