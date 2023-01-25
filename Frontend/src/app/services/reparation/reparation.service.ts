@@ -25,4 +25,12 @@ export class ReparationService {
   public updateCompDateFin(imm:string,data:any): Observable<any> {
     return this.http.put<any>(GlobalConstants.apiURL + "/voiture/"+imm+"/reparation/compDatefin",data);
   }
+
+  public gethistorique(imm:string,kw:string,page:number,limit:number): Observable<any> {
+    return this.http.get<any>(GlobalConstants.apiURL + "/voiture/"+imm+"/historique?kw="+kw+"&page="+page+"&limit="+limit);
+  }
+
+  public gethistoriqueDetais(imm:string,date:string): Observable<any> {
+    return this.http.get<any>(GlobalConstants.apiURL + "/voiture/"+imm+"/historique/"+date);
+  }
 }

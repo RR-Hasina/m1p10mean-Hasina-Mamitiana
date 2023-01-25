@@ -51,6 +51,10 @@ export class VoitureService {
     return this.http.post<Voiture>(GlobalConstants.apiURL + "/atelier/diagnostique", data);
   }
 
+  public getvoiturePage(email:string,kw:string,page:number,limit:number): Observable<any> {
+    return this.http.post<any>(GlobalConstants.apiURL + "/client/voiture?kw="+kw+"&page="+page+"&limit="+limit,{email:email});
+  }
+
 
 
 }

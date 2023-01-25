@@ -116,6 +116,48 @@ exports.validerBonvoiture= (req,res) => {
         
 }
 
+exports.getListVoituresReparer = (req,keyword) => {
+    if(keyword != ''){
+        return db.voiture.aggregate([
+            { $unwind: "$reparation" },
+            {$match: { 
+                immatriculation : req.params.imm,"reparation.avancement" : 100 , "reparation.dateEntree": {'$lte': new Date(keyword)}, "reparation.dateSortie" : {'$gte': new Date(keyword) }
+                }
+             },
+            { $sort : { "reparationt.dateSortie" : -1  } },
+             { $project: {depots: 0, "reparation.composants": 0} }
+        ]);
+    }
+    else{
+        return db.voiture.aggregate([
+            { $unwind: "$reparation" },
+            {$match: { 
+                immatriculation : req.params.imm,"reparation.avancement" : 100
+                }
+             },
+            { $sort : { "reparationt.dateSortie" : -1  } },
+             { $project: {depots: 0, "reparation.composants": 0} }
+        ]);
+
+    }
+   
+   
+}
+
+
+exports.getListVoituresReparerDetails = (req) => {
+    console.log("tonag");
+    return db.voiture.aggregate([
+        { $unwind: "$reparation" },
+        {$match: { 
+            immatriculation : req.params.imm,"reparation.avancement" : 100,"reparation.dateEntree": new Date(req.params.date)
+            }
+         }
+    ]);
+   
+}
+
+
 
 
 // db.voitures.updateOne(
@@ -149,3 +191,22 @@ exports.validerBonvoiture= (req,res) => {
 // ])
 
 
+// db.voitures.aggregate([
+//     { $unwind: "$reparation" },
+//     {$match: { 
+//         immatriculation : '7845TG',"reparation.avancement" : 100
+//         }
+//      },
+//     { $sort : { "reparationt.dateSortie" : -1  } },
+//      { $project: {depots: 0, "reparation.composants": 0} }
+// ]);
+
+// db.voitures.aggregate([
+//     { $unwind: "$reparation" },
+//     {$match: { 
+//         immatriculation : '7845TG',"reparation.avancement" : 100 , "reparation.dateEntree": {'$lte': new Date('2023-01-25T23:00:00') }
+//         }
+//      },
+//     { $sort : { "reparationt.dateSortie" : -1  } },
+//      { $project: {depots: 0, "reparation.composants": 0} }
+// ]);
