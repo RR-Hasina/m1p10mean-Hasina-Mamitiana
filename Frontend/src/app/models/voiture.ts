@@ -10,8 +10,8 @@ export interface Voiture {
         dateEntree: Date,
         composants: [{
             nom: String,
-            dateDebut: Number,
-            dateFin: Number,
+            dateDebut: Date,
+            dateFin: Date,
             pieces: [{
                 nom: String,
                 prix: Number
