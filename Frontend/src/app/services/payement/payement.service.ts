@@ -11,8 +11,8 @@ export class PayementService {
 
   constructor(private http:HttpClient) { }
 
-  public getNonpayer(kw:string,page:number,limit:number): Observable<any> {
-    return this.http.get<any>(GlobalConstants.apiURL + "/voiture/nonPayer?kw="+kw+"&page="+page+"&limit="+limit);
+  public getNonpayer(kw1:string,kw:string,page:number,limit:number): Observable<any> {
+    return this.http.get<any>(GlobalConstants.apiURL + "/voiture/nonPayer?kw1="+kw1+"&kw="+kw+"&page="+page+"&limit="+limit);
   }
 
   public payer(imm:string,data:any): Observable<any> {

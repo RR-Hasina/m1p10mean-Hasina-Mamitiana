@@ -1,10 +1,10 @@
 const db=require("../models");
 
-exports.getListVoituresNonpayer = (keyword) => {
+exports.getListVoituresNonpayer = (keyword1,keyword) => {
     return db.voiture.aggregate([
         { $unwind: "$reparation" },
         {$match: { 
-            "reparation.datePayement" : null,"reparation.avancement" : 100, "client.email": {$regex:".*(?i)"+keyword+".*"}
+            "reparation.datePayement" : null,"reparation.avancement" : 100, "client.email": {$regex:".*(?i)"+keyword+".*"},"immatriculation": {$regex:".*(?i)"+keyword1+".*"}
             }
          },
          { $project: {depots: 0} }

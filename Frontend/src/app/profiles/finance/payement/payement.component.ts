@@ -13,6 +13,7 @@ export class PayementComponent implements OnInit {
 
    voitures!:ReparationPage;
    keyword:string="";
+   keyword1:string="";
    currentPage:number=1;
    pageSize:number=2;
    pages!:Array<number>;
@@ -26,7 +27,7 @@ ngOnInit(): void {
 }
 
 OngetnonPayer(){
-  this.service.getNonpayer(this.keyword,this.currentPage,this.pageSize).subscribe({
+  this.service.getNonpayer(this.keyword1,this.keyword,this.currentPage,this.pageSize).subscribe({
     next: (data) => {
       this.voitures=data;
       if(data != null) this.pages=new Array<number>(data.totalPages);
@@ -45,7 +46,8 @@ OngetnonPayer(){
   onSearch(data:any) {
    
   this.keyword=data.keyword;
-  console.log(this.keyword,this.currentPage,this.pageSize);
+  this.keyword1=data.keyword1;
+  console.log(this.keyword1,this.keyword,this.currentPage,this.pageSize);
   this.OngetnonPayer();
   }
 
