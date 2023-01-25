@@ -63,3 +63,34 @@ exports.findDepotVoiture = (req, res) => {
         })
 }
 
+exports.deleteComposant = (req, res) => {
+    Voiture.findOne({
+        immatriculation: req.body.immatriculation,
+    })
+        .exec((err, voiture) => {
+            if (err) res.status(500).send({ message: err });
+            for (let i = 0; i < voiture.reparation[voiture.reparation.length - 1].composants.length; i++) {
+                if (req.body.composant == voiture.reparation[voiture.reparation.length - 1].composants[i].nom) {
+                    for (let j = 0; j < voiture.reparation[voiture.reparation.length - 1].composants[i].pieces.length; j++) {
+                        voiture.reparation[voiture.reparation.length - 1].prixTotal -= voiture.reparation[voiture.reparation.length - 1].composants[i].pieces[j].prix;
+                    }
+                    voiture.reparation[voiture.reparation.length - 1].composants.splice(i, 1);
+                }
+            }
+            voiture.save();
+            res.send(voiture);
+        })
+}
+
+exports.validationAttente = (req, res) => {
+    Voiture.findOne({
+        immatriculation: req.body.immatriculation,
+    })
+        .exec((err, voiture) => {
+            if (err) res.status(500).send({ message: err });
+            voiture.depots[voiture.depots.length - 1].validation = 2;
+            voiture.save();
+            res.send(voiture);
+        })
+}
+

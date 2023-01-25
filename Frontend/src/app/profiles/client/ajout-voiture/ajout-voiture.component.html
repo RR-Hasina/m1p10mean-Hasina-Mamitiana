@@ -1,17 +1,18 @@
-<form #f="ngForm" (ngSubmit)="onSubmit()">
-    <div class="col-md-12">
-        <h1>Ajout vehicule</h1>
-        <hr>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Ajout véhicule</h6>
+    </div>
+    <form #f="ngForm" (ngSubmit)="onSubmit()" class="p-4">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="immatriculation">Immatriculation</label>
                 <input type="text" class="form-control" id="immatriculation" name="immatriculation"
-                    placeholder="entre votre immatriculation" [(ngModel)]="voiture.immatriculation" required>
+                    placeholder="Entrez votre immatriculation" [(ngModel)]="voiture.immatriculation" required>
             </div>
             <div class="form-group col-md-6">
-                <label for="marque">marque</label>
+                <label for="marque">Marque</label>
                 <input type="text" class="form-control" id="marque" name="marque"
-                    placeholder="Entrer la marque du véhicule" [(ngModel)]="voiture.marque" required>
+                    placeholder="Entrez la marque du véhicule" [(ngModel)]="voiture.marque" required>
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Valider</button>
@@ -22,5 +23,5 @@
         <div *ngIf="f.submitted" class="alert alert-success text-center" role="alert">
             {{ message }}
         </div>
-    </div>
-</form>
+    </form>
+</div>

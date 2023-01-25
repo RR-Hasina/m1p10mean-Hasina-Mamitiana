@@ -15,10 +15,10 @@ export interface Voiture {
             dateFin: Number,
             pieces: [{
                 nom: String,
-                prix: Number
+                prix: number
             }]
         }],
-        prixMo?: number,
+        prixMo: number,
         avancement?: number,   //pourcentage
         prixTotal?: number,
         datePayement?: Date,

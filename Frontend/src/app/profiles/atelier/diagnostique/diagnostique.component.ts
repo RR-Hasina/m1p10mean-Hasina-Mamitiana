@@ -146,6 +146,11 @@ export class DiagnostiqueComponent implements OnInit {
           this.messageSuccess = "Diagnostique validé.";
         }
       });
+      for (let i = 0; i < this.listeVoiture.length; i++) {
+        if (this.listeVoiture[i].immatriculation == this.immatriculation) {
+          this.listeVoiture.splice(i, 1);
+        }
+      }
     }
   }
 }

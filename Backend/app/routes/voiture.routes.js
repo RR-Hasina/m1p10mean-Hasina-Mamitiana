@@ -10,9 +10,9 @@ router.post("/creation", [authJwt.verifyToken], controller.creationVoiture);
 router.post("/depot", [authJwt.verifyToken], controller.depotVoiture);
 router.post("/findDepot", [authJwt.verifyToken], controller.findDepotVoiture);
 router.post("/liste", [authJwt.verifyToken], controller.getListeVoiture);
-
+router.post("/deleteComposant", controller.deleteComposant);
 router.get("/nonPayer", controller1.getListVoituresNonpayer);
-
+router.post("/validationAttente", controller.validationAttente);
 router.put("/payement/:imm", controller1.payer);
 
 router.get("/reparation", controller2.getListVoituresReparation);

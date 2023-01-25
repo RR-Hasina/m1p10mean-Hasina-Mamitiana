@@ -1,99 +1,115 @@
 <div class="row">
-<div class="col-md-10 offset-md-1 form-1-box wow fadeInUp">
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary text-center"> Liste des réparations non payées</h6>
-            <div *ngIf="voitures == null">
-                <br>
-                <div  class="alert alert-info text-center" role="alert">
-                    Aucun Payement
-                  </div>
-            </div>
-        </div>
-        <div class="card-body" *ngIf="voitures">
-            <div *ngIf="ajouter" class="alert alert-success text-center" role="alert">
-                Payement validé !!!
-              </div>
-            <form #f="ngForm" (ngSubmit)="onSearch(f.value)">
-                <div class="form-group">
-                <label>Email: </label>
-                <input class="ml-2" type="text" name="keyword" ngModel [(ngModel)]="keyword">
-                    <button  type="submit">
-                        <i class="fas fa-search fa-sm"></i>
-                    </button>
+    <div class="col-md-10 offset-md-1 form-1-box wow fadeInUp">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary text-center"> Liste des réparations non payées</h6>
+                <div *ngIf="voitures == null">
+                    <br>
+                    <div class="alert alert-info text-center" role="alert">
+                        Aucun Payement
+                    </div>
                 </div>
-            </form>
-            <table class="table table  table-responsive-md table-responsive-sm  table-responsive-lg">
-                <tr>
-                <th>Email</th><th>Client</th><th>Immatriculation</th><th>Marque</th>
-                </tr>
-                <tr *ngFor="let voiture of voitures.docs; index as i">
-                <td>{{voiture.client.email}}</td>
-                <td>{{voiture.client.nom+" "+voiture.client.prenom}}</td> 
-                <td>{{voiture.immatriculation}}</td>
-                <td>{{voiture.marque}}</td>
-                <td>
-                    <button data-toggle="modal" [attr.data-target]="'#exampleModal' + i" class="btn btn-primary" >Payer</button>
-                </td>
-
-                <!-- Modal -->
-                <div class="modal fade" id="{{ 'exampleModal' + i }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" style="max-width: 45%!important;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{'Details de payement'}}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+            </div>
+            <div class="card-body" *ngIf="voitures">
+                <div *ngIf="ajouter" class="alert alert-success text-center" role="alert">
+                    Payement validé !!!
+                </div>
+                <form #f="ngForm" (ngSubmit)="onSearch(f.value)">
+                    <div class="form-group">
+                        <label>Email: </label>
+                        <input class="ml-2" type="text" name="keyword" ngModel [(ngModel)]="keyword">
+                        <button type="submit">
+                            <i class="fas fa-search fa-sm"></i>
                         </button>
-                        </div>
-                        <div class="modal-body ">
-                                    <p>Email: <strong>{{voiture.client.email}}</strong></p>   
-                                    <p>
-                                        <span> Nom: <strong>{{voiture.client.nom}}</strong></span>
-                                        <span class="ml-3"> Prenom: <strong>{{voiture.client.prenom}}</strong></span>
-                                    </p>
-                                    <p>
-                                        <span> Immatriculation: <strong>{{voiture.immatriculation}}</strong></span>
-                                        <span class="ml-3"> Marque: <strong>{{voiture.marque}}</strong></span>
-                                    </p>
-                                    <p><u>Pièces:</u></p>
-                                    <div *ngFor="let composant of voiture.reparation!.composants">
-                                        <div *ngFor="let piece of composant.pieces">
-                                            <span> Nom: <strong>{{piece.nom}}</strong></span>
-                                            <span class="ml-3"> Prix: <strong>Ar {{piece.prix | number}}</strong></span>
-                                        </div>
+                    </div>
+                </form>
+                <table class="table table  table-responsive-md table-responsive-sm  table-responsive-lg">
+                    <tr>
+                        <th>Email</th>
+                        <th>Client</th>
+                        <th>Immatriculation</th>
+                        <th>Marque</th>
+                    </tr>
+                    <tr *ngFor="let voiture of voitures.docs; index as i">
+                        <td>{{voiture.client.email}}</td>
+                        <td>{{voiture.client.nom+" "+voiture.client.prenom}}</td>
+                        <td>{{voiture.immatriculation}}</td>
+                        <td>{{voiture.marque}}</td>
+                        <td>
+                            <button data-toggle="modal" [attr.data-target]="'#exampleModal' + i"
+                                class="btn btn-primary">Payer</button>
+                        </td>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="{{ 'exampleModal' + i }}" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" style="max-width: 45%!important;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">{{'Details de payement'}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                    <br>
-                                    <p><u>Prix main d' oeuvre:</u> <strong class="ml-3">Ar {{voiture.reparation!.prixMo | number}}</strong></p>
-                                    <p class="h5"><u>Total:</u> <strong class="ml-3">Ar {{voiture.reparation!.prixTotal | number}}</strong><p>
+                                    <div class="modal-body ">
+                                        <p>Email: <strong>{{voiture.client.email}}</strong></p>
+                                        <p>
+                                            <span> Nom: <strong>{{voiture.client.nom}}</strong></span>
+                                            <span class="ml-3"> Prenom:
+                                                <strong>{{voiture.client.prenom}}</strong></span>
+                                        </p>
+                                        <p>
+                                            <span> Immatriculation: <strong>{{voiture.immatriculation}}</strong></span>
+                                            <span class="ml-3"> Marque: <strong>{{voiture.marque}}</strong></span>
+                                        </p>
+                                        <p><u>Pièces:</u></p>
+                                        <div *ngFor="let composant of voiture.reparation!.composants">
+                                            <div *ngFor="let piece of composant.pieces">
+                                                <span> Nom: <strong>{{piece.nom}}</strong></span>
+                                                <span class="ml-3"> Prix: <strong>Ar {{piece.prix |
+                                                        number}}</strong></span>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <p><u>Prix main d' oeuvre:</u> <strong class="ml-3">Ar
+                                                {{voiture.reparation!.prixMo | number}}</strong></p>
+                                        <p class="h5"><u>Total:</u> <strong class="ml-3">Ar
+                                                {{voiture.reparation!.prixTotal | number}}</strong>
+                                        <p>
                                         <div class="form-inline justify-content-center">
                                             <div class="form-group mx-sm-3 mb-2">
                                                 <label for="" class="form-label">Date de Payement :</label>
                                                 <input type="datetime-local" class="form-control"
-                                                   [(ngModel)]="voiture.reparation!.datePayement">
+                                                    [(ngModel)]="voiture.reparation!.datePayement">
                                             </div>
                                         </div>
-                                        <div *ngIf="voiture.reparation!.datePayement! < voiture.reparation!.dateSortie! " class="text-center text-danger">La date de payement ne doit pas être < à celui de la date de réparation!!</div>
-                                        <div *ngIf="voiture.reparation!.datePayement == null" class="text-center text-danger">requis!!!</div>
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" id="{{ 'btnclos' + i }}" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button  (click)="validation(voiture.immatriculation,i)" type="button" class="btn btn-primary">Valider</button>
-                        </div>
-                    </div>
-                    </div>
-                </div>
+                                        <div *ngIf="voiture.reparation!.datePayement! < voiture.reparation!.dateSortie! "
+                                            class="text-center text-danger">La date de payement ne doit pas être < à
+                                                celui de la date de réparation!!</div>
+                                                <div *ngIf="voiture.reparation!.datePayement == null"
+                                                    class="text-center text-danger">requis!!!</div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" id="{{ 'btnclos' + i }}" class="btn btn-secondary"
+                                                data-dismiss="modal">Fermer</button>
+                                            <button (click)="validation(voiture.immatriculation,i)" type="button"
+                                                class="btn btn-primary">Valider</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
-                </tr>
+                    </tr>
                 </table>
                 <ul class="nav justify-content-center">
-                <li class="page-item" [ngClass]="((i+1)==currentPage)?'active':''" *ngFor="let page of pages; let i=index">
-                <a class=" page-link btn btn-primary  ml-1" (click)="onPageVoitures(i)">{{i+1}}</a>
-                </li>
+                    <li class="page-item" [ngClass]="((i+1)==currentPage)?'active':''"
+                        *ngFor="let page of pages; let i=index">
+                        <a class=" page-link btn btn-primary  ml-1" (click)="onPageVoitures(i)">{{i+1}}</a>
+                    </li>
                 </ul>
-            
+
+            </div>
         </div>
     </div>
-</div>
 </div>

@@ -59,5 +59,18 @@ export class VoitureService {
     })
   }
 
+  public deleteComposant(immatriculation: String, composant: String): Observable<Voiture> {
+    let data = {
+      immatriculation: immatriculation,
+      composant: composant
+    }
+    return this.http.post<Voiture>(GlobalConstants.apiURL + "/voiture/deleteComposant", data);
+  }
+
+  public validationAttente(immatriculation: String): Observable<Voiture> {
+    let data = { immatriculation: immatriculation }
+    return this.http.post<Voiture>(GlobalConstants.apiURL + "/voiture/validationAttente", data);
+  }
+
 
 }
