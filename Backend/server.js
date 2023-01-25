@@ -12,28 +12,28 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
-    cookieSession({
-      name: process.env.COOKIE_NAME,
-      secret: process.env.COOKIE_SECRET,
-      httpOnly: true
-    })
-  );
+  cookieSession({
+    name: process.env.COOKIE_NAME,
+    secret: process.env.COOKIE_SECRET,
+    httpOnly: true
+  })
+);
 
-  const db = require("./app/models");
-  
-  db.mongoose.set('strictQuery', false);
-  db.mongoose
-    .connect(process.env.DB_CONNECT, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    })
-    .then(() => {
-      console.log("Successfully connect to MongoDB.");
-    })
-    .catch(err => {
-      console.error("Connection error", err);
-      process.exit();
-    });
+const db = require("./app/models");
+
+db.mongoose.set('strictQuery', false);
+db.mongoose
+  .connect(process.env.DB_CONNECT, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Successfully connect to MongoDB.");
+  })
+  .catch(err => {
+    console.error("Connection error", err);
+    process.exit();
+  });
 
 // routes
 require('./app/routes/auth.routes')(app);
@@ -43,16 +43,16 @@ const financeRouter = require("./app/routes/finance.routes");
 const voitureRouter = require("./app/routes/voiture.routes");
 const composantRouter = require("./app/routes/composant.routes");
 
-app.use("/client", clientRouter);
+//app.use("/client", clientRouter);
 app.use("/atelier", atelierRouter);
 app.use("/finance", financeRouter);
 app.use("/voiture", voitureRouter);
 app.use("/composant", composantRouter);
 
-app.get("/",(req,resp)=>{
-   resp.send("gg");
+app.get("/", (req, resp) => {
+  resp.send("gg");
 });
 
 app.listen(7000, function () {
-    console.log("En écoute sur le port 7000");
+  console.log("En écoute sur le port 7000");
 });
