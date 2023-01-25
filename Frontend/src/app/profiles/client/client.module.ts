@@ -14,6 +14,7 @@ import { ListeVoitureComponent } from './liste-voiture/liste-voiture.component';
 import { VoitureComponent } from './voiture/voiture.component';
 import { HistoriqueComponent } from './historique/historique.component';
 import { DetailshistoriqueComponent } from './detailshistorique/detailshistorique.component';
+import { FactureComponent } from './facture/facture.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { DetailshistoriqueComponent } from './detailshistorique/detailshistoriqu
     VoitureComponent,
     HistoriqueComponent,
     DetailshistoriqueComponent,
+    FactureComponent,
 
   ],
   imports: [

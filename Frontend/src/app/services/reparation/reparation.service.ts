@@ -30,7 +30,8 @@ export class ReparationService {
     return this.http.get<any>(GlobalConstants.apiURL + "/voiture/"+imm+"/historique?kw="+kw+"&page="+page+"&limit="+limit);
   }
 
-  public gethistoriqueDetais(imm:string,date:string): Observable<any> {
+  public gethistoriqueDetails(imm:string,date:string): Observable<any> {
     return this.http.get<any>(GlobalConstants.apiURL + "/voiture/"+imm+"/historique/"+date);
   }
+
 }

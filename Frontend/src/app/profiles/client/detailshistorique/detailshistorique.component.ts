@@ -21,7 +21,7 @@ export class DetailshistoriqueComponent {
   }
 
   gethistoriqueDetails(){
-    this.service.gethistoriqueDetais(this.imm,this.route.snapshot.paramMap.get("date")!).subscribe({
+    this.service.gethistoriqueDetails(this.imm,this.route.snapshot.paramMap.get("date")!).subscribe({
       next: (data) => {
         if(data.length == 0) this.router.navigate(['/voiture',this.voiture.immatriculation,'historique']);
         else {

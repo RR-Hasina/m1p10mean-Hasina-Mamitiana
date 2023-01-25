@@ -3,12 +3,6 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary text-center"> {{"Historique des reparations pour la voiture avec l\'immatriculation : "+imm}}</h6>
-                <div *ngIf="reparations == null">
-                    <br>
-                    <div  class="alert alert-info text-center" role="alert">
-                        Aucune historique de réparation
-                      </div>
-                </div>
             </div>
             <div class="card-body">
                 <form #f="ngForm" (ngSubmit)="onSearch(f.value)">
@@ -20,6 +14,12 @@
                         </button>
                     </div>
                 </form>
+                <div *ngIf="reparations == null">
+                    <br>
+                    <div  class="alert alert-info text-center" role="alert">
+                        Aucune historique de réparation
+                      </div>
+                </div>
                 <table *ngIf="reparations" class="table table-responsive-md table-responsive-sm  table-responsive-lg">
                     <tr>
                         <th>Immatriculation</th><th>Marque</th><th>DateEntree</th><th>DateSortie</th><th>PrixTotal</th>
@@ -33,6 +33,9 @@
                     <td>
                         <button [routerLink]="['/voiture',reparation.immatriculation,'historique',reparation.reparation!.dateEntree]" class="btn btn-primary" >Détails</button>
                     </td>
+                    <td>
+                        <button [routerLink]="['/voiture',reparation.immatriculation,'facture',reparation.reparation!.dateEntree]" class="btn btn-primary" >Facture</button>
+                    </td>
                     <!-- <td>
                         <button class="tooltip1 btn btn-success rounded-circle"><i class="fa fa-check" aria-hidden="true"></i>
                             <span class="tooltip1text">Validation bon de sortie</span>
@@ -43,7 +46,7 @@
 
                     </tr>
                     </table>
-                    <ul class="nav justify-content-center">
+                    <ul *ngIf="reparations"  class="nav justify-content-center">
                     <li class="page-item" [ngClass]="((i+1)==currentPage)?'active':''" *ngFor="let page of pages; let i=index">
                     <a class="page-link btn btn-primary  ml-1" (click)="onPageReparations(i)">{{i+1}}</a>
                     </li>

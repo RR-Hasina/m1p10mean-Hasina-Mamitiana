@@ -3,14 +3,8 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary text-center"> Liste des voitures</h6>
-                <div *ngIf="voitures == null">
-                    <br>
-                    <div  class="alert alert-info text-center" role="alert">
-                        Aucune voiture
-                      </div>
-                </div>
             </div>
-            <div class="card-body" *ngIf="voitures">
+            <div class="card-body">
                 <div class="row justify-content-center">
                     <div class="col-md-12  d-flex justify-content-center">
                         <form #f="ngForm" (ngSubmit)="onSearch(f.value)">
@@ -23,7 +17,13 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-8 text-center">
+                    <div *ngIf="voitures == null">
+                        <br>
+                        <div  class="alert alert-info text-center" role="alert">
+                            Aucune voiture
+                          </div>
+                    </div>
+                    <div *ngIf="voitures" class="col-md-8 text-center">
                         <table class=" table table-responsive table-responsive-md">
                             <tr>
                                 <th>Immatriculation</th><th>Marque</th><th>Nombre de réparation</th>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
            
-                    <ul class="nav justify-content-center">
+                    <ul *ngIf="voitures" class="nav justify-content-center">
                     <li class="page-item" [ngClass]="((i+1)==currentPage)?'active':''" *ngFor="let page of pages; let i=index">
                     <a class="page-link btn btn-primary  ml-1" (click)="onPageVoitures(i)">{{i+1}}</a>
                     </li>

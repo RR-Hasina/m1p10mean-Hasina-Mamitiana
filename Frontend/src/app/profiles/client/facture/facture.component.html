@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+    <div *ngIf="voiture" class="col-md-8" id="content" #content>
+        <header class="clearfix">
+            <div id="logo">
+                <img src="assets/img/logo.png">
+            </div>
+            <h1>Facture</h1>
+            <div id="company" class="clearfix">
+                <div>Company Name</div>
+                <div>455 Foggy Heights,<br /> AZ 85004, US</div>
+                <div>(602) 519-0450</div>
+                <div><u>company@example.com</u></div>
+            </div>
+            <div id="project">
+                <div><span>PROJECT</span> Réparation voiture</div>
+                <div><span>CLIENT</span> {{voiture.client.nom+" "+ voiture.client.prenom}}</div>
+                <div><span>EMAIL</span><u>{{voiture.client.email}}</u></div>
+                <div><span>IMM</span>{{voiture.immatriculation}}</div>
+                <div><span>DATE</span> {{voiture.reparation!.dateSortie | date:'mediumDate'}}</div>
+            </div>
+        </header>
+        <main>
+            <table class="table-responsive-md">
+                <thead>
+                    <tr>
+                        <th class="service">Composants</th>
+                        <th class="desc">Piece</th>
+                        <th>PRICE</th>
+                        <th>Qte</th>
+                        <th>TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let composant of voiture.reparation!.composants">
+                        <tr *ngFor="let piece of composant.pieces">
+                            <td class="service">{{composant.nom}}</td>
+                            <td class="desc">{{piece.nom}}</td>
+                            <td class="unit">Ar {{piece.prix | number}}</td>
+                            <td class="qty">1</td>
+                            <td class="total">Ar {{piece.prix  | number}}</td>
+                        </tr>
+                    </ng-container>
+                    <tr>
+                        <td colspan="4">Prix Main d'oeuvre</td>
+                        <td class="total">Ar {{voiture.reparation!.prixMo | number}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="grand total">GRAND TOTAL</td>
+                        <td class="grand total">Ar {{voiture.reparation!.prixTotal | number}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+
+    </div>
+    <div class="col-md-8" id="notices">
+        <div class="d-grid row justify-content-between gap-2 ">
+            <div >
+                <button [routerLink]="['/voiture',imm,'historique']" type="button " name="" id="" class="btn btn-primary">Retour</button>
+            </div>
+            <div >
+                <button (click)="SavePDF()"  type="button" name="" id="" class="btn btn-primary">Exporter en pdf</button>
+            </div>
+          </div>
+    </div>
+</div>
