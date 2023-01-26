@@ -5,7 +5,7 @@ exports.getListVoituresReparation = (keyword) => {
     return db.voiture.aggregate([
         { $unwind: "$reparation" },
         {$match: { 
-            "reparation.avancement" : { $ne: 100} , "reparation.dateSortie" : null,"immatriculation": {$regex:".*(?i)"+keyword+".*"}
+            "depots.validation" : 2,"reparation.avancement" : { $ne: 100} , "reparation.dateSortie" : null,"immatriculation": {$regex:".*(?i)"+keyword+".*"}
             }
          },
         { $sort : { "depots.dateDepot" : 1  } },
@@ -20,7 +20,7 @@ exports.getVoitureReparation = (imm) => {
     return db.voiture.aggregate([
         { $unwind: "$reparation" },
         {$match: { 
-            "reparation.avancement" : { $ne: 100} , "reparation.dateSortie" : null,"immatriculation": imm
+            "depots.validation" : 2,"reparation.avancement" : { $ne: 100} , "reparation.dateSortie" : null,"immatriculation": imm
             }
          }
     ]);

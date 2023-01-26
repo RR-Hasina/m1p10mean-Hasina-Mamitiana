@@ -10,10 +10,10 @@
                 </div>
                 <form class="form-inline justify-content-center" #f="ngForm" (ngSubmit)="onSearch(f.value)">
                     <div class="form-group">
-                        <input class="ml-2" type="text" name="keyword1" placeholder="Immatriculation" ngModel [(ngModel)]="keyword1">
+                        <input class="ml-2" type="text" name="keyword1" placeholder="Immatriculation" ngModel>
                     </div>
                     <div class="form-group">
-                        <input class="ml-2" type="text" name="keyword" placeholder="Email" ngModel [(ngModel)]="keyword">
+                        <input class="ml-2" type="text" name="keyword" placeholder="Email" ngModel>
                         <button type="submit">
                             <i class="fas fa-search fa-sm"></i>
                         </button>
