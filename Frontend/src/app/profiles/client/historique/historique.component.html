@@ -2,7 +2,7 @@
     <div class="col-md-10 offset-md-1 form-1-box wow fadeInUp">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary text-center"> {{"Historique des reparations pour la voiture avec l\'immatriculation : "+imm}}</h6>
+                <h6 class="m-0 font-weight-bold text-primary text-center"> {{"Historique des réparations pour la voiture avec l\'immatriculation : "+imm}}</h6>
             </div>
             <div class="card-body">
                 <form #f="ngForm" (ngSubmit)="onSearch(f.value)">
@@ -22,7 +22,7 @@
                 </div>
                 <table *ngIf="reparations" class="table table-responsive-md table-responsive-sm  table-responsive-lg">
                     <tr>
-                        <th>Immatriculation</th><th>Marque</th><th>DateEntree</th><th>DateSortie</th><th>PrixTotal</th>
+                        <th>Immatriculation</th><th>Marque</th><th>Date Entrée</th><th>Date Sortie</th><th>Prix Total</th>
                     </tr>
                     <tr *ngFor="let reparation of reparations.docs; index as i">
                     <td>{{reparation.immatriculation}}</td>
