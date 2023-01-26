@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit ,ViewChild } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ComposantService } from 'src/app/services/composant/composant.service';
 import { DepenseService } from 'src/app/services/depense/depense.service';
 
@@ -10,8 +10,6 @@ import { DepenseService } from 'src/app/services/depense/depense.service';
   styleUrls: ['./depense.component.scss']
 })
 export class DepenseComponent implements OnInit {
-
-
  
   listpieces = [{ nom: '', quantite: 1, prixUnitaire:1 }];
 
@@ -80,7 +78,8 @@ export class DepenseComponent implements OnInit {
       console.log(value);
       value.pieces = null;
       this.addDepense(value);
-      //this.reset();
+      this.submitted =false;
+      this.reset();
     }
 
     else{
@@ -96,15 +95,18 @@ export class DepenseComponent implements OnInit {
         //console.log(value);
          this.addDepense(value);
         this.prixV = false;
-        //this.reset();
+        this.submitted =false;
+        this.reset();
       }
     }
 
   }
 
   reset(): void {
+    this.submitted =false;
     this.form.reset();
     this.pieces.clear();
+    
   }
 
 

@@ -22,7 +22,7 @@
                 </div>
                 <table *ngIf="voitures" class="table table-responsive-md table-responsive-sm  table-responsive-lg">
                     <tr>
-                        <th>Immatriculation</th><th>Marque</th><th>Email du client</th><th>Client</th><th>Avancement</th><th>PrixTotal</th>
+                        <th>Immatriculation</th><th>Marque</th><th>Email du client</th><th>Client</th><th>Avancement</th><th>Prix Total</th>
                     </tr>
                     <tr *ngFor="let voiture of voitures.docs; index as i">
                     <td>{{voiture.immatriculation}}</td>
