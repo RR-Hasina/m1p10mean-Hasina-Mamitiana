@@ -1,3 +1,14 @@
 .my-custom-width {
-    width: 150px;
-  }
+  width: 150px;
+}
+
+.alert {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.alert-danger {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+}

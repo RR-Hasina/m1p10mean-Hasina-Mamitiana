@@ -31,6 +31,8 @@ router.get("/:imm/historique", controller2.getListVoituresReparer);
 
 router.get("/:imm/historique/:date", controller2.getListVoituresReparerDetails);
 
+router.post("/recuperation", controller.recuperationVoiture);
+
 
 
 module.exports = router;

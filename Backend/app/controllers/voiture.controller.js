@@ -1,3 +1,4 @@
+const { now } = require("mongoose");
 const db = require("../models");
 const Voiture = db.voiture;
 const service = require("../services/voiture.service");
@@ -93,20 +94,32 @@ exports.validationAttente = (req, res) => {
             voiture.save();
             res.send(voiture);
         })
+}
+exports.getListeVoiturePage = async (req, res) => {
+    try {
+        const { page = 1, limit = 2, kw = "" } = req.query;
+        const docs = await service.getListVoiturePage(req, kw).skip((page - 1) * limit).limit(limit * 1).exec();
+        const count = await service.getListVoiturePage(req, kw).count("count");
+        if (count.length == 0) return res.send();
+        res.json({
+            docs,
+            totalPages: Math.ceil(count[0].count / limit),
+            currentPage: parseInt(page)
+        });
+    } catch (error) {
+        res.status(500).send({ message: error });
     }
-    exports.getListeVoiturePage = async (req, res) => {
-        try {
-            const { page = 1, limit = 2, kw = "" } = req.query;
-            const docs = await service.getListVoiturePage(req, kw).skip((page - 1) * limit).limit(limit * 1).exec();
-            const count = await service.getListVoiturePage(req, kw).count("count");
-            if (count.length == 0) return res.send();
-            res.json({
-                docs,
-                totalPages: Math.ceil(count[0].count / limit),
-                currentPage: parseInt(page)
-            });
-        } catch (error) {
-            res.status(500).send({ message: error });
-        }
-    }
+}
+
+exports.recuperationVoiture = (req, res) => {
+    Voiture.findOne({
+        immatriculation: req.body.immatriculation,
+    }).exec((err, voiture) => {
+        if (err) res.status(500).send({ message: err });
+        voiture.depots[voiture.depots.length - 1].dateSortie = Date.now();
+        voiture.depots[voiture.depots.length - 1].validation = 3;
+        voiture.save();
+        res.send(voiture);
+    })
+}
 

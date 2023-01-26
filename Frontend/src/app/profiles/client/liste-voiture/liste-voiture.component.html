@@ -41,11 +41,26 @@
                             <td class="text-center">{{signalement(i.immatriculation)}}</td>
                             <td class="text-center">0%</td>
                         </tr>
-                        <tr *ngIf="i.depots[i.depots.length-1].validation==2">
+                        <tr
+                            *ngIf="i.depots[i.depots.length-1].validation==2 && !i.reparation[i.reparation.length-1].bonSortie">
                             <td class=" text-center">{{i.immatriculation}}</td>
                             <td class="text-center">{{i.marque}}</td>
                             <td class="table-success text-center">
-                                <button class="btn" (click)="reparation(i.immatriculation)">En reparation</button>
+                                <button class="btn"
+                                    (click)="reparation(i.immatriculation)">{{etatReparation(i.immatriculation)}}</button>
+                            </td>
+                            <td class="text-center">{{i.depots[i.depots.length-1].dateDepot.toString().substring(10,0)}}
+                            </td>
+                            <td class="text-center">{{signalement(i.immatriculation)}}</td>
+                            <td class="text-center">{{i.reparation[i.reparation.length-1].avancement}}%</td>
+                        </tr>
+                        <tr
+                            *ngIf="i.depots[i.depots.length-1].validation==2 && i.reparation[i.reparation.length-1].bonSortie==true">
+                            <td class=" text-center">{{i.immatriculation}}</td>
+                            <td class="text-center">{{i.marque}}</td>
+                            <td class="table-primary text-center">
+                                <button class="btn" (click)="recuperation(i.immatriculation)">En attente de
+                                    récuperation</button>
                             </td>
                             <td class="text-center">{{i.depots[i.depots.length-1].dateDepot.toString().substring(10,0)}}
                             </td>
@@ -163,6 +178,29 @@
     </div>
 </div>
 
-<div *ngIf="validation==0" class="alert alert-danger text-center" role="alert">
-    {{ messageDepot }}
+<div class="alert alert-danger" role="alert" *ngIf="validation==0">
+    <div>
+        {{ messageDepot }}
+    </div>
+</div>
+
+<div class="alert alert-primary" role="alert" *ngIf="validation==-2">
+    <div>
+        {{ messageRecuperation }}
+    </div>
+</div>
+
+<div class="card" *ngIf="validation==3">
+    <h5 class="card-header bg-primary text-white">Confirmation de récupération de voiture</h5>
+    <div class="card-body">
+        <p class="card-text">Voulez-vous récupérer votre voiture dans un atelier de réparation ?</p>
+        <form>
+            <div class="form-group">
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="recuperationValide()">Confirmer</button>
+        </form>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="changeValidation()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 </div>

@@ -3,7 +3,6 @@ import { Subscription } from 'rxjs';
 import { Voiture } from 'src/app/models/voiture';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { VoitureService } from 'src/app/services/voiture/voiture.service';
-
 @Component({
   selector: 'app-liste-voiture',
   templateUrl: './liste-voiture.component.html',
@@ -20,6 +19,7 @@ export class ListeVoitureComponent implements OnInit, OnDestroy {
   listeSignalement!: any[];
   messageErreur!: String;
   messageDepot!: String;
+  messageRecuperation!: String;
   loading: boolean = true;
 
   constructor(private voitureService: VoitureService, private storageService: StorageService) { }
@@ -61,6 +61,9 @@ export class ListeVoitureComponent implements OnInit, OnDestroy {
       }
     }
   }
+
+
+
 
 
   disabled(nom: String): Number {
@@ -150,9 +153,47 @@ export class ListeVoitureComponent implements OnInit, OnDestroy {
     return retour;
   }
 
+  etatReparation(immatriculation: String): String {
+    let retour = "";
+    for (let i = 0; i < this.listeVoiture.length; i++) {
+      if (immatriculation == this.listeVoiture[i].immatriculation) {
+        if (this.listeVoiture[i].reparation[this.listeVoiture[i].reparation.length - 1].avancement == 100) {
+          retour = "Reparation terminer";
+        } else {
+          retour = "Reparation en cours";
+        }
+      }
+    }
+    return retour;
+  }
   depots(): void {
     this.messageDepot = "Votre voiture est en attente de diagnostique";
     this.validation = 0;
+  }
+
+  changeValidation(): void {
+    this.validation = -2;
+  }
+  recuperation(immatriculation: String): void {
+    this.validation = 3;
+    for (let i = 0; i < this.listeVoiture.length; i++) {
+      if (this.listeVoiture[i].immatriculation == immatriculation) {
+        this.voiture = this.listeVoiture[i];
+      }
+    }
+  }
+
+  recuperationValide(): void {
+    this.changeValidation();
+    this.voitureService.recuperation(this.voiture.immatriculation).subscribe({
+      next: (data: Voiture) => { }
+    });
+    for (let i = 0; i < this.listeVoiture.length; i++) {
+      if (this.listeVoiture[i].immatriculation == this.voiture.immatriculation) {
+        this.listeVoiture.splice(i, 1);
+      }
+    }
+    this.messageRecuperation = "Vous pouviez à présent récuperer votre voiture, merci de votre confiance.";
   }
   ngOnDestroy(): void {
 
