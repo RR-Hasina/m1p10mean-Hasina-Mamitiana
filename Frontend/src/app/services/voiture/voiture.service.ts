@@ -12,8 +12,15 @@ export class VoitureService {
 
   constructor(private http: HttpClient) { }
 
-  public creationVoiture(voiture: any): Observable<Voiture> {
-    return this.http.post<Voiture>(GlobalConstants.apiURL + "/voiture/creation", voiture);
+  public creationVoiture(immatriculation: String, marque: String, nom: String, prenom: String, email: String): Observable<Voiture> {
+    let data={
+      immatriculation:immatriculation,
+      marque:marque,
+      nom:nom,
+      prenom:prenom,
+      email:email
+    }
+    return this.http.post<Voiture>(GlobalConstants.apiURL + "/voiture/creation", data);
   }
 
   public getVoitureNoDepot(email: string): Observable<Voiture[]> {
@@ -43,7 +50,7 @@ export class VoitureService {
   }
 
   public diagnostique(immatriculation: String, listeComposant: Composant[]): Observable<Voiture> {
-    let prixMo=2500*listeComposant.length;
+    let prixMo = 2500 * listeComposant.length;
     let data = {
       immatriculation: immatriculation,
       composant: listeComposant,
@@ -72,8 +79,8 @@ export class VoitureService {
     let data = { immatriculation: immatriculation }
     return this.http.post<Voiture>(GlobalConstants.apiURL + "/voiture/validationAttente", data);
   }
-  public getvoiturePage(email:string,kw:string,page:number,limit:number): Observable<any> {
-    return this.http.post<any>(GlobalConstants.apiURL + "/client/voiture?kw="+kw+"&page="+page+"&limit="+limit,{email:email});
+  public getvoiturePage(email: string, kw: string, page: number, limit: number): Observable<any> {
+    return this.http.post<any>(GlobalConstants.apiURL + "/client/voiture?kw=" + kw + "&page=" + page + "&limit=" + limit, { email: email });
   }
 
 

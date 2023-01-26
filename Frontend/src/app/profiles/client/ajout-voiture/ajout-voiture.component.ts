@@ -9,13 +9,9 @@ import { VoitureService } from 'src/app/services/voiture/voiture.service';
   styleUrls: ['./ajout-voiture.component.scss']
 })
 export class AjoutVoitureComponent implements OnInit {
-  voiture: any = {
-    immatriculation: null,
-    marque: null,
-    nom: String = this.storageService.getUser().nom,
-    prenom: String = this.storageService.getUser().prenom,
-    email: String = this.storageService.getUser().email
-  };
+
+  immatriculation?: String;
+  marque?: String;
   errorMessage = '';
   message = '';
   ajoutErreur = false;
@@ -25,18 +21,14 @@ export class AjoutVoitureComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.voiture.immatriculation != null && this.voiture.marque != null) {
-      this.voitureService.creationVoiture(this.voiture).subscribe({
+    if (this.immatriculation != null && this.marque != null) {
+      this.voitureService.creationVoiture(this.immatriculation, this.marque, this.storageService.getUser().nom, this.storageService.getUser().prenom, this.storageService.getUser().email).subscribe({
         next: data => {
           console.log(data);
           this.ajoutErreur = false;
-          this.voiture.immatriculation = null;
-          this.voiture.marque = null;
-          this.message="La voiture a été enregistrer!";
-        },
-        error: err => {
-          this.ajoutErreur = true;
-          this.errorMessage = err.error.message;
+          this.immatriculation = "";
+          this.marque = "";
+          this.message = "La voiture a été enregistrer!";
         }
       });
     }

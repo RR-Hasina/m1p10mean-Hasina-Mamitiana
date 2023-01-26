@@ -16,6 +16,7 @@ import { HistoriqueComponent } from './historique/historique.component';
 import { DetailshistoriqueComponent } from './detailshistorique/detailshistorique.component';
 import { FactureComponent } from './facture/facture.component';
 
+
 @NgModule({
   declarations: [
     ClientComponent,

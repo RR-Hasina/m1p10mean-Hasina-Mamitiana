@@ -15,7 +15,9 @@
                         <th class="text-center">Réparation</th>
                     </tr>
                 </thead>
-                <tbody>
+                <div class="spinner-border text-info mr-2" role="status" *ngIf="loading"></div>
+
+                <tbody *ngIf="!loading">
                     <ng-container *ngFor="let i of listeVoiture">
                         <tr *ngIf="i.depots[i.depots.length-1].validation==0">
                             <td class=" text-center">{{i.immatriculation}}</td>
