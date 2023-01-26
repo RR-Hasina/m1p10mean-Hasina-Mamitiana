@@ -61,6 +61,7 @@
                 <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListDisabled]
                     cdkDropListSortingDisabled class="col-md-6" (cdkDropListDropped)="drop($event)">
                     <h2 class="text-primary">A reparer</h2>
+                    <h6>(veuilliez cocher les pieces à ajouter)</h6>
 
                     <div class="example-box" *ngFor="let item of listeComposantReparer; let i=index" cdkDrag>
                         <div class="form-row">
@@ -70,9 +71,10 @@
                                         (change)="getPiece($event, piece,item.nom,i,j)" name="{{piece}}" id="{{piece}}"
                                         [disabled]="!prixPiece[i][j]">
                                     <label class="form-check-label mr-3" for="{{piece}}">
-                                        {{piece}}
+                                        <strong>{{piece}}</strong>
                                     </label>
-
+                                    <br>
+                                    <label for="prix">Prix:</label>
                                     <input type="text" [(ngModel)]="prixPiece[i][j]" id="prix"
                                         class="form-control w-25 mr-5">
                                 </div>
