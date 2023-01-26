@@ -68,8 +68,8 @@ export class DepotComponent implements OnInit {
           this.errorMessage = "Il y a une erreur de déposition";
         }
       })
-    }else{
-      this.errorMessage="Entrer votre plaque d'immatriculation!";
+    } else {
+      this.errorMessage = "Entrer votre plaque d'immatriculation!";
     }
   }
 
@@ -83,6 +83,16 @@ export class DepotComponent implements OnInit {
 
   majuscule() {
     this.inputValue = this.inputValue.charAt(0).toUpperCase() + this.inputValue.slice(1);
+  }
+
+  checkDouble(value: String): number {
+    let retour = 0;
+    for (let i = 0; i < this.listeSingnalement.length; i++) {
+      if (this.listeSingnalement[i] == value) {
+        retour++;
+      }
+    }
+    return retour;
   }
 
 }
