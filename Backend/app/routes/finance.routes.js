@@ -6,7 +6,7 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/stat",[authJwt.verifyToken], controller.getStat);
-router.post("/depense",[authJwt.verifyToken], controller2.saveDepense);
+router.get("/stat",controller.getStat);
+router.post("/depense",controller2.saveDepense);
 
 module.exports = router;

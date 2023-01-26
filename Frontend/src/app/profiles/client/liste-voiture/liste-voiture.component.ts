@@ -32,12 +32,13 @@ export class ListeVoitureComponent implements OnInit, OnDestroy {
   }
 
   attente(immatriculation: String): void {
+    this.validation = 1;
     for (let i = 0; i < this.listeVoiture.length; i++) {
       if (this.listeVoiture[i].immatriculation == immatriculation) {
         this.voiture = this.listeVoiture[i];
       }
     }
-    this.validation = 1;
+
     this.listeSignalement = this.voiture.depots[this.voiture.depots.length - 1].signalements;
     this.listeComposant = this.voiture.reparation[this.voiture.reparation.length - 1].composants;
     for (let i = 0; i < this.listeComposant.length; i++) {
@@ -49,12 +50,12 @@ export class ListeVoitureComponent implements OnInit, OnDestroy {
   }
 
   reparation(immatriculation: String): void {
+    this.validation = 2;
     for (let i = 0; i < this.listeVoiture.length; i++) {
       if (this.listeVoiture[i].immatriculation == immatriculation) {
         this.voiture = this.listeVoiture[i];
       }
     }
-    this.validation = 2;
   }
 
 
