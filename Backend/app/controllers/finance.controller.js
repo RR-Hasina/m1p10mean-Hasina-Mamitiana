@@ -17,7 +17,8 @@ exports.getStat = async (req, res) => {
   let statdep = await service.getStatdepense();
   let avgReparation = await service.getAvgReparation();
   let benefice = null;
-  if (statchi.length > 0 && statdep[0].length > 0) {
+  if (statchi.length > 0 && statdep.length > 0) {
+    console.log("tonga ato");
     delete statchi[0]._id;
     delete statdep[0]._id;
       //iterate over map2 entries with acc set to map1 at start
@@ -26,10 +27,6 @@ exports.getStat = async (req, res) => {
   ({ ...acc, [key]: (acc[key] || 0) - value })
   , { ...statchi[0] });
   }
-
-
-
-
 
   const initial = { janvier: 0, fevrier: 0, mars: 0, avril: 0, mai: 0, juin: 0, juillet: 0, aout: 0, septembre: 0, octobre: 0, novembre: 0, decembre: 0 };
 
