@@ -1,7 +1,10 @@
 <div *ngIf="profile=='client'">
     <ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar">
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-            <div class="sidebar-brand-text mx-3">Espace client</div>
+        <a class="sidebar-brand d-flex align-items-center justify-content-center">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fas fa-warehouse"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Client</div>
         </a>
         <hr class="sidebar-divider my-0">
         <li class="nav-item active">
@@ -23,7 +26,7 @@
         </li>
         <li class="nav-item active">
             <a class="nav-link" routerLink="/client/voiture" >
-                <i class="fas fa-fw fa-table"></i>
+                <i class="fas fa-fw fa-car"></i>
                 <span>Voiture</span></a>
         </li>
         <!-- Divider -->
@@ -38,9 +41,9 @@
 
 <div *ngIf="profile=='atelier'">
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" >
             <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
+                <i class="fas fas fa-warehouse"></i>
             </div>
             <div class="sidebar-brand-text mx-3">Atelier</div>
         </a>
@@ -53,12 +56,12 @@
         </li>
         <li class="nav-item active">
             <a class="nav-link" routerLink="/atelier/reparation">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-fw fas fa-toolbox"></i>
                 <span>Réparation</span></a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" routerLink="/atelier/bonsortie">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-fw far fa-file"></i>
                 <span>Bon de sortie</span></a>
         </li>
         <!-- Divider -->
@@ -75,9 +78,9 @@
     <!-- Sidebar -->
     <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" >
             <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
+                <i class="fas fas fa-warehouse"></i>
             </div>
             <div class="sidebar-brand-text mx-3">Finance</div>
         </a>
@@ -91,12 +94,12 @@
         </li>
         <li class="nav-item active">
             <a class="nav-link" routerLink="/finance/depense">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Depense</span></a>
+                <i class=" fas fa-fw fa-dollar-sign"></i>
+                <span>Dépense</span></a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" routerLink="/finance/payement">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-fw  fa-money-check-alt"></i>
                 <span>Payement</span></a>
         </li>
         <!-- Divider -->

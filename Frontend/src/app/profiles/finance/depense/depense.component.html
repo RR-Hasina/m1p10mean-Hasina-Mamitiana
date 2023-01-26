@@ -14,7 +14,7 @@
                   <div *ngIf="ajoutUn" class="alert alert-danger text-center" role="alert">
                     Veillez ajouter au moins une pièce !!!
                   </div>
-                <form [formGroup]="form" (submit)="submit(form.value)">
+                <form [formGroup]="form"  (submit)="submit(form.value)">
                     <fieldset class="form-group border p-2">
                         <legend class="w-auto px-2">Info Depense:</legend>
                         <div class="form-group">
@@ -43,7 +43,7 @@
                         <div class="form-check">
                             <input class="form-check-input" (change)="handleSelected($event)" type="checkbox" [(ngModel)]="isPiece" [ngModelOptions]="{standalone: true}" #checkBox id="defaultCheck1">
                             <label class="form-check-label" for="defaultCheck1">
-                              Pieces
+                              Pièces
                             </label>
                           </div> 
 
@@ -95,13 +95,13 @@
                         </ng-container>
 
                         <button class="btn-add btn btn-primary" type="button" (click)="addPieceField()">
-                            Add
+                            Ajouter pièce
                         </button>
                     </fieldset>
 
                     <div class="row d-flex justify-content-center">
-                    <button class="btn-submit btn btn-primary" type="submit">Submit</button>
-                    <button class="btn-reset btn btn-danger  pl-3 ml-3 rounded" type="button" (click)="reset()">
+                    <button class="btn-submit btn btn-primary" type="submit">Valider</button>
+                    <button class="btn-reset btn btn-danger   ml-3 rounded" type="button" (click)="reset()">
                         Reset
                     </button>
                 </div>
