@@ -23,6 +23,7 @@ export class DiagnostiqueComponent implements OnInit {
   prixPiece: number[][] = [];
   messageErreur?: String;
   messageSuccess?: String;
+  loading: boolean = true;
 
   constructor(private voitureService: VoitureService) { }
 
@@ -33,6 +34,9 @@ export class DiagnostiqueComponent implements OnInit {
           if (!data[i].reparation[data[i].reparation.length - 1]) {
             this.listeVoiture.push(data[i]);
           }
+        }
+        if (this.listeVoiture.length >= 0) {
+          this.loading = false;
         }
       }
     });
