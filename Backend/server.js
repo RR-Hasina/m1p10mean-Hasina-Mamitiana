@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
 require("dotenv/config");
+const http = require("http");
+
 
 const app = express();
 
@@ -53,6 +55,9 @@ app.get("/", (req, resp) => {
   resp.send("gg");
 });
 
-app.listen(7000, function () {
+const port = 7000;
+const server = http.createServer(app);
+
+server.listen(7000, function () {
   console.log("En écoute sur le port 7000");
 });
