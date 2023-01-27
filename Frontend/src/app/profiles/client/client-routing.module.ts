@@ -22,7 +22,7 @@ const routes: Routes = [
       {
         path: 'depot',
         component: DepotComponent,
-        title :'Depot voiture'
+        title :'Dépot voiture'
       },
       {
         path: 'liste',

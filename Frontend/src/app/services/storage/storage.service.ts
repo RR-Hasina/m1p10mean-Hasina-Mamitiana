@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import  * as CryptoJS  from "crypto-js";
 
 const USER_KEY = 'auth-user';
 
@@ -6,6 +7,8 @@ const USER_KEY = 'auth-user';
   providedIn: 'root'
 })
 export class StorageService {
+
+  private code = 'role123-secret-456';
   
   constructor() {}
 
@@ -35,4 +38,20 @@ export class StorageService {
 
     return false;
   }
+
+  decryptRole(){
+    const user = window.sessionStorage.getItem(USER_KEY);
+    const role = JSON.parse(user!).role;
+    const bytes  =  CryptoJS.AES.decrypt(role,this.code);
+    console.log(role,this.code,bytes.toString(CryptoJS.enc.Utf8));
+    return  bytes.toString(CryptoJS.enc.Utf8);
+  }
+ 
+
+  decrypt(data:any){
+    const bytes  =  CryptoJS.AES.decrypt(data,this.code);
+    return  bytes.toString(CryptoJS.enc.Utf8);
+  }
+
+  
 }

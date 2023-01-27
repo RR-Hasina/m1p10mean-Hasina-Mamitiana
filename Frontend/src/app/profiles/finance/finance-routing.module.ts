@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '',
     component : FinanceComponent,
     children : [
-      { path: "home", component: StatistiqueComponent,title :'Statistiques' },
+      { path: "home", component: StatistiqueComponent,title :'Statistiques'},
       { path: "depense", component: DepenseComponent,title :'Dépense' },
       { path: "payement", component: PayementComponent,title :'Payements' },
       {

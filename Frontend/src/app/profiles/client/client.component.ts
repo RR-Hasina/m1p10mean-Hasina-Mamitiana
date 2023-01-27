@@ -9,6 +9,8 @@ import { StorageService } from 'src/app/services/storage/storage.service';
   styleUrls: ['./client.component.scss']
 })
 export class ClientComponent implements OnInit {
+
+  private code = 'role123-secret-456';
   constructor(private storageService: StorageService, private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -21,7 +23,7 @@ export class ClientComponent implements OnInit {
     this.authService.logout().subscribe({
       next: res => {
         console.log(res);
-        const role = this.storageService.getUser().role;
+        const role = this.storageService.decrypt(this.storageService.getUser().role);
         this.storageService.clean();
         document.getElementById("ModalClose")?.click();
         if (role == "client") {

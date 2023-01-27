@@ -5,6 +5,7 @@ require("dotenv/config");
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+var CryptoJS = require("crypto-js");
 
 const serviceMail = require("../services/email.service");
 
@@ -89,7 +90,7 @@ exports.signin = (req, res) => {
         nom: user.nom,
         prenom:user.prenom,
         email: user.email,
-        role: authoritie,
+        role: CryptoJS.AES.encrypt(authoritie,process.env.ROLE_SECRET).toString()
       });
     });
 };

@@ -10,6 +10,8 @@ import { StorageService } from 'src/app/services/storage/storage.service';
   styleUrls: ['./finance.component.scss']
 })
 export class FinanceComponent {
+
+  private code = 'role123-secret-456';
   constructor(private storageService: StorageService, private authService: AuthService,private router:Router) { }
 
 
