@@ -24,11 +24,16 @@ export class AjoutVoitureComponent implements OnInit {
     if (this.immatriculation != null && this.marque != null) {
       this.voitureService.creationVoiture(this.immatriculation, this.marque, this.storageService.getUser().nom, this.storageService.getUser().prenom, this.storageService.getUser().email).subscribe({
         next: data => {
-          console.log(data);
-          this.ajoutErreur = false;
-          this.immatriculation = "";
-          this.marque = "";
-          this.message = "La voiture a été enregistrer!";
+          console.log(data.immatriculation);
+          if (data.immatriculation == "0") {
+            this.errorMessage = "L'immatriculation de la voiture existe dans la base de données";
+          } else {
+            this.ajoutErreur = false;
+            this.immatriculation = "";
+            this.marque = "";
+            this.message = "La voiture a été enregistrer!";
+          }
+
         }
       });
     }

@@ -13,7 +13,7 @@ import { VoitureService } from 'src/app/services/voiture/voiture.service';
   styleUrls: ['./depot.component.scss']
 })
 export class DepotComponent implements OnInit {
-  voituresNonDepot?: Voiture[];
+  voituresNonDepot!: Voiture[];
   listeSingnalement: any[] = [];
   immatriculation: String = "";
   errorMessage = '';
@@ -61,7 +61,11 @@ export class DepotComponent implements OnInit {
           console.log(data);
           this.message = "Votre voiture a été déposé";
           this.listeSingnalement = [];
-          window.location.reload();
+          for (let i = 0; i < this.voituresNonDepot.length; i++) {
+            if (this.voituresNonDepot[i].immatriculation == this.immatriculation) {
+              this.voituresNonDepot.splice(i, 1);
+            }
+          }
         },
         error: err => {
           this.ajoutErreur = true;
