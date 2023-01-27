@@ -4,21 +4,31 @@ const Voiture = db.voiture;
 const service = require("../services/voiture.service");
 
 exports.creationVoiture = (req, res) => {
-    const voiture = new Voiture({
+    Voiture.findOne({
         immatriculation: req.body.immatriculation,
-        marque: req.body.marque,
-        client: {
-            nom: req.body.nom,
-            prenom: req.body.prenom,
-            email: req.body.email
-        },
-    });
-    voiture.save((err, voiture) => {
-        if (err) {
-            res.status(500).send({ message: err });
-            return;
+    }).exec((err, retour) => {
+        if (!retour) {
+            const voiture = new Voiture({
+                immatriculation: req.body.immatriculation,
+                marque: req.body.marque,
+                client: {
+                    nom: req.body.nom,
+                    prenom: req.body.prenom,
+                    email: req.body.email
+                },
+            });
+            voiture.save((err, voiture) => {
+                if (err) {
+                    res.status(500).send({ message: err });
+                    return;
+                }
+                res.send(voiture);
+            });
+        } else {
+            retour.immatriculation = '0';
+            res.status(200).send(retour);
         }
-        res.send({ message: "La voiture a été enregistré" });
+
     })
 };
 
