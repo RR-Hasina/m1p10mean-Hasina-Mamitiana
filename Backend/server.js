@@ -6,7 +6,7 @@ require("dotenv/config");
 const app = express();
 
 app.use(cors({
-  origin: "http://localhost:4200",
+  origin: "https://reparation-auto-back.onrender.com",
   credentials: true
 }));
 app.use(express.json());
