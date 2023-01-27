@@ -11,7 +11,6 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class FinanceComponent {
 
-  private code = 'role123-secret-456';
   constructor(private storageService: StorageService, private authService: AuthService,private router:Router) { }
 
 
@@ -19,10 +18,10 @@ export class FinanceComponent {
     this.authService.logout().subscribe({
       next: res => {
         console.log(res);
-        const role = this.storageService.getUser().role;
+        const role = this.storageService.decrypt(this.storageService.getUser().role);
         this.storageService.clean();
         document.getElementById("ModalClose")?.click();
-        if(role == "client"){
+        if( role == "client"){
           this.router.navigateByUrl("/login-client");
         }
         if(role == "finance"){
