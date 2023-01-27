@@ -20,15 +20,18 @@ export class ListeVoitureComponent implements OnInit, OnDestroy {
   messageErreur!: String;
   messageDepot!: String;
   messageRecuperation!: String;
+
+  
   loading: boolean = true;
 
   constructor(private voitureService: VoitureService, private storageService: StorageService) { }
   ngOnInit(): void {
+    
     this.voitureService.getListeVoiture(this.storageService.getUser().email).subscribe({
       next: (data: Voiture[]) => {
         if (data) {
-          this.listeVoiture = data;
           this.loading = false;
+          this.listeVoiture = data;
           console.log(this.listeVoiture);
         }
       }

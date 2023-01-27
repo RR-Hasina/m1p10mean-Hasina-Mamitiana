@@ -15,9 +15,11 @@
                         <th class="text-center">Réparation</th>
                     </tr>
                 </thead>
-                <div class="spinner-border text-info mr-2" role="status" *ngIf="loading"></div>
-
+                
+                <div class="spinner-border text-info mr-2" role="status" *ngIf="loading">
+                </div>
                 <tbody *ngIf="!loading">
+
                     <ng-container *ngFor="let i of listeVoiture">
                         <tr *ngIf="i.depots[i.depots.length-1].validation==0">
                             <td class=" text-center">{{i.immatriculation}}</td>
@@ -34,7 +36,7 @@
                             <td class=" text-center">{{i.immatriculation}}</td>
                             <td class="text-center">{{i.marque}}</td>
                             <td class="table-warning text-center">
-                                <button class="btn" (click)="attente(i.immatriculation)">En attente</button>
+                                <button class="btn" (click)="attente(i.immatriculation)">En attente de validation</button>
                             </td>
                             <td class="text-center">{{i.depots[i.depots.length-1].dateDepot.toString().substring(10,0)}}
                             </td>
@@ -86,7 +88,7 @@
                     <tr>
                         <th>Composant</th>
                         <th>Pièce</th>
-                        <th>Prix de réparation</th>
+                        <th>Prix de réparation (Ar)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,7 +97,7 @@
                             <button class="btn btn-danger my-custom-width" disabled>Main d'oeuvre</button>
                         </td>
                         <td class="text-center">-</td>
-                        <td class="text-center">5000</td>
+                        <td class="text-center">{{voiture.reparation[voiture.reparation.length-1].prixMo}}</td>
                     </tr>
                 </tbody>
                 <tbody *ngFor="let i of listeComposant">
@@ -110,7 +112,7 @@
                 </tbody>
                 <tr>
                     <td class="bg-primary text-white" colspan="2">Prix total: </td>
-                    <td id="totalPrice" class="text-center">{{this.prixTotal}}</td>
+                    <td id="totalPrice" class="text-center">Ar {{this.prixTotal}}</td>
                 </tr>
             </table>
             <tr>
@@ -146,7 +148,7 @@
                         </div>
                         <div class="col-sm-4">
                             <h3>Prix total</h3>
-                            <p class="font-weight-bold">{{voiture.reparation[voiture.reparation.length-1].prixTotal}}
+                            <p class="font-weight-bold">Ar {{voiture.reparation[voiture.reparation.length-1].prixTotal}}
                             </p>
                         </div>
                     </div>
