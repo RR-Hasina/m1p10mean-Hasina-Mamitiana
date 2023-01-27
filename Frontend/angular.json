@@ -17,11 +17,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "optimization": {
-              "minimizer": [
-                "terser.config.js"
-              ]
-            },
             "outputPath": "dist/frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
