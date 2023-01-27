@@ -10,9 +10,9 @@ const routes: Routes = [
     path: '',
     component : FinanceComponent,
     children : [
-      { path: "home", component: StatistiqueComponent },
-      { path: "depense", component: DepenseComponent },
-      { path: "payement", component: PayementComponent },
+      { path: "home", component: StatistiqueComponent,title :'Statistiques' },
+      { path: "depense", component: DepenseComponent,title :'Dépense' },
+      { path: "payement", component: PayementComponent,title :'Payements' },
       {
         path: '',
         redirectTo: 'home',

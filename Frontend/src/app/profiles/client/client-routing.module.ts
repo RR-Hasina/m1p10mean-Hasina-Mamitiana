@@ -16,31 +16,38 @@ const routes: Routes = [
     children: [
       {
         path: 'ajout',
-        component: AjoutVoitureComponent
+        component: AjoutVoitureComponent,
+        title :'Ajout voiture'
       },
       {
         path: 'depot',
-        component: DepotComponent
+        component: DepotComponent,
+        title :'Depot voiture'
       },
       {
         path: 'liste',
-        component: ListeVoitureComponent
+        component: ListeVoitureComponent,
+        title :'Atelier | Voitures'
       },
       {
         path: 'voiture',
-        component: VoitureComponent
+        component: VoitureComponent,
+        title :'Mes voitures'
       },
       {
         path: 'voiture/:imm/historique',
-        component: HistoriqueComponent
+        component: HistoriqueComponent,
+        title :'Voitures | Historique'
       },
       {
         path: 'voiture/:imm/historique/:date',
-        component: DetailshistoriqueComponent
+        component: DetailshistoriqueComponent,
+        title :'Historique | Details'
       },
       {
         path: 'voiture/:imm/facture/:date',
-        component: FactureComponent
+        component: FactureComponent,
+        title :'Voiture | Facture'
       },
       {
         path: '',

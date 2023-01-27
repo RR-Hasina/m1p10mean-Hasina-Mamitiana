@@ -13,19 +13,23 @@ const routes: Routes = [
     children : [
       {
         path: 'reparation',
-        component : ReparationComponent
+        component : ReparationComponent,
+        title :'Réparations'
       },
       {
         path: 'reparation/:imm',
-        component : DetailsreparationComponent
+        component : DetailsreparationComponent,
+        title :'Voiture | Reparation'
       },
       {
         path: 'bonsortie',
-        component : BonSortieComponent
+        component : BonSortieComponent,
+        title :'Bon de sortie'
       },
       {
         path: 'diagnostique',
-        component :DiagnostiqueComponent
+        component :DiagnostiqueComponent,
+        title :'Diagnostique'
       },
       {
         path: '',

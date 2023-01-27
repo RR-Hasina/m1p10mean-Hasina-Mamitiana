@@ -7,11 +7,11 @@ import { LoginFinanceComponent } from './pages/login-finance/login-finance.compo
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 
 const routes: Routes = [
-  { path: "login-client", component: LoginClientComponent },
-  { path: "login-atelier", component: LoginAtelierComponent },
-  { path: "login-finance", component: LoginFinanceComponent },
-  { path: "confirm/:confirmationCode", component: WelcomeComponent },
-  { path: "inscription", component: InscriptionComponent },
+  { path: "login-client", component: LoginClientComponent,title:'Login client' },
+  { path: "login-atelier", component: LoginAtelierComponent,title:'Login atelier' },
+  { path: "login-finance", component: LoginFinanceComponent,title:'Login finance' },
+  { path: "confirm/:confirmationCode", component: WelcomeComponent,title:'Confirmation Code' },
+  { path: "inscription", component: InscriptionComponent,title:'Inscription' },
   { path: "", redirectTo: "/login-client", pathMatch: "full" },
   {
     path: "client",
