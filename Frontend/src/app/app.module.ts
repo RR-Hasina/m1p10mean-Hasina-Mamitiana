@@ -12,6 +12,8 @@ import { ClientModule } from './profiles/client/client.module';
 import { FinanceModule } from './profiles/finance/finance.module';
 import { LoginClientComponent } from './pages/login-client/login-client.component';
 import { LoginFinanceComponent } from './pages/login-finance/login-finance.component';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
+import { InscriptionComponent } from './pages/inscription/inscription.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { LoginFinanceComponent } from './pages/login-finance/login-finance.compo
     LoginClientComponent,
     LoginAtelierComponent,
     LoginFinanceComponent,
+    WelcomeComponent,
+    InscriptionComponent,
   ],
   imports: [
     BrowserModule,

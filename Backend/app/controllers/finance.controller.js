@@ -18,7 +18,6 @@ exports.getStat = async (req, res) => {
   let avgReparation = await service.getAvgReparation();
   let benefice = null;
   if (statchi.length > 0 && statdep.length > 0) {
-    console.log("tonga ato");
     delete statchi[0]._id;
     delete statdep[0]._id;
       //iterate over map2 entries with acc set to map1 at start

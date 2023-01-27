@@ -7,6 +7,14 @@ const User = mongoose.model(
     prenom: String,
     email: String,
     password: String,
+    status: {
+      type: String, 
+      enum: ['Pending', 'Active'],
+      default: 'Pending'
+    },
+    confirmationCode: { 
+      type: String, 
+      unique: true },
     role : String
   })
 );

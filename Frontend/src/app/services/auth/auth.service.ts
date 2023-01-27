@@ -22,4 +22,12 @@ export class AuthService {
     return this.http.post(GlobalConstants.apiURL+ '/signout', { });
   }
 
+  verifyUser = (code:any) => {
+    return this.http.get(GlobalConstants.apiURL+ "/confirm/" + code);
+  }
+
+  register(nom: string,prenom: string, email: string, password: string,role:string): Observable<any> {
+    return this.http.post(GlobalConstants.apiURL + '/signup',{nom,prenom, email,password,role});
+  }
+
 }

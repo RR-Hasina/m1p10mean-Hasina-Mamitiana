@@ -9,6 +9,7 @@ import { StatService } from 'src/app/services/stat/stat.service';
 export class StatistiqueComponent implements OnInit {
 
   stat : any  = {} ;
+  loading: boolean = true;
 
   constructor(private statservice: StatService) {}
   ngOnInit(){
@@ -21,6 +22,7 @@ export class StatistiqueComponent implements OnInit {
         this.stat = data;
         this.createChartA();
         this.createChartB();
+        this.loading = false;
       },
       error: (err) => {},
     });
@@ -62,6 +64,7 @@ export class StatistiqueComponent implements OnInit {
     return '...';
   }
 };
+
 
 formatSecond2(seconds:number) {
   var minute = 60 * 1000,

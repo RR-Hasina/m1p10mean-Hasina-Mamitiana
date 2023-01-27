@@ -5,6 +5,10 @@ const path = require("path");
 const fs = require('fs');
 inlineCss = require('inline-css');
 
+const emailValidator = require('deep-email-validator');
+
+const frontURL = "http://localhost:4200";
+
 
 // Create and initialize the email transport object
 const transporter = nodemailer.createTransport({
@@ -15,6 +19,10 @@ const transporter = nodemailer.createTransport({
       pass: "4a97548484ee2b"
     }
   });
+
+  exports.isEmailValid = async(email) =>{
+    return emailValidator.validate(email)
+  }
 
 exports.sendEmailReparation = async (req,res) => {
     try {
@@ -46,3 +54,17 @@ exports.sendEmailReparation = async (req,res) => {
             console.error(e);
         }      
  }
+
+ exports.sendConfirmationEmail = (name, email, confirmationCode) => {
+    console.log("Check");
+    transporter.sendMail({
+      from: 'c363cd7b0f371c',
+      to: email,
+      subject: "Please confirm your account",
+      html: `<h1>Email Confirmation</h1>
+          <h2>Hello ${name}</h2>
+          <p>Merci de vous être abonné. Veuillez confirmer votre email en cliquant sur le lien suivant</p>
+          <a href=${frontURL}/confirm/${confirmationCode}> Cliquez ici</a>
+          </div>`,
+    }).catch(err => console.log(err));
+  };

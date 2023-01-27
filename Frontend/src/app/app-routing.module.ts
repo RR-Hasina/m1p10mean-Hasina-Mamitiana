@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { LoginAtelierComponent } from './pages/login-atelier/login-atelier.component';
 import { LoginClientComponent } from './pages/login-client/login-client.component';
 import { LoginFinanceComponent } from './pages/login-finance/login-finance.component';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
 
 const routes: Routes = [
   { path: "login-client", component: LoginClientComponent },
   { path: "login-atelier", component: LoginAtelierComponent },
   { path: "login-finance", component: LoginFinanceComponent },
+  { path: "confirm/:confirmationCode", component: WelcomeComponent },
+  { path: "inscription", component: InscriptionComponent },
   { path: "", redirectTo: "/login-client", pathMatch: "full" },
   {
     path: "client",

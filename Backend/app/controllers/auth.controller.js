@@ -6,13 +6,27 @@ require("dotenv/config");
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
-exports.signup = (req, res) => {
+const serviceMail = require("../services/email.service");
+
+exports.signup = async(req, res) => {
+
+  // const {valid, reason, validators} = await serviceMail.isEmailValid(req.body.email);
+
+  // if (!valid){
+  //   return res.status(400).send({
+  //     message: "Veillez entrer un email valide!!",
+  //     reason: validators[reason].reason
+  //   })
+  // }
+
+  const token = jwt.sign({email: req.body.email}, process.env.JWT_SECRET);
   const user = new User({
     nom: req.body.nom,
     prenom: req.body.prenom,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8),
-    role:req.body.role
+    role:req.body.role,
+    confirmationCode: token
   });
 
   user.save((err, user) => {
@@ -21,6 +35,12 @@ exports.signup = (req, res) => {
       return;
     }
     res.send({ message: "l\'utilisateur a été enregistré!" });
+
+    serviceMail.sendConfirmationEmail(
+      user.prenom,
+      user.email,
+      user.confirmationCode
+    )
   });
 };
 
@@ -33,6 +53,13 @@ exports.signin = (req, res) => {
         res.status(500).send({ message: err });
         return;
       }
+
+      if (user.status != "Active") {
+        return res.status(401).send({
+          message: "Compte en attente vérifier votre email!",
+        });
+      }
+
       if (!user) {
         return res.status(404).send({ message: "Utilisateur non trouvé." });
       }
@@ -74,4 +101,24 @@ exports.signout = async (req, res) => {
   } catch (err) {
     this.next(err);
   }
+};
+
+exports.verifyUser = (req, res, next) => {
+  User.findOne({
+    confirmationCode: req.params.confirmationCode,
+  })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send({ message: "User Not found." });
+      }
+
+      user.status = "Active";
+      user.save((err) => {
+        if (err) {
+          res.status(500).send({ message: err });
+          return;
+        }
+      });
+    })
+    .catch((e) => console.log("error", e));
 };
