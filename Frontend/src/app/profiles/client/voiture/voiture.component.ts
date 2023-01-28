@@ -38,6 +38,9 @@ Ongetvoiture(search:boolean){
           this.isSearch = true;
         }
       }
+      else{
+        this.isNodata =false;
+      }
       this.isLoading=false;
       this.voitures=data;
       if(data != null) {this.pages=new Array<number>(data.totalPages)}; 
@@ -54,6 +57,7 @@ onPageVoitures(i:number) {
   }
 
 onSearch(data:any) {
+  this.isNodata =false;
   this.isLoading=true;
 this.keyword=data.keyword;
 console.log(this.keyword,this.currentPage,this.pageSize);
