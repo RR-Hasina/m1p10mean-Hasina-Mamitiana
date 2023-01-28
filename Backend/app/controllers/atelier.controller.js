@@ -34,10 +34,6 @@ exports.diagnostique = (req, res) => {
         }
         prixTotal = parseInt(prixTotal) + parseInt(req.body.prixMo);
       }
-      for (let i = 0; i < req.body.composant.length; i++) {
-        req.body.composant[i].dateEntree = null;
-        req.body.composant[i].dateSortie = null;
-      }
       var reparation = {
         "dateEntree": null,
         "dateSortie": null,
