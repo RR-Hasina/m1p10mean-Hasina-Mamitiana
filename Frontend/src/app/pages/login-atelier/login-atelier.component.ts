@@ -17,6 +17,7 @@ export class LoginAtelierComponent {
   private role = "atelier";
   isLoggedIn = false;
   isLoginFailed = false;
+  isLoading: boolean = false;
 
   constructor(private authService: AuthService, private storageService: StorageService, private router: Router) { }
 
@@ -24,15 +25,18 @@ export class LoginAtelierComponent {
   }
 
   onSubmit(): void {
+    this.isLoading = true;
     if (this.user.email != null && this.user.password != null) {
       this.authService.login(this.user, this.role).subscribe({
         next: data => {
+          this.isLoading = false;
           this.storageService.saveUser(data);
           this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.router.navigateByUrl("/atelier");
         },
         error: err => {
+          this.isLoading = false;
           this.errorMessage = err.error.message;
           this.isLoginFailed = true;
         }
