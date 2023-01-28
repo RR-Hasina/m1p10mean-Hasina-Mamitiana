@@ -9,7 +9,7 @@ var CryptoJS = require("crypto-js");
 
 const serviceMail = require("../services/email.service");
 
-exports.signup = (req, res) => {
+exports.signup = async (req, res) => {
 
   const token = jwt.sign({email: req.body.email}, process.env.JWT_SECRET);
   const user = new User({
@@ -21,18 +21,18 @@ exports.signup = (req, res) => {
     confirmationCode: token
   });
 
-  user.save( async (err, user) => {
+  await serviceMail.sendConfirmationEmail(
+    req.body.prenom,
+    req.body.email,
+    token
+  )
+
+    user.save((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
       return;
     }
     res.send({ message: "l\'utilisateur a été enregistré!" });
-
-     await serviceMail.sendConfirmationEmail(
-      user.prenom,
-      user.email,
-      user.confirmationCode
-    )
   });
 };
 
