@@ -50,8 +50,8 @@ exports.sendEmailReparation = async (req, res) => {
   }
 }
 
-exports.sendConfirmationEmail = (name, email, confirmationCode) => {
-  transporter.sendMail({
+exports.sendConfirmationEmail = async(name, email, confirmationCode) => {
+  await transporter.sendMail({
     from: process.env.GMAIL_USER,
     to: email,
     subject: "Please confirm your account",
