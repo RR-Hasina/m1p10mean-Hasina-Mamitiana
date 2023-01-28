@@ -25,8 +25,8 @@ export class LoginFinanceComponent {
   }
 
   onSubmit(): void {
-    this.isLoading = true;
-    if (this.user.email != null && this.user.password != null) {
+    if (this.user.email != "" && this.user.password != "") {
+      this.isLoading = true;
       this.authService.login(this.user, this.role).subscribe({
         next: data => {
           this.storageService.saveUser(data);

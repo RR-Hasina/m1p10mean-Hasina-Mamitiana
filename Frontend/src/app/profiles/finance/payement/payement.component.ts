@@ -72,11 +72,10 @@ OngetnonPayer(search:boolean){
     if(this.voitures.docs[index].reparation!.datePayement! == null){
       return;
     }
-
+    document.getElementById("btnclos"+index)?.click();
     this.service.payer(imm,this.voitures.docs[index].reparation?.datePayement).subscribe({
       next: (data) => {
         console.log(data);
-        document.getElementById("btnclos"+index)?.click();
         this.OngetnonPayer(false);
         this.ajouter = true;
         setTimeout(() => {
