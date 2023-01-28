@@ -61,9 +61,9 @@ export class BonSortieComponent implements OnInit {
   
   validation(imm:any,index:any){
     this.isLoading=true;
+    document.getElementById("btnclos"+index)?.click();
     this.service.validerBon(imm).subscribe({
       next: (data) => {
-        document.getElementById("btnclos"+index)?.click();
         this.Ongetvoiture(false);
         this.ajouter = true;
         setTimeout(() => {
