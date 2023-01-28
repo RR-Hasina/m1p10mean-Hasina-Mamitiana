@@ -51,23 +51,7 @@ exports.sendEmailReparation = async (req, res) => {
 }
 
 exports.sendConfirmationEmail = async(name, email, confirmationCode) => {
-
-  await new Promise((resolve, reject) => {
-    // verify connection configuration
-    transporter.verify(function (error, success) {
-        if (error) {
-            console.log(error);
-            reject(error);
-        } else {
-            console.log("Server is ready to take our messages");
-            resolve(success);
-        }
-    });
-});
-
-await new Promise((resolve, reject) => {
-  // send mail
-    transporter.sendMail({
+  await transporter.sendMail({
     from: process.env.GMAIL_USER,
     to: email,
     subject: "Please confirm your account",
@@ -77,6 +61,4 @@ await new Promise((resolve, reject) => {
           <a href=${frontURL}/confirm/${confirmationCode}> Cliquez ici</a>
           </div>`,
   }).catch(err => console.log(err));
-});
-
 };

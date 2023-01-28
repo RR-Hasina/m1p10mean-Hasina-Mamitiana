@@ -28,7 +28,7 @@ exports.signup = async(req, res) => {
     }
     res.send({ message: "l\'utilisateur a été enregistré!" });
 
-      await serviceMail.sendConfirmationEmail(
+      serviceMail.sendConfirmationEmail(
       user.prenom,
       user.email,
       user.confirmationCode
