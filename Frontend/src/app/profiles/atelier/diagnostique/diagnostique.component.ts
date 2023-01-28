@@ -32,7 +32,7 @@ export class DiagnostiqueComponent implements OnInit {
       next: (data: Voiture[]) => {
         console.log(data);
         for (let i = 0; i < data.length; i++) {
-          if (data[i].depots[data[i].depots.length - 1].validation==0) {
+          if (data[i].depots[data[i].depots.length - 1].validation == 0) {
             this.listeVoiture.push(data[i]);
           }
         }
@@ -144,17 +144,29 @@ export class DiagnostiqueComponent implements OnInit {
     if (this.composantDiagnostique.length == 0) {
       this.messageErreur = "Identifier le composant à réparer";
     } else {
-      this.voitureService.diagnostique(this.immatriculation, this.composantDiagnostique).subscribe({
-        next: (data: Voiture) => {
-          console.log(data);
-          this.immatriculation = "";
-          this.messageSuccess = "Diagnostique validé.";
+      let count = 0;
+      for (let i = 0; i < this.composantDiagnostique.length; i++) {
+        for (let j = 0; j < this.composantDiagnostique[i].pieces.length; j++) {
+          if (this.composantDiagnostique[i].pieces[j].prix < 0) {
+            count++;
+          }
         }
-      });
-      for (let i = 0; i < this.listeVoiture.length; i++) {
-        if (this.listeVoiture[i].immatriculation == this.immatriculation) {
-          this.listeVoiture.splice(i, 1);
+      }
+      if (count == 0) {
+        this.voitureService.diagnostique(this.immatriculation, this.composantDiagnostique).subscribe({
+          next: (data: Voiture) => {
+            console.log(data);
+            this.immatriculation = "";
+            this.messageSuccess = "Diagnostique validé.";
+          }
+        });
+        for (let i = 0; i < this.listeVoiture.length; i++) {
+          if (this.listeVoiture[i].immatriculation == this.immatriculation) {
+            this.listeVoiture.splice(i, 1);
+          }
         }
+      } else {
+        this.messageErreur = "Pix négative n'est pas acceptée.";
       }
     }
   }
