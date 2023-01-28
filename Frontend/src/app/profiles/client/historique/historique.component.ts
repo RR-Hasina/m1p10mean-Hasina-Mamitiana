@@ -13,7 +13,7 @@ export class HistoriqueComponent {
   reparations!:ReparationPage;
   keyword!:string;
   currentPage:number=1;
-  pageSize:number=2;
+  pageSize:number=8;
   pages!:Array<number>;
   ajouter = false;
   imm!:string;

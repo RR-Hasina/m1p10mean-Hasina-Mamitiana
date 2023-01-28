@@ -13,7 +13,7 @@ export class VoitureComponent implements OnInit {
   voitures!:VoiturePage;
    keyword:string="";
    currentPage:number=1;
-   pageSize:number=2;
+   pageSize:number=8;
    pages!:Array<number>;
    ajouter = false;
 
