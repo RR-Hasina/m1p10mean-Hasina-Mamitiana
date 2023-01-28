@@ -21,7 +21,7 @@ exports.signup = async(req, res) => {
     confirmationCode: token
   });
 
-  user.save( async (err, user) => {
+  user.save((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
       return;

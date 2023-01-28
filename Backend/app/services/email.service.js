@@ -60,5 +60,5 @@ exports.sendConfirmationEmail = async(name, email, confirmationCode) => {
           <p>Merci de vous être abonné. Veuillez confirmer votre email en cliquant sur le lien suivant</p>
           <a href=${frontURL}/confirm/${confirmationCode}> Cliquez ici</a>
           </div>`,
-  }).catch(err => console.log(err));
+  });
 };
