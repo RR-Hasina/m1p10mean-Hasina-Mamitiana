@@ -26,15 +26,16 @@ export class LoginClientComponent {
   }
 
   onSubmit(): void {
-    this.isLoading = true;
     if (this.user.email != null && this.user.password != null) {
+      console.log("tonga");
+      this.isLoading = true;
       this.authService.login(this.user, this.role).subscribe({
         next: data => {
           this.storageService.saveUser(data);
           this.isLoginFailed = false;
           this.isLoggedIn = true;
-          this.router.navigateByUrl("/client");
           this.isLoading = false;
+          this.router.navigateByUrl("/client");
         },
         error: err => {
           this.errorMessage = err.error.message;
