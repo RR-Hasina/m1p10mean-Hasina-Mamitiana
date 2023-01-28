@@ -1,3 +1,3 @@
 export class GlobalConstants {
-    public static apiURL: string = "https://reparation-api.vercel.app";
+    public static apiURL: string = "http://localhost:7000";
 }
