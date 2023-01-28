@@ -111,6 +111,9 @@
                                     <div *ngIf="control[i]" class="col-md-12 text-center">
                                         <p class="text-danger">Veillez selectionner une date!!!</p>
                                     </div>
+                                    <div *ngIf="control1[i]" class="col-md-12 text-center">
+                                        <p class="text-danger">Date d' entrée dépot inferieure à la date!!!</p>
+                                    </div>
                                 </div>
                                 <div *ngIf="composant.dateDebut != null && composant.dateFin == null" class="col-md-12 " #elseBlock>
                                     <div class="form-inline  justify-content-center">
