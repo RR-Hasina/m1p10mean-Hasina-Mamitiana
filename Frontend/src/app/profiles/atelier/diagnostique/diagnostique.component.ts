@@ -23,21 +23,20 @@ export class DiagnostiqueComponent implements OnInit {
   prixPiece: number[][] = [];
   messageErreur?: String;
   messageSuccess?: String;
-  loading: boolean = false;
+  loading: boolean = true;
 
   constructor(private voitureService: VoitureService) { }
 
   ngOnInit(): void {
     this.voitureService.getListeVoitureDepot().subscribe({
       next: (data: Voiture[]) => {
-        console.log(data);
-        for (let i = 0; i < data.length; i++) {
-          if (data[i].depots[data[i].depots.length - 1].validation == 0) {
-            this.listeVoiture.push(data[i]);
-          }
-        }
-        if (this.listeVoiture.length >= 0) {
+        if (data) {
           this.loading = false;
+          for (let i = 0; i < data.length; i++) {
+            if (data[i].depots[data[i].depots.length - 1].validation == 0) {
+              this.listeVoiture.push(data[i]);
+            }
+          }
         }
       }
     });
