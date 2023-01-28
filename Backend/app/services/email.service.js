@@ -6,8 +6,6 @@ require("dotenv/config");
 const fs = require('fs');
 inlineCss = require('inline-css');
 
-const emailValidator = require('deep-email-validator');
-
 const frontURL = process.env.FRONT_URL;
 
 
@@ -20,9 +18,6 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-exports.isEmailValid = async (email) => {
-  return emailValidator.validate(email)
-}
 
 exports.sendEmailReparation = async (req, res) => {
   try {
@@ -56,7 +51,6 @@ exports.sendEmailReparation = async (req, res) => {
 }
 
 exports.sendConfirmationEmail = (name, email, confirmationCode) => {
-  console.log("Check");
   transporter.sendMail({
     from: process.env.GMAIL_USER,
     to: email,

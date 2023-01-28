@@ -11,15 +11,6 @@ const serviceMail = require("../services/email.service");
 
 exports.signup = async(req, res) => {
 
-  const {valid, reason, validators} = await serviceMail.isEmailValid(req.body.email);
-
-  if (!valid){
-    return res.status(400).send({
-      message: "L'adresse mail n' existe pas!!",
-      reason: validators[reason].reason
-    })
-  }
-
   const token = jwt.sign({email: req.body.email}, process.env.JWT_SECRET);
   const user = new User({
     nom: req.body.nom,
