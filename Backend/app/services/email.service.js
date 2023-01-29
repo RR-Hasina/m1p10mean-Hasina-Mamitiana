@@ -21,19 +21,30 @@ const transporter = nodemailer.createTransport({
 
 exports.sendEmailReparation = async (req, res) => {
   try {
-    //Load the template file
-    const templateFile = fs.readFileSync((path.join(__dirname, '..') + "\\templates\\reparationMail\\reparationMail.html"));
-    //Load and inline the style
-    const templateStyled = await inlineCss(templateFile.toString(), { url: "file://" + (path.join(__dirname, '..') + "\\templates\\reparationMail\\") });
-    //Inject the data in the template and compile the html
-    const templateCompiled = handlebars.compile(templateStyled);
-    const templateRendered = templateCompiled({ user: req.body.user, marque: req.body.marque, imm: req.params.imm });
+    // //Load the template file
+    // const templateFile = fs.readFileSync((path.join(__dirname, '..') + "\\templates\\reparationMail\\reparationMail.html"));
+    // //Load and inline the style
+    // const templateStyled = await inlineCss(templateFile.toString(), { url: "file://" + (path.join(__dirname, '..') + "\\templates\\reparationMail\\") });
+    // //Inject the data in the template and compile the html
+    // const templateCompiled = handlebars.compile(templateStyled);
+    // const templateRendered = templateCompiled({ user: req.body.user, marque: req.body.marque, imm: req.params.imm });
 
     const emailData = {
       to: req.body.user.email,
       from: process.env.GMAIL_USER,
       subject: "Réparation de la voiture " + req.body.marque + ", imm: " + req.params.imm,
-      html: templateRendered
+      html: `
+      <div>
+        <h3>Cher <span>${ req.body.user.nom } ${req.body.user.prenom }</span>,</h3>
+        <p>Nous vous informons que la voiture ${ req.body.marque } avec l' immatriculation ${ req.params.imm } a été reparée</p>
+        <p>
+            Veillez consulter les historiques de réparation pour voir la facture de celle-ci .
+        </p>
+        <p>
+            Veillez vous présentez dans les plus bref délais afin de procéder au payement et de récupérer la voiture. 
+        </p>
+      </div>
+      `
     };
 
     //Send the email
