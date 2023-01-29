@@ -42,7 +42,7 @@ export class DetailsreparationComponent implements OnInit {
         };
       },
       error: (err) => {
-        console.log(err);
+        
         this.router.navigateByUrl('/atelier/reparation');
       },
     });
@@ -70,7 +70,7 @@ export class DetailsreparationComponent implements OnInit {
     }
     if(this.dateTemp[index] == null) this.control[index] = true;
     if(!this.control[index] && !this.control1[index] ){
-      console.log("gg be");
+      
       let dataupdate = {};
       if(this.calculavancement()==0){
         this.voiture.reparation!.dateEntree = this.voiture.reparation!.composants![index].dateDebut;
@@ -80,7 +80,7 @@ export class DetailsreparationComponent implements OnInit {
       }
       this.service.updateCompDateDeb(this.voiture.immatriculation,dataupdate).subscribe({
         next: (data) => {
-          console.log(data);
+          
         },
         error: (err) => {console.log(err)},
       });
@@ -105,7 +105,7 @@ export class DetailsreparationComponent implements OnInit {
       }
       this.service.updateCompDateFin(this.voiture.immatriculation,dataupdate).subscribe({
         next: (data) => {
-          console.log(data);
+          
         },
         error: (err) => {
            console.log(err)
@@ -150,7 +150,7 @@ export class DetailsreparationComponent implements OnInit {
     }
     this.service.updateCompDateFin(this.voiture.immatriculation,dataupdate).subscribe({
       next: (data) => {
-        console.log(data);
+        
       },
       error: (err) => {console.log(err)},
     });
