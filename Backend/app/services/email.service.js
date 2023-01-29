@@ -12,7 +12,6 @@ const frontURL = process.env.FRONT_URL;
 // Create and initialize the email transport object
 const transporter = nodemailer.createTransport({
   service:"Gmail",
-  secure: true,
   auth: {
     user: process.env.GMAIL_USER,
     pass: process.env.GMAIL_SECRET
