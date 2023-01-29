@@ -70,7 +70,6 @@ export class DetailsreparationComponent implements OnInit {
     if(this.dateTemp[index] == null) this.control[index] = true;
     if(this.voiture.reparation?.dateEntree != null && new Date(this.voiture.reparation?.dateEntree) > this.dateTemp[index] ){
       this.controlDebut[index] = true;
-      console.log("tonga");
     }
 
     if(!this.control[index] && !this.control1[index] && !this.controlDebut[index]){
@@ -109,8 +108,6 @@ export class DetailsreparationComponent implements OnInit {
       );
       const max: Date = maxDateTemp > this.voiture.reparation!.composants![index].dateFin! ? maxDateTemp : this.voiture.reparation!.composants![index].dateFin!;
       this.voiture.reparation!.dateSortie =  max ;
-      console.log(max);
-      return;
         dataupdate = {nom:this.voiture.reparation!.composants![index].nom,dateFin:this.voiture.reparation!.composants![index].dateFin,avancement:this.voiture.reparation!.avancement,dateSortie:max,user:this.voiture.client,marque:this.voiture.marque};
       }else{
         dataupdate = {nom:this.voiture.reparation!.composants![index].nom,dateFin:this.voiture.reparation!.composants![index].dateFin,avancement:this.voiture.reparation!.avancement};
