@@ -14,7 +14,7 @@
     ],
     "headers": [
         {
-            "source": "/app/:path*",
+            "source": "/(.*)",
             "headers": [
                 {
                     "key": "Access-Control-Allow-Credentials",
