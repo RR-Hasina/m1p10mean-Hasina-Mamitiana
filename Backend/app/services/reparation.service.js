@@ -72,11 +72,6 @@ exports.updateDateDebutrep = (req,res) => {
 
 exports.updateDateFinrep = (req,res) => {
     if(req.body.dateSortie != null){
-        res.header(
-            "Access-Control-Allow-Headers",
-            "Access-Control-Allow-Origin",
-            "Origin, Content-Type, Accept"
-          );
         db.voiture.updateOne(
             {immatriculation : req.params.imm},
             { $set: {"reparation.$[reparation].composants.$[composant].dateFin" :req.body.dateFin,"reparation.$[reparation].avancement" :req.body.avancement,"reparation.$[reparation].dateSortie":req.body.dateSortie }},
