@@ -1,5 +1,6 @@
 const { voiture } = require("../models");
 const db = require("../models");
+const serviceMail = require("../services/email.service");
 const Voiture = db.voiture;
 const Composant = db.composant;
 
@@ -47,6 +48,7 @@ exports.diagnostique = (req, res) => {
       voiture.depots[voiture.depots.length - 1].validation = 1;
       voiture.reparation.push(reparation);
       voiture.save();
+      serviceMail.sendEmailDiagnostique(req, res);
       res.status(200).send(voiture);
     })
 }
