@@ -21,18 +21,17 @@ exports.signup = async (req, res) => {
     confirmationCode: token
   });
 
-  await serviceMail.sendConfirmationEmail(
-    req.body.prenom,
-    req.body.email,
-    token
-  )
-
-    user.save((err, user) => {
+    user.save( async (err, user) => {
     if (err) {
       res.status(500).send({ message: err });
       return;
     }
     res.send({ message: "l\'utilisateur a été enregistré!" });
+    await serviceMail.sendConfirmationEmail(
+      req.body.prenom,
+      req.body.email,
+      token
+    )
   });
 };
 
