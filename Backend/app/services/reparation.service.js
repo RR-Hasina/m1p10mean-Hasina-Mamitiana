@@ -81,8 +81,7 @@ exports.updateDateFinrep = (req,res) => {
              res.status(500).send(err);
           }else{
              //res.json("composant mis à jour");
-             serviceMail.sendEmailReparation(req,res);
-
+            serviceMail.sendEmailReparation(req,res);
           }
         });
 

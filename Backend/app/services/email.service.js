@@ -37,16 +37,12 @@ exports.sendEmailReparation = async (req, res) => {
     };
 
     //Send the email
-    transporter.sendMail(emailData, function (error, info) {
-      if (error) {
-        res.status(500).send(error);
-      } else {
-        res.status(200).send({ message: "Composant mis à jour et Email envoyer" });
-      }
-    });
+     await transporter.sendMail(emailData);
+     res.status(200).send({ message: "Composant mis à jour et Email envoyer" });
 
   } catch (e) {
     console.error(e);
+    res.status(500).send(error);
   }
 }
 

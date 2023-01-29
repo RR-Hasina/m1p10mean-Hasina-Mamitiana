@@ -58,8 +58,8 @@
         </main>
 
     </div>
-    <div class="col-md-8" id="notices">
-        <div class="d-grid row justify-content-between gap-2 ">
+    <div *ngIf="voiture" class="col-md-8" id="notices">
+        <div  class="d-grid row justify-content-between gap-2 ">
             <div >
                 <button [routerLink]="['/voiture',imm,'historique']" type="button " name="" id="" class="btn btn-primary">Retour</button>
             </div>
