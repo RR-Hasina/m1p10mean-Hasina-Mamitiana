@@ -1,10 +1,7 @@
 const nodemailer = require('nodemailer');
-const handlebars = require("handlebars");
 const path = require("path");
 require("dotenv/config");
 
-const fs = require('fs');
-inlineCss = require('inline-css');
 
 const frontURL = process.env.FRONT_URL;
 
@@ -21,14 +18,6 @@ const transporter = nodemailer.createTransport({
 
 exports.sendEmailReparation = async (req, res) => {
   try {
-    // //Load the template file
-    // const templateFile = fs.readFileSync((path.join(__dirname, '..') + "\\templates\\reparationMail\\reparationMail.html"));
-    // //Load and inline the style
-    // const templateStyled = await inlineCss(templateFile.toString(), { url: "file://" + (path.join(__dirname, '..') + "\\templates\\reparationMail\\") });
-    // //Inject the data in the template and compile the html
-    // const templateCompiled = handlebars.compile(templateStyled);
-    // const templateRendered = templateCompiled({ user: req.body.user, marque: req.body.marque, imm: req.params.imm });
-
     const emailData = {
       to: req.body.user.email,
       from: process.env.GMAIL_USER,

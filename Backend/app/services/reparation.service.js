@@ -76,12 +76,12 @@ exports.updateDateFinrep = (req,res) => {
             {immatriculation : req.params.imm},
             { $set: {"reparation.$[reparation].composants.$[composant].dateFin" :req.body.dateFin,"reparation.$[reparation].avancement" :req.body.avancement,"reparation.$[reparation].dateSortie":req.body.dateSortie }},
             { arrayFilters: [{ 'reparation.avancement':  { "$ne": 100 }},{ 'composant.nom': req.body.nom }]}
-             , async function(err,updated){
+             ,function(err,updated){
           if(err){
              res.status(500).send(err);
           }else{
              //res.json("composant mis à jour");
-            await serviceMail.sendEmailReparation(req,res);
+            serviceMail.sendEmailReparation(req,res);
           }
         });
 
