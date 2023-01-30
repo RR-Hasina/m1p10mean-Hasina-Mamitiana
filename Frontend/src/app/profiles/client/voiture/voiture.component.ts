@@ -24,7 +24,6 @@ export class VoitureComponent implements OnInit {
 constructor(private service:VoitureService,private serviceStorage:StorageService){};
 
 ngOnInit(): void {
-  console.log(this.serviceStorage.getUser().email);
     this.Ongetvoiture(false);
 }
 
