@@ -33,13 +33,12 @@ exports.diagnostique = (req, res) => {
         for (let j = 0; j < req.body.composant[i].pieces.length; j++) {
           prixTotal += parseInt(req.body.composant[i].pieces[j].prix);
         }
-        prixTotal = parseInt(prixTotal) + parseInt(req.body.prixMo);
       }
       var reparation = {
         "dateEntree": null,
         "dateSortie": null,
         "composants": req.body.composant,
-        "prixMo": req.body.prixMo,
+        "prixMo": 0,
         "avancement": 0,
         "prixTotal": prixTotal,
         "datePayement": null,
